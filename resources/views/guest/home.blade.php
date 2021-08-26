@@ -6,15 +6,12 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Ubuntu', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
@@ -68,7 +65,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('admin.home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
