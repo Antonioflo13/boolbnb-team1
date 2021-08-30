@@ -39,4 +39,8 @@ class Appartment extends Model
     public function services() {
         return $this->belongsToMany('App\Service');
     }
+
+    public function promotions() {
+        return $this->belongsToMany('App\Promotion');
+    }
 }
