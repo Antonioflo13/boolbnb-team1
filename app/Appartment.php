@@ -31,4 +31,8 @@ class Appartment extends Model
     public function messages() {
         return $this->hasMany('App\Message');
     }
+
+    public function views() {
+        return $this->hasMany('App\View');
+    }
 }
