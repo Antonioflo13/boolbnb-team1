@@ -65,6 +65,7 @@ class AppartmentSeeder extends Seeder
             $newAppartment->image = $faker->imageUrl(500,300,'Appartment');
             $newAppartment->longitude = $faker->longitude(-90,90);
             $newAppartment->latitude = $faker->latitude(-180,180);
+            
             $newAppartment->save();
         }
     }
