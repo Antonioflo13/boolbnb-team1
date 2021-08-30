@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', config('app.name', 'BoolBnB').' | Email')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
