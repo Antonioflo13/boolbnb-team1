@@ -2,7 +2,7 @@
 @section('title', config('app.name', 'BoolBnB').' | Appartment List')
     
 @section('content')
-    <section>
+    <section id="ms_index">
         <article class="container">
             <table class="table table-striped">
                 <thead>
