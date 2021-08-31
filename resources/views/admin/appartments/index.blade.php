@@ -22,7 +22,7 @@
                             <td>{{ $appartment->title }}</td>
                             <td>{{ substr($appartment->description, 0,100).'...' }}</td>
                             <td>
-                                <a class="btn" href="#">Show</a>
+                                <a class="btn" href="{{ route('admin.appartments.show', $appartment->id) }}">Show</a>
                             </td>
                             <td>
                                 <a class="btn" href="#">Edit</a>

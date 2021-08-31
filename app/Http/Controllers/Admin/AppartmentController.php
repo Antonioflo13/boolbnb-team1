@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 use App\Appartment;
 
@@ -48,9 +49,13 @@ class AppartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Appartment $appartment)
     {
-        //
+        $latitude = $appartment->latitude;
+        $longitude = $appartment->longitude;
+        $location = Http::get("https://api.tomtom.com/search/2/search/.`${latitude}`, `{$longitude}`.json?&ext=.json&key=ubO6kthk3bpiLfR8uiFmtyF9dnZxYok3");
+        $city = $location['results'][0]['address']['municipality'];
+        return view('admin.appartments.show',compact('appartment','location','city'));
     }
 
     /**
