@@ -7,8 +7,43 @@ use Illuminate\Http\Request;
 
 use App\Appartment;
 
+
+use Illuminate\Support\Str;
+use App\Promotion;
+use App\Service;
+
 class AppartmentController extends Controller
 {
+    /**
+     * Functions and variables
+     */
+    private $appartmentsValidationArray = [
+        'title' => 'required|min:3|max:150',
+        'address' => 'required|min:3|max:150',
+        'rooms_number' => 'required|min:1|max:999',
+        'bathrooms_number' => 'required|min:1|max:999',
+        'beds_number' => 'required|min:1|max:999',
+        'square_meters' => 'required|min:8|max:9999',
+        'services' => 'nullable|exists:services,id',
+        'description' => 'required|min:3|max:1000',
+        'visible' => 'required|in:visible,hidden',
+        'image' => 'required|image|max:2048'
+    ];
+    private function addSlugInData($data, $title, $title_slug) {
+        $slug = Str::slug($data[$title], '-');
+        $existingInModel = Appartment::where($title_slug, $slug)->first();
+        $counter = 1;
+
+        while ($existingInModel) {
+            $slug = Str::slug($data[$title], '-') . '-' . $counter;
+            $existingInModel = Appartment::where($title_slug, $slug)->first();
+            $counter++;
+        }
+
+        $data[$title_slug] = $slug;
+        return $data;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +63,9 @@ class AppartmentController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+
+        return view('admin.appartments.create', compact('services'));
     }
 
     /**
@@ -39,7 +76,13 @@ class AppartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $request->validate($this->appartmentsValidationArray);
+
+        $data = $this->addSlugInData($data, 'title', 'slug');
+
+        dd($data);
     }
 
     /**
