@@ -21,5 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('Api')
     ->group(function() {
         Route::get('appartments','AppartmentController@index');
-        Route::get('apparments/{slug}','AppartmentController@show');
+        Route::get('appartments/{slug}','AppartmentController@show');
     });

@@ -15,7 +15,7 @@ class AppartmentController extends Controller
     }
 
     public function show($slug) {
-        $appartment = Appartment::where('slug',$slug)->first();
+        $appartment = Appartment::where('slug',$slug)->with('services')->first();
 
         return response()->json($appartment);
     }
