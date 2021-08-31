@@ -14,10 +14,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($appartments as $appartment)
+                    @foreach ($appartments as $key => $appartment)
                         <tr>
                             <td>
-                                <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
+                                @if ($key < 4)
+                                    <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
+                                @else
+                                    <img src="{{ asset('storage/' . $appartment->image) }}" alt="{{ $appartment->title }}">
+                                @endif
                             </td>
                             <td>{{ $appartment->title }}</td>
                             <td>{{ substr($appartment->description, 0,100).'...' }}</td>
