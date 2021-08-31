@@ -6,14 +6,23 @@
 @import '~@fontsource/ubuntu/300.css';
 @import '~@fontsource/ubuntu/700.css';
 
+
+/* Common */
+
 // Variables
 @import './common/variables';
+
+// NavBar
+@import './common/nav';
+
+// Footer
+@import './common/footer';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Front
+@import './front/front';
 
-//emilio
-//Ciao MD
-
-
+// Back
+@import './back/back';
