@@ -17,10 +17,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                {{-- <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
+                </a> --}}
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                    <img class='ms-logo mr-2' src="/images/logo.png" alt="Logo"> 
+                    <strong class="ms-text ml-3"> boolbnb </strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -45,6 +49,7 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -72,6 +77,28 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer>
+            <div class="container py-3">
+                <div class="row">
+                    <div class="col">
+                        <ul class="d-flex flex-wrap ms-footer-links">
+                            <li class="ms-list-group mr-3"> &copy; 2021 Boolbnb, Inc. </li> 
+                            <li class="ms-list-group mr-3"><a href="#">Privacy</a> </li>
+                            <li class="ms-list-group mr-3"><a href="#">Terms</a></li>
+                            <li class="ms-list-group mr-3"><a href="#">Sitemap</a></li>
+                        </ul>
+                    </div>
+                    <div class="col ms-social">
+                        <ul class="d-flex flex-row-reverse ">
+                            <li class="ms-list-group mr-3"><a href="#"><i class="fab fa-2x fa-instagram"></i></a></li>
+                            <li class="ms-list-group mr-3"><a href="#"><i class="fab  fa-2x fa-twitter"></i></a> </li>
+                            <li class="ms-list-group mr-3"> <a href="#"><i class="fab fa-2x fa-facebook-f"></i></a></li>   
+                        </ul>
+    
+                    </div>
+                </div> 
+            </div>
+        </footer>
     </div>
 </body>
 </html>

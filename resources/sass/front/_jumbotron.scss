@@ -1,1 +1,91 @@
-//jumbotron
+//Jumbotron
+#ms-jumbotron {
+    //height: 80vh;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1) ),url('/images/breis.jpg');
+    background-size:cover;
+    background-position: center bottom;
+    h3 {
+        color: white;
+    }
+    .ms-style {
+        background-color: white;
+        border-radius: 35px 35px;
+        border: 1px solid rgb(226, 225, 225);
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        &:hover{
+            box-shadow:2px 2px 4px 1px rgb(223, 222, 222, 0.6);
+        }
+        a {
+            font-size: 1.1rem;
+            color: darkmagenta;
+            text-decoration: none;
+        }
+    }
+
+    //SEARCH FORM
+    .ms-form{
+        /*Thisbitsetsupthehorizontallayout*/
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        /*Thisbitdrawstheboxaroundit*/
+        border:1px solid #C4C4C4;
+        background-color: white;
+        /*I'veusedpaddingsoyoucanseetheedgesoftheelements.*/
+        padding:2px;
+        border-radius:28px;
+        -webkit-border-radius:28px;
+        -moz-border-radius:28px;
+        -ms-border-radius:28px;
+        -o-border-radius:28px;
+        height: 55px;
+        .ms-input
+{
+            /* Tell the input to use all the available space */
+            flex-grow:2;
+            height: 50px;
+            /* And hide the input's outline, so the form looks like the outline */
+            border:none;
+            border-radius: 35px 35px;
+            height: 50px;
+            &:focus {
+                /* removing the input focus blue box. Put this on the form if you like. */
+                outline: none;
+            }
+       }
+       .ms-btn {
+            width: 50px;
+            height: 50px;
+            background-color: #FD395C;
+            color: white;
+            border: 1px solid #FD395C;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            &:hover{
+                background-color: #f82e53;
+                border: 1px solid #f82e53;
+            }
+        }
+    } 
+
+}
+
+//MediaQuery
+@media screen and (min-width: 576px){
+    .ms-form {
+        width: 50vw;
+    }
+}
+
