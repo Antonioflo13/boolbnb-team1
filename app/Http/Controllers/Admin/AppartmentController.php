@@ -136,9 +136,39 @@ class AppartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Appartment $appartment)
     {
-        //
+        $services = Service::all();
+
+        // Add address in $appartment
+        $address = Http::get('https://api.tomtom.com/search/2/search/' . $appartment->latitude . ',' . $appartment->longitude . '.json?key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9');
+        $address = $address['results'][0]['address'];
+        if ($address['streetName']) {
+            $street_name = $address['streetName'];
+        } else {
+            $street_name = '';
+        }
+        if ($address['municipality']) {
+            $municipalty = $address['municipality'];
+        } else {
+            $municipalty = '';
+        }
+        if ($address['countrySecondarySubdivision']) {
+            $country_secondary_municipalty = $address['countrySecondarySubdivision'];
+        } else {
+            $country_secondary_municipalty = '';
+        }
+        $address = $street_name . ' ' . $municipalty . ' '  . $country_secondary_municipalty;
+        $appartment->address = $address;
+
+        // Change in a string value $data['visible']
+        if ($appartment->visible == 1) {
+            $appartment->visible = 'visible';
+        } else {
+            $appartment->visible = 'hidden';
+        }
+
+        return view('admin.appartments.edit', compact('services', 'appartment'));
     }
 
     /**
@@ -148,9 +178,10 @@ class AppartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Appartment $appartment)
     {
-        //
+        $data = $request->all();
+        dd($data);
     }
 
     /**

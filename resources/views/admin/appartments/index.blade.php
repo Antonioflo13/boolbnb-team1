@@ -14,10 +14,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($appartments as $key => $appartment)
+                    @foreach ($appartments as $appartment)
                         <tr>
                             <td>
-                                @if ($key < 4)
+                                @if ($appartment->id < 5)
                                     <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
                                 @else
                                     <img src="{{ asset('storage/' . $appartment->image) }}" alt="{{ $appartment->title }}">
@@ -29,7 +29,7 @@
                                 <a class="btn" href="#">Show</a>
                             </td>
                             <td>
-                                <a class="btn" href="#">Edit</a>
+                                <a class="btn" href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit</a>
                             </td>
                             <td>
                                 <a class="btn" href="#">Delete</a>
