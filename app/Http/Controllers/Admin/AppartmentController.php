@@ -29,6 +29,18 @@ class AppartmentController extends Controller
         'visible' => 'required|in:visible,hidden',
         'image' => 'required|image|max:2048'
     ];
+    private $appartmentsValidationArrayImage = [
+        'title' => 'required|min:3|max:150',
+        'address' => 'required|min:3|max:150',
+        'rooms_number' => 'required|numeric|min:1|max:999',
+        'bathrooms_number' => 'required|numeric|min:1|max:999',
+        'beds_number' => 'required|numeric|min:1|max:999',
+        'square_meters' => 'required|numeric|min:1|max:99999',
+        'services' => 'nullable|exists:services,id',
+        'description' => 'required|min:3|max:1000',
+        'visible' => 'required|in:visible,hidden',
+        'image' => 'required'
+    ];
     private function addSlugInData($data, $title, $title_slug) {
         $slug = Str::slug($data[$title], '-');
         $existingInModel = Appartment::where($title_slug, $slug)->first();
@@ -183,23 +195,21 @@ class AppartmentController extends Controller
         // Enhance $data
         $data = $request->all();
 
-        // Validation
-        $request->validate($this->appartmentsValidationArray);
-
+        // Validation and add image in Storage
         if (array_key_exists('image', $data)) {
             Storage::delete($appartment->image);
             $request->validate($this->appartmentsValidationArray);
             $data['image'] = Storage::put('appartment_images', $data['image']);
         } else {
             $request->request->add(['image' => $appartment->image]);
-            $request->validate($this->appartmentsValidationArray);
+            $request->validate($this->appartmentsValidationArrayImage);
             $data = $request->all();
         }
 
-        dd($data);
-
         // Add slug
-        $data = $this->addSlugInData($data, 'title', 'slug');
+        if ($appartment->title != $data['title']) {
+            $data = $this->addSlugInData($data, 'title', 'slug');
+        }
 
         // Change in a boolean value $data['visible']
         if ($data['visible'] === 'visible') {
@@ -208,31 +218,25 @@ class AppartmentController extends Controller
             $data['visible'] = 0;
         }
 
-        // Add image in Storage
-        $data['image'] = Storage::put('appartment_images', $data['image']);
-
-        // Add user_id in $data
-        $data['user_id'] = Auth::user()->id;
-
         // Add longitude and latitude in $data
         $local = Http::get('https://api.tomtom.com/search/2/search/.json?key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9&query=' . $data['address']);
         $data['longitude'] = $local['results']['0']['position']['lon'];
         $data['latitude'] = $local['results']['0']['position']['lat'];
 
-        // New Appartment istance
-        $appartment = new Appartment();
-        $appartment->fill($data);
-        $appartment->save();
+        // Update Appartment
+        $appartment->update($data);
 
         // Attach appartment_service
         if (array_key_exists('services', $data)) {
-            $appartment->services()->attach($data['services']);
+            $appartment->services()->sync($data['services']);
+        } else {
+            $appartment->services()->detach();
         }
 
         // Redirect
         return redirect()
             ->route('admin.appartments.show', $appartment->id)
-            ->with('message', 'The ' . $appartment->title . ' apartment has been successfully added to your list!');
+            ->with('message', 'The ' . $appartment->title . ' apartment has been successfully edited to your list!');
     }
 
     /**
