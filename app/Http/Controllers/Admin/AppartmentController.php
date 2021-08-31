@@ -76,6 +76,7 @@ class AppartmentController extends Controller
      */
     public function store(Request $request)
     {
+        // Enhance $data
         $data = $request->all();
 
         // Validation
@@ -92,27 +93,30 @@ class AppartmentController extends Controller
         }
 
         // Add image in Storage
-        // $data['image'] = Storage::put('appartment_images', $data['image']);
+        $data['image'] = Storage::put('appartment_images', $data['image']);
 
         // Add user_id in $data
         $data['user_id'] = Auth::user()->id;
 
-        // $local = Http::get('https://api.tomtom.com/search/2/search/Via%20Ravenna.json?query=Ostuni via ravenna&ext=.json&key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9');
-        // $long = $local['results']['0']['position']['lon'];
-        // dd($local);
-
         // Add longitude and latitude in $data
-        $data['logitude'] = 10;
-        $data['latitude'] = 10;
+        $local = Http::get('https://api.tomtom.com/search/2/search/.json?key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9&query=' . $data['address']);
+        $data['longitude'] = $local['results']['0']['position']['lon'];
+        $data['latitude'] = $local['results']['0']['position']['lat'];
 
-        dd($data);
-
+        // New Appartment istance
         $appartment = new Appartment();
         $appartment->fill($data);
+        $appartment->save();
 
+        // Attach appartment_service
         if (array_key_exists('services', $data)) {
             $appartment->services()->attach($data['services']);
         }
+
+        // Redirect
+        return redirect()
+            ->route('admin.appartments.show', $appartment->id)
+            ->with('message', 'The ' . $appartment->title . ' apartment has been successfully added to your list!');
     }
 
     /**
