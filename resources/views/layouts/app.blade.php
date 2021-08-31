@@ -35,6 +35,28 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
+                    <!-- Center Of Navbar -->
+                    <ul class="navbar-nav">
+                        @guest
+                        @else 
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Inbox</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#">Insights</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                               Menu
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.appartments.index') }}">Appartments List</a>
+                                <a class="dropdown-item" href="{{ route('admin.appartments.create') }}">Add Appartment</a>
+                            </div>
+                        </li>
+                        @endguest
+                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -49,20 +71,16 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.appartments.index') }}">Appartments List</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -78,10 +96,10 @@
             @yield('content')
         </main>
         <footer>
-            <div class="container py-3">
+            <div class="container ms-footer py-3">
                 <div class="row">
                     <div class="col">
-                        <ul class="d-flex flex-wrap ms-footer-links">
+                        <ul class="d-flex flex-wrap ms-footer-links align-items-center my-2">
                             <li class="ms-list-group mr-3"> &copy; 2021 Boolbnb, Inc. </li> 
                             <li class="ms-list-group mr-3"><a href="#">Privacy</a> </li>
                             <li class="ms-list-group mr-3"><a href="#">Terms</a></li>
@@ -89,7 +107,7 @@
                         </ul>
                     </div>
                     <div class="col ms-social">
-                        <ul class="d-flex flex-row-reverse ">
+                        <ul class="d-flex flex-row-reverse align-items-center my-2">
                             <li class="ms-list-group mr-3"><a href="#"><i class="fab fa-2x fa-instagram"></i></a></li>
                             <li class="ms-list-group mr-3"><a href="#"><i class="fab  fa-2x fa-twitter"></i></a> </li>
                             <li class="ms-list-group mr-3"> <a href="#"><i class="fab fa-2x fa-facebook-f"></i></a></li>   

@@ -2528,33 +2528,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
@@ -39204,7 +39177,7 @@ var staticRenderFns = [
               "ul",
               {
                 staticClass:
-                  "d-flex flex-wrap ms-footer-links align-items-center mt-3"
+                  "d-flex flex-wrap ms-footer-links align-items-center my-2"
               },
               [
                 _c("li", { staticClass: "ms-list-group mr-3" }, [
@@ -39230,7 +39203,7 @@ var staticRenderFns = [
             _c(
               "ul",
               {
-                staticClass: "d-flex flex-row-reverse align-items-center mt-3"
+                staticClass: "d-flex flex-row-reverse align-items-center my-2"
               },
               [
                 _c("li", { staticClass: "ms-list-group mr-3" }, [
@@ -39491,7 +39464,10 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "d-flex flex-start justify-content-between flex-wrap" },
+        {
+          staticClass:
+            "d-flex flex-start justify-content-between flex-wrap mb-4"
+        },
         [
           _c(
             "div",
