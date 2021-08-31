@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Support\Str; // Add by Andrea
+use Illuminate\Support\Facades\Storage; // Add by Andrea
+use Illuminate\Support\Facades\Auth; // Add by Andrea
+use Illuminate\Support\Facades\Http; // Add by Andrea
 
 use App\Appartment;
-use App\Service;
+use App\Service; // Add by Andrea
 
 class AppartmentController extends Controller
 {
@@ -83,12 +86,33 @@ class AppartmentController extends Controller
 
         // Change in a boolean value $data['visible']
         if ($data['visible'] === 'visible') {
-            $data['visible'] = '1';
+            $data['visible'] = 1;
         } else {
-            $data['visible'] = '0';
+            $data['visible'] = 0;
         }
 
+        // Add image in Storage
+        // $data['image'] = Storage::put('appartment_images', $data['image']);
+
+        // Add user_id in $data
+        $data['user_id'] = Auth::user()->id;
+
+        // $local = Http::get('https://api.tomtom.com/search/2/search/Via%20Ravenna.json?query=Ostuni via ravenna&ext=.json&key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9');
+        // $long = $local['results']['0']['position']['lon'];
+        // dd($local);
+
+        // Add longitude and latitude in $data
+        $data['logitude'] = 10;
+        $data['latitude'] = 10;
+
         dd($data);
+
+        $appartment = new Appartment();
+        $appartment->fill($data);
+
+        if (array_key_exists('services', $data)) {
+            $appartment->services()->attach($data['services']);
+        }
     }
 
     /**
