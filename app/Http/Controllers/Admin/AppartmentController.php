@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Appartment;
-
-
-use Illuminate\Support\Str;
-use App\Promotion;
 use App\Service;
 
 class AppartmentController extends Controller
@@ -20,10 +17,10 @@ class AppartmentController extends Controller
     private $appartmentsValidationArray = [
         'title' => 'required|min:3|max:150',
         'address' => 'required|min:3|max:150',
-        'rooms_number' => 'required|min:1|max:999',
-        'bathrooms_number' => 'required|min:1|max:999',
-        'beds_number' => 'required|min:1|max:999',
-        'square_meters' => 'required|min:8|max:9999',
+        'rooms_number' => 'required|numeric|min:1|max:999',
+        'bathrooms_number' => 'required|numeric|min:1|max:999',
+        'beds_number' => 'required|numeric|min:1|max:999',
+        'square_meters' => 'required|numeric|min:1|max:99999',
         'services' => 'nullable|exists:services,id',
         'description' => 'required|min:3|max:1000',
         'visible' => 'required|in:visible,hidden',
@@ -78,9 +75,18 @@ class AppartmentController extends Controller
     {
         $data = $request->all();
 
+        // Validation
         $request->validate($this->appartmentsValidationArray);
 
+        // Add slug
         $data = $this->addSlugInData($data, 'title', 'slug');
+
+        // Change in a boolean value $data['visible']
+        if ($data['visible'] === 'visible') {
+            $data['visible'] = '1';
+        } else {
+            $data['visible'] = '0';
+        }
 
         dd($data);
     }
