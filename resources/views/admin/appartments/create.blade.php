@@ -21,7 +21,7 @@
 
                 {{-- ADDRESS --}}
                 <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="address">Full Address</label>
                     <input name="address" type="text" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter address" value="{{ old('address') }}">
                     @error('address')
                         <small class="text-danger">{{ $message }}</small>
