@@ -28,7 +28,11 @@
                                 <a class="btn" href="#">Edit</a>
                             </td>
                             <td>
-                                <a class="btn" href="#">Delete</a>
+                                <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn">Delete</button>
+                                  </form>
                             </td>
                         </tr>
                     @endforeach
