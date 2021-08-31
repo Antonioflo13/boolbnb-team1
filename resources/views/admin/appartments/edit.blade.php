@@ -116,7 +116,7 @@
                 {{-- IMAGE --}}
                 <div class="form-group">
                     <div>
-                        @if ($appartment->id < 5)
+                        @if (substr($appartment->image, 0, 5) == 'https')
                             <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
                         @else
                             <img src="{{ asset('storage/' . $appartment->image) }}" alt="{{ $appartment->title }}">

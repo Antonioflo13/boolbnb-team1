@@ -180,8 +180,59 @@ class AppartmentController extends Controller
      */
     public function update(Request $request, Appartment $appartment)
     {
+        // Enhance $data
         $data = $request->all();
+
+        // Validation
+        $request->validate($this->appartmentsValidationArray);
+
+        if (array_key_exists('image', $data)) {
+            Storage::delete($appartment->image);
+            $request->validate($this->appartmentsValidationArray);
+            $data['image'] = Storage::put('appartment_images', $data['image']);
+        } else {
+            $request->request->add(['image' => $appartment->image]);
+            $request->validate($this->appartmentsValidationArray);
+            $data = $request->all();
+        }
+
         dd($data);
+
+        // Add slug
+        $data = $this->addSlugInData($data, 'title', 'slug');
+
+        // Change in a boolean value $data['visible']
+        if ($data['visible'] === 'visible') {
+            $data['visible'] = 1;
+        } else {
+            $data['visible'] = 0;
+        }
+
+        // Add image in Storage
+        $data['image'] = Storage::put('appartment_images', $data['image']);
+
+        // Add user_id in $data
+        $data['user_id'] = Auth::user()->id;
+
+        // Add longitude and latitude in $data
+        $local = Http::get('https://api.tomtom.com/search/2/search/.json?key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9&query=' . $data['address']);
+        $data['longitude'] = $local['results']['0']['position']['lon'];
+        $data['latitude'] = $local['results']['0']['position']['lat'];
+
+        // New Appartment istance
+        $appartment = new Appartment();
+        $appartment->fill($data);
+        $appartment->save();
+
+        // Attach appartment_service
+        if (array_key_exists('services', $data)) {
+            $appartment->services()->attach($data['services']);
+        }
+
+        // Redirect
+        return redirect()
+            ->route('admin.appartments.show', $appartment->id)
+            ->with('message', 'The ' . $appartment->title . ' apartment has been successfully added to your list!');
     }
 
     /**
