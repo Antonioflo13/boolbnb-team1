@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Braintree\Gateway;
+
 use App\Promotion;
 use App\Appartment;
 
@@ -17,7 +17,9 @@ class PromotionController extends Controller
         return view('admin.promotions.index', compact('promotions', 'appartment'));
     }    
 
-    public function payment() {
+    public function payment($promotion, $appartment) {
+        $appartment = Appartment::where('id', $appartment)->first();
+        $promotion = Promotion::where('id', $promotion)->first();
         $gateway = new Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -27,6 +29,6 @@ class PromotionController extends Controller
     
         $token = $gateway->ClientToken()->generate();
     
-        return view('admin.promotions.payment', compact('token'));
+        return view('admin.promotions.payment', compact('token','appartment', 'promotion'));
     }
 }

@@ -7,7 +7,7 @@
             @foreach ($promotions as $promotion)
                 <div>
                     <h4>{{ $promotion->title }} {{ $promotion->price }} € {{ $promotion->hours }} hours of sponsorship</h4>
-                    <a href="{{ route('admin.payment', $promotion->id) }}" class="btn">Sponsorship</a>
+                    <a href="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}" class="btn">Sponsorship</a>
                 </div>
                 @endforeach
                 <h3>Sponsorship detail</h3>
