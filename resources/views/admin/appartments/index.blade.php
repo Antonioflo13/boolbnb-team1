@@ -29,7 +29,7 @@
                             </td>
                             <td>
                                 <a class="btn btn_delete" href="#">Delete</a>
-                            </td>
+                            </td> 
                         </tr>
                     @endforeach
                 </tbody>
