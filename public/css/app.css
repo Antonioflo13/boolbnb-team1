@@ -172,17 +172,12 @@
   width: 40px;
 }
 
-nav {
-  height: 10vh;
-}
-
 .ms-text {
   font-size: 20px;
   color: #FD395C;
 }
 
 footer {
-  height: 10vh;
   background-color: #FFFFFF;
   border-top: 1px solid white;
 }
@@ -11283,10 +11278,6 @@ a.text-dark:focus {
 #ms_index td .btn_delete {
   color: white;
   background-color: #FD395C;
-}
-
-#ms_login {
-  height: 73vh;
 }
 
 #ms_login .card-header {
