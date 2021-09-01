@@ -16,4 +16,17 @@ class PromotionController extends Controller
 
         return view('admin.promotions.index', compact('promotions', 'appartment'));
     }    
+
+    public function payment() {
+        $gateway = new Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+    
+        $token = $gateway->ClientToken()->generate();
+    
+        return view('admin.promotions.payment', compact('token'));
+    }
 }

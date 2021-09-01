@@ -24,20 +24,7 @@ Route::middleware('auth')
     ->group( function() {
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('appartments/promotions/{appartment}', 'PromotionController@show')->name('promotions');
-
-        Route::get('appartments/payment/{promotion}', function () {
-            $gateway = new Braintree\Gateway([
-                'environment' => config('services.braintree.environment'),
-                'merchantId' => config('services.braintree.merchantId'),
-                'publicKey' => config('services.braintree.publicKey'),
-                'privateKey' => config('services.braintree.privateKey')
-            ]);
-        
-            $token = $gateway->ClientToken()->generate();
-        
-            return view('admin.promotions.payment', compact('token'));
-        })->name('payment');
-
+        Route::get('appartments/payment/{promotion}', 'PromotionController@payment')->name('payment');
         Route::resource('appartments', 'AppartmentController');
 
 });
