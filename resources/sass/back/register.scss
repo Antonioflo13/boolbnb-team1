@@ -1,0 +1,29 @@
+#ms_register {
+    .card-header{
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 25px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        background-color: white;
+
+        img {
+            width: 65px;
+        }
+    }
+
+    .card {
+        border-radius: 25px;
+    }
+    .btn-primary {
+        text-transform: uppercase;
+        color:  $primary-color;
+        background-color: white;
+        border: 1px solid $primary-color;
+    }
+    .btn-primary:hover{
+        color: white;
+        background-color: $primary-color-hover;
+    }
+} 
