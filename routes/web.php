@@ -21,6 +21,7 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group( function() {
         Route::get('/', 'HomeController@index')->name('home');
+        Route::get('appartments/promotions', 'PromotionController@index')->name('promotions');
         Route::resource('appartments', 'AppartmentController');
 
 });
