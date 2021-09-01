@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Add by Andrea
-use Illuminate\Support\Facades\Storage; // Add by Andrea
-use Illuminate\Support\Facades\Auth; // Add by Andrea
-use Illuminate\Support\Facades\Http; // Add by Andrea
+use Illuminate\Support\Str; 
+use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Http;
 
 use App\Appartment;
-use App\Service; // Add by Andrea
+use App\Service;
 
 class AppartmentController extends Controller
 {
@@ -63,7 +63,7 @@ class AppartmentController extends Controller
      */
     public function index()
     {
-        $appartments = Appartment::all();
+        $appartments = Appartment::where('user_id',Auth::user()->id)->get();
 
         return view('admin.appartments.index', compact('appartments'));
     }
@@ -137,9 +137,13 @@ class AppartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Appartment $appartment)
     {
-        //
+        $latitude = $appartment->latitude;
+        $longitude = $appartment->longitude;
+        $location = Http::get("https://api.tomtom.com/search/2/search/.`${latitude}`, `{$longitude}`.json?&ext=.json&key=ubO6kthk3bpiLfR8uiFmtyF9dnZxYok3");
+        $city = $location['results'][0]['address']['municipality'];
+        return view('admin.appartments.show',compact('appartment','location','city'));
     }
 
     /**
@@ -245,8 +249,9 @@ class AppartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Appartment $appartment)
     {
-        //
+        $appartment->delete();
+        return redirect()->route('admin.appartment.index');
     }
 }

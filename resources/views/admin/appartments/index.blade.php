@@ -26,13 +26,17 @@
                             <td>{{ $appartment->title }}</td>
                             <td>{{ substr($appartment->description, 0,100).'...' }}</td>
                             <td>
-                                <a class="btn" href="#">Show</a>
+                                <a class="btn" href="{{ route('admin.appartments.show', $appartment->id) }}">Show</a>
                             </td>
                             <td>
                                 <a class="btn" href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit</a>
                             </td>
                             <td>
-                                <a class="btn" href="#">Delete</a>
+                                <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn">Delete</button>
+                                  </form>
                             </td>
                         </tr>
                     @endforeach
