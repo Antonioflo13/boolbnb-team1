@@ -28,7 +28,7 @@
                                 <a class="btn" href="#">Edit</a>
                             </td>
                             <td>
-                                <a class="btn" href="#">Delete</a>
+                                <a class="btn btn_delete" href="#">Delete</a>
                             </td>
                         </tr>
                     @endforeach
