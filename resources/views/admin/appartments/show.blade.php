@@ -41,7 +41,7 @@
                             <div class="tab-pane fade show active" id="list-photos" role="tabpanel" aria-labelledby="list-photos-list">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h4>Photos</h4>
-                                    <a href="#">Edit<i class="fas fa-chevron-right ml-2"></i></a>
+                                    <a href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit<i class="fas fa-chevron-right ml-2"></i></a>
                                 </div>
                                 <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
                             </div>
@@ -51,7 +51,7 @@
                             <div class="tab-pane fade" id="list-listing-basics" role="tabpanel" aria-labelledby="list-listing-basics-list">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h4>Listing basics</h4>
-                                    <a href="#">Edit</a>
+                                    <a href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit</a>
                                 </div>
                                 <div class="my-3">
                                     <h5>Listing Title</h5>

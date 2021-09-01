@@ -4,7 +4,7 @@
 @section('content')
     <section id="ms_index">
         <article class="container">
-            <table class="table table-striped">
+            <table class="table table-striped table-responsive">
                 <thead>
                   <tr>
                     <th scope="col">Image</th>
