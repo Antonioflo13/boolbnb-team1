@@ -12,13 +12,16 @@ class Appartment extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'slug',
         'description',
         'rooms_number',
         'bathrooms_number',
         'beds_number',
         'square_meters',
         'image',
-        'visible'
+        'visible',
+        'longitude',
+        'latitude'
     ];
 
     /**

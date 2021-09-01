@@ -17,18 +17,26 @@
                     @foreach ($appartments as $appartment)
                         <tr>
                             <td>
-                                <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
+                                @if (substr($appartment->image, 0, 5) == 'https')
+                                    <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
+                                @else
+                                    <img src="{{ asset('storage/' . $appartment->image) }}" alt="{{ $appartment->title }}">
+                                @endif
                             </td>
                             <td>{{ $appartment->title }}</td>
                             <td>{{ substr($appartment->description, 0,100).'...' }}</td>
                             <td>
-                                <a class="btn" href="#">Show</a>
+                                <a class="btn" href="{{ route('admin.appartments.show', $appartment->id) }}">Show</a>
                             </td>
                             <td>
-                                <a class="btn" href="#">Edit</a>
+                                <a class="btn" href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit</a>
                             </td>
                             <td>
-                                <a class="btn" href="#">Delete</a>
+                                <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn">Delete</button>
+                                  </form>
                             </td>
                         </tr>
                     @endforeach
