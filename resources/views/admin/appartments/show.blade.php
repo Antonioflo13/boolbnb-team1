@@ -43,7 +43,11 @@
                                     <h4>Photos</h4>
                                     <a href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit<i class="fas fa-chevron-right ml-2"></i></a>
                                 </div>
-                                <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
+                                @if (substr($appartment->image, 0, 5) == 'https')
+                                    <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
+                                @else
+                                    <img src="{{ asset('storage/' . $appartment->image) }}" alt="{{ $appartment->title }}">
+                                @endif
                             </div>
                             {{-- /photos --}}
 

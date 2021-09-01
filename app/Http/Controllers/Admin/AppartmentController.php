@@ -111,7 +111,7 @@ class AppartmentController extends Controller
         $data['user_id'] = Auth::user()->id;
 
         // Add longitude and latitude in $data
-        $local = Http::get('https://api.tomtom.com/search/2/search/.json?key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9&query=' . $data['address']);
+        $local = Http::get('https://api.tomtom.com/search/2/search/.json?key=ubO6kthk3bpiLfR8uiFmtyF9dnZxYok3&query=' . $data['address']);
         $data['longitude'] = $local['results']['0']['position']['lon'];
         $data['latitude'] = $local['results']['0']['position']['lat'];
 
@@ -157,19 +157,19 @@ class AppartmentController extends Controller
         $services = Service::all();
 
         // Add address in $appartment
-        $address = Http::get('https://api.tomtom.com/search/2/search/' . $appartment->latitude . ',' . $appartment->longitude . '.json?key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9');
+        $address = Http::get('https://api.tomtom.com/search/2/search/' . $appartment->latitude . ',' . $appartment->longitude . '.json?key=ubO6kthk3bpiLfR8uiFmtyF9dnZxYok3');
         $address = $address['results'][0]['address'];
-        if ($address['streetName']) {
+        if (in_array('streetName', $address)) {
             $street_name = $address['streetName'];
         } else {
             $street_name = '';
         }
-        if ($address['municipality']) {
+        if (in_array('municipality', $address)) {
             $municipalty = $address['municipality'];
         } else {
             $municipalty = '';
         }
-        if ($address['countrySecondarySubdivision']) {
+        if (in_array('countrySecondarySubdivision', $address)) {
             $country_secondary_municipalty = $address['countrySecondarySubdivision'];
         } else {
             $country_secondary_municipalty = '';
