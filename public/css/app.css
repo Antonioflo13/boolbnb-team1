@@ -168,6 +168,53 @@
 
 /* Common */
 
+.ms-logo {
+  width: 40px;
+}
+
+.ms-text {
+  font-size: 20px;
+  color: #FD395C;
+}
+
+footer {
+  background-color: #FFFFFF;
+  border-top: 1px solid white;
+}
+
+.ms-footer {
+  color: white;
+}
+
+.ms-list-group {
+  list-style: none;
+  color: #4A4B4B;
+}
+
+.ms-list-group a {
+  text-decoration: none;
+  color: #4A4B4B;
+  transition: all 0.2s;
+}
+
+.ms-list-group a:hover {
+  text-decoration: underline;
+}
+
+.ms-social {
+  display: none;
+}
+
+.fab {
+  color: #4A4B4B;
+}
+
+@media screen and (min-width: 576px) {
+  .ms-social {
+    display: block;
+  }
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -11107,6 +11154,99 @@ a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: #dee2e6;
+  }
+}
+
+#ms-jumbotron {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/images/breis.jpg");
+  background-size: cover;
+  background-position: center bottom;
+}
+
+#ms-jumbotron h3 {
+  color: white;
+}
+
+#ms-jumbotron .ms-style {
+  background-color: white;
+  border-radius: 35px 35px;
+  border: 1px solid #e2e1e1;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+
+#ms-jumbotron .ms-style:hover {
+  box-shadow: 2px 2px 4px 1px rgba(223, 222, 222, 0.6);
+}
+
+#ms-jumbotron .ms-style a {
+  font-size: 1.1rem;
+  color: darkmagenta;
+  text-decoration: none;
+}
+
+#ms-jumbotron .ms-form {
+  /*Thisbitsetsupthehorizontallayout*/
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /*Thisbitdrawstheboxaroundit*/
+  border: 1px solid #C4C4C4;
+  background-color: white;
+  /*I'veusedpaddingsoyoucanseetheedgesoftheelements.*/
+  padding: 2px;
+  border-radius: 28px;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  -ms-border-radius: 28px;
+  -o-border-radius: 28px;
+  height: 55px;
+}
+
+#ms-jumbotron .ms-form .ms-input {
+  /* Tell the input to use all the available space */
+  flex-grow: 2;
+  height: 50px;
+  /* And hide the input's outline, so the form looks like the outline */
+  border: none;
+  border-radius: 35px 35px;
+  height: 50px;
+}
+
+#ms-jumbotron .ms-form .ms-input:focus {
+  /* removing the input focus blue box. Put this on the form if you like. */
+  outline: none;
+}
+
+#ms-jumbotron .ms-form .ms-btn {
+  width: 50px;
+  height: 50px;
+  background-color: #FD395C;
+  color: white;
+  border: 1px solid #FD395C;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+
+#ms-jumbotron .ms-form .ms-btn:hover {
+  background-color: #f82e53;
+  border: 1px solid #f82e53;
+}
+
+@media screen and (min-width: 576px) {
+  .ms-form {
+    width: 50vw;
   }
 }
 

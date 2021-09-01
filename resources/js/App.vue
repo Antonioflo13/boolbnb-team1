@@ -1,16 +1,23 @@
 <template>
     <div>
-        <router-view></router-view>
-        <h1>prova</h1>
+        <Nav/>
+        <main>  
+            <!-- component matched by the route will render here -->
+            <router-view></router-view>
+        </main> 
+        <Footer/>   
     </div>
 </template>
 
 <script>
-import Home from './components/Home.vue';
+import Nav from './components/Nav.vue';
+import Footer from './components/Footer';
+
 export default {
     name: 'App',
     components:  {
-        Home,
+        Nav,
+        Footer
     }
 }
 </script>
