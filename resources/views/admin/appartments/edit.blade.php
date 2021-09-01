@@ -2,7 +2,7 @@
 @section('title', config('app.name', 'BoolBnB').' | Edit' . ' ' . $appartment->title)
 
 @section('content')
-    <section>
+    <section id="ms_form">
         <div class="container">
             <h1>Edit {{ $appartment->title }}</h1>
             <form action="{{ route('admin.appartments.update', $appartment->id) }}" method="POST" enctype="multipart/form-data">
