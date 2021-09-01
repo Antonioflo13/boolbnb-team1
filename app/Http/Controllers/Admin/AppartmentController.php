@@ -159,17 +159,17 @@ class AppartmentController extends Controller
         // Add address in $appartment
         $address = Http::get('https://api.tomtom.com/search/2/search/' . $appartment->latitude . ',' . $appartment->longitude . '.json?key=ubO6kthk3bpiLfR8uiFmtyF9dnZxYok3');
         $address = $address['results'][0]['address'];
-        if (in_array('streetName', $address)) {
+        if (array_key_exists('streetName', $address)) {
             $street_name = $address['streetName'];
         } else {
             $street_name = '';
         }
-        if (in_array('municipality', $address)) {
+        if (array_key_exists('municipality', $address)) {
             $municipalty = $address['municipality'];
         } else {
             $municipalty = '';
         }
-        if (in_array('countrySecondarySubdivision', $address)) {
+        if (array_key_exists('countrySecondarySubdivision', $address)) {
             $country_secondary_municipalty = $address['countrySecondarySubdivision'];
         } else {
             $country_secondary_municipalty = '';
