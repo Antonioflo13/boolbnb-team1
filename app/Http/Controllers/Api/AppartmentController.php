@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Appartment;
 
 class AppartmentController extends Controller
-{
+{   
     public function index() {
         $appartments = Appartment::all();
         return response()->json($appartments);
