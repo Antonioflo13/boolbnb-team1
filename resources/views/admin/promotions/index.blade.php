@@ -3,10 +3,11 @@
 @section('content')
     <section id="ms_promotions">
         <div class="container">
+            <h1>Promotion for {{ $appartment->title }}</h1>
             @foreach ($promotions as $promotion)
                 <div>
                     <h4>{{ $promotion->title }} {{ $promotion->price }} € {{ $promotion->hours }} hours of sponsorship</h4>
-                    <a href="{{ route('admin.promotions.payment') }}" class="btn">Sponsorship</a>
+                    <a href="{{ route('admin.payment', $promotion->id) }}" class="btn">Sponsorship</a>
                 </div>
                 @endforeach
                 <h3>Sponsorship detail</h3>

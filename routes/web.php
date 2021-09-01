@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use Braintree\Gateway;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +23,21 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group( function() {
         Route::get('/', 'HomeController@index')->name('home');
-        Route::get('appartments/promotions', 'PromotionController@index')->name('promotions');
+        Route::get('appartments/promotions/{appartment}', 'PromotionController@show')->name('promotions');
+
+        Route::get('appartments/payment/{promotion}', function () {
+            $gateway = new Braintree\Gateway([
+                'environment' => config('services.braintree.environment'),
+                'merchantId' => config('services.braintree.merchantId'),
+                'publicKey' => config('services.braintree.publicKey'),
+                'privateKey' => config('services.braintree.privateKey')
+            ]);
+        
+            $token = $gateway->ClientToken()->generate();
+        
+            return view('admin.promotions.payment', compact('token'));
+        })->name('payment');
+
         Route::resource('appartments', 'AppartmentController');
 
 });

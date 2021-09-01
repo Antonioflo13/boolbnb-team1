@@ -117,8 +117,6 @@
                     <input id="nonce" name="payment_method_nonce" type="hidden" />
                     <button class="button" type="submit"><span>Test Transaction</span></button>
                 </form>
-                <br>
-                <a href="{{ route('tomtom') }}">TomTom Developer</a>
             </div>
         </div>
 

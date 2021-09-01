@@ -17,7 +17,7 @@
                         <span class="mr-5">Available</span>
                     @endif
                     <i class="fas fa-sort-amount-up-alt mr-2"></i>
-                    <a href="#" class="mr-5">Upgrade</a>
+                    <a href="{{ route('admin.promotions', $appartment->id) }}" class="mr-5">Upgrade</a>
                     <a href="#" class="btn">Preview listing</a>
                 </div>
             </div>
