@@ -35,7 +35,7 @@
                                 <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn">Delete</button>
+                                    <button class="btn btn_delete">Delete</button>
                                   </form>
                             </td>
                         </tr>

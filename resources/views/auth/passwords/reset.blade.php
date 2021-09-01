@@ -6,6 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    <div class="card-header"><img src="https://loghi-famosi.com/wp-content/uploads/2020/07/Logo-della-Airbnb.png" alt="logo"></div>
                     <div class="card-header">{{ __('Reset Password') }}</div>
     
                     <div class="card-body">

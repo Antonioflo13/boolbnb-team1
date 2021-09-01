@@ -172,12 +172,17 @@
   width: 40px;
 }
 
+nav {
+  height: 10vh;
+}
+
 .ms-text {
   font-size: 20px;
   color: #FD395C;
 }
 
 footer {
+  height: 10vh;
   background-color: #FFFFFF;
   border-top: 1px solid white;
 }
@@ -11248,5 +11253,150 @@ a.text-dark:focus {
   .ms-form {
     width: 50vw;
   }
+}
+
+#ms_index {
+  text-align: center;
+}
+
+#ms_index thead {
+  font-size: 25px;
+  color: black;
+}
+
+#ms_index img {
+  width: 80%;
+  border-radius: 15px;
+}
+
+#ms_index td a {
+  text-transform: uppercase;
+  color: #FD395C;
+  border: 1px solid #FD395C;
+}
+
+#ms_index td a:hover {
+  color: white;
+  background-color: #f82e53;
+}
+
+#ms_index td .btn_delete {
+  color: white;
+  background-color: #FD395C;
+}
+
+#ms_login {
+  height: 73vh;
+}
+
+#ms_login .card-header {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 25px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: white;
+}
+
+#ms_login .card-header img {
+  width: 65px;
+}
+
+#ms_login .card {
+  border-radius: 25px;
+}
+
+#ms_login .btn-primary {
+  text-transform: uppercase;
+  color: #FD395C;
+  background-color: white;
+  border: 1px solid #FD395C;
+}
+
+#ms_login .btn-primary:hover {
+  color: white;
+  background-color: #f82e53;
+}
+
+#ms_login .btn-link {
+  color: white;
+  background-color: #f82e53;
+  border: 1px solid #FD395C;
+}
+
+#ms_login .btn-link:hover {
+  color: #FD395C;
+  background-color: white;
+}
+
+#ms_register .card-header {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 25px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: white;
+}
+
+#ms_register .card-header img {
+  width: 65px;
+}
+
+#ms_register .card {
+  border-radius: 25px;
+}
+
+#ms_register .btn-primary {
+  text-transform: uppercase;
+  color: #FD395C;
+  background-color: white;
+  border: 1px solid #FD395C;
+}
+
+#ms_register .btn-primary:hover {
+  color: white;
+  background-color: #f82e53;
+}
+
+#ms_email .card-header,
+#ms_reset .card-header,
+#ms_verify .card-header {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 25px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: white;
+}
+
+#ms_email .card-header img,
+#ms_reset .card-header img,
+#ms_verify .card-header img {
+  width: 65px;
+}
+
+#ms_email .card,
+#ms_reset .card,
+#ms_verify .card {
+  border-radius: 25px;
+}
+
+#ms_email .btn-primary,
+#ms_reset .btn-primary,
+#ms_verify .btn-primary {
+  text-transform: uppercase;
+  color: #FD395C;
+  background-color: white;
+  border: 1px solid #FD395C;
+}
+
+#ms_email .btn-primary:hover,
+#ms_reset .btn-primary:hover,
+#ms_verify .btn-primary:hover {
+  color: white;
+  background-color: #f82e53;
 }
 
