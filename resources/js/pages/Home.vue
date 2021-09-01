@@ -5,6 +5,7 @@
         <section class="container">
             <h3 class="mt-5"><strong>Live anywhere</strong></h3>
             <div class="d-flex flex-start justify-content-between flex-wrap mb-4">
+                <!-- Da aggiornare in modo dinamico -->
                 <div class="d-flex flex-column align-items-center mt-4 ms-card">
                     <img src="/images/minimal-living-1.jpg" alt="">
                     <h6 class="mt-3"><a href="">Lorem, ipsum dolor.</a></h6>
