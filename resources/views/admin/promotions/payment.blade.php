@@ -35,7 +35,7 @@
     @endif
 
     <div class="content">
-        <form method="post" id="payment-form" action="{{ route('admin.payment') }}">
+        <form method="post" id="payment-form" action="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}">
             @csrf
 
             <section>

@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
+use Illuminate\Support\Facades\Auth;
 
 use App\Promotion;
 use App\Appartment;
+use App\User;
 
 class PromotionController extends Controller
 {
@@ -32,24 +34,25 @@ class PromotionController extends Controller
         return view('admin.promotions.payment', compact('token','appartment', 'promotion'));
     }
 
-    public function payment(Request $request) {
+    public function payment(Request $request, $promotion, $appartment) {
         $gateway = new Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
             'publicKey' => config('services.braintree.publicKey'),
             'privateKey' => config('services.braintree.privateKey')
         ]);
-    
-        $amount = $request->amount;
+        $promotion = Promotion::where('id', $promotion)->first();
+        $user = User::where('id',Auth::user()->id)->first();
+        $amount = $promotion->price;
         $nonce = $request->payment_method_nonce;
     
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
             'customer' => [
-                'firstName' => 'Andrea',
-                'lastName' => 'Casentini',
-                'email' => 'andrea.casentini@email.it'
+                'firstName' => $user->name,
+                'lastName' => $user->surname,
+                'email' => $user->emal
             ],
             'options' => [
                 'submitForSettlement' => true
