@@ -42,7 +42,6 @@ class PromotionController extends Controller
     
         $amount = $request->amount;
         $nonce = $request->payment_method_nonce;
-        dd($nonce);
     
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
