@@ -1,64 +1,68 @@
 @extends('layouts.app')
 @section('content')
-    
-@if (session('success_message'))
-    <div class="alert alert-success">
-        {{ session('success_message') }}
-    </div>
-@endif
 
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>
-                    {{ $error }}
-                </li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-
-    <div class="content">
-        <form method="post" id="payment-form" action="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}">
-            @csrf
-
-            <section>
-                <label for="amount">
-                    <span class="input-label">Amount</span>
-                    <div class="input-wrapper amount-wrapper">
-                        {{-- <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10"> --}}
-                        <div>
-                            {{ $promotion->price }}
-                        </div>
-                    </div>
-                </label>
-
-                <div class="bt-drop-in-wrapper">
-                    <div id="bt-dropin"></div>
+<section id="ms_payment">
+    <article class="container">
+        @if (session('success_message'))
+            <div class="alert alert-success">
+                {{ session('success_message') }}
+            </div>
+        @endif
+        
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>
+                            {{ $error }}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
+        <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+        
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
                 </div>
-            </section>
-
-            <input id="nonce" name="payment_method_nonce" type="hidden" />
-            <button class="button" type="submit"><span>Test Transaction</span></button>
-        </form>
-    </div>
-</div>
+            @endif
+        
+            <div class="content">
+                <form method="post" id="payment-form" action="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}">
+                    @csrf
+        
+                    <section>
+                        <label for="amount">
+                            <span class="input-label">Amount</span>
+                            <div class="input-wrapper amount-wrapper">
+                                {{-- <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10"> --}}
+                                <div>
+                                    {{ $promotion->price }}
+                                </div>
+                            </div>
+                        </label>
+        
+                        <div class="bt-drop-in-wrapper">
+                            <div id="bt-dropin"></div>
+                        </div>
+                    </section>
+        
+                    <input id="nonce" name="payment_method_nonce" type="hidden" />
+                    <button class="button" type="submit"><span>Test Transaction</span></button>
+                </form>
+            </div>
+        </div>
+    </article>
+</section>
     <script src="https://js.braintreegateway.com/web/dropin/1.31.2/js/dropin.min.js"></script>
         <script>
             var form = document.querySelector('#payment-form');

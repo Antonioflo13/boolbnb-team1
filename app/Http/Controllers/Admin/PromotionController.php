@@ -62,7 +62,7 @@ class PromotionController extends Controller
         ]);
         
         $appartment = Appartment::where('id', $appartment)->first();
-        
+
         $startpromotion = date("Y-m-d H:i:s");
         $endpromotion = date("Y-m-d H:i:s", strtotime($promotion->hours . 'hours'));
 
@@ -75,7 +75,7 @@ class PromotionController extends Controller
             
 
             // header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
-            return back()->with('success_message', 'Transaction succesfull. The ID is:'.$transaction->id);
+            return redirect()->route('admin.appartments.show', $appartment->id)->with('success_message','Transaction succesfull.');
         } else {
             $errorString = "";
     
