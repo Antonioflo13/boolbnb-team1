@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 use App\Promotion;
 use App\Appartment;
@@ -41,6 +42,7 @@ class PromotionController extends Controller
             'publicKey' => config('services.braintree.publicKey'),
             'privateKey' => config('services.braintree.privateKey')
         ]);
+
         $promotion = Promotion::where('id', $promotion)->first();
         $user = User::where('id',Auth::user()->id)->first();
         $amount = $promotion->price;
@@ -58,11 +60,15 @@ class PromotionController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
-    
+        
+        $appartment = Appartment::where('id', $appartment)->first();
+        $startpromotion = date("Y-m-d H:i:s");
+        $endpromotion = date("Y-m-d H:i:s", strtotime($promotion->hours . 'hours'));
+        
         if ($result->success) {
             $transaction = $result->transaction;
+            $appartment->promotions()->sync($promotion->id,['start_promotion'=>$startpromotion,'end_promotion'=>$endpromotion]);
             // header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
-    
             return back()->with('success_message', 'Transaction succesfull. The ID is:'.$transaction->id);
         } else {
             $errorString = "";
