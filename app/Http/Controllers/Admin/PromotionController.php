@@ -62,14 +62,15 @@ class PromotionController extends Controller
         ]);
         
         $appartment = Appartment::where('id', $appartment)->first();
+        
         $startpromotion = date("Y-m-d H:i:s");
         $endpromotion = date("Y-m-d H:i:s", strtotime($promotion->hours . 'hours'));
 
-
-        
         if ($result->success) {
             $transaction = $result->transaction;
+
             $appartment->promotions()->detach($promotion->id, array('start_promotion' => $startpromotion,'end_promotion' => $endpromotion));
+
             $appartment->promotions()->attach($promotion->id, array('start_promotion' => $startpromotion,'end_promotion' => $endpromotion));
             
 
