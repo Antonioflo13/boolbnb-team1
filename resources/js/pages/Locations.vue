@@ -1,39 +1,46 @@
 <template>
   <section>
         <div class="container">
-            <div class="mt-5 col">
-                <Searchbar/>
+            <div class="mt-5 d-flex  justify-content-between align-items-center flex-wrap">
+                <Searchbar class="mb-2"/>
+                <button class="ms-btn-filter" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fas fa-2x fa-sort-amount-down-alt mx-4"></i>
+                    <!-- <i class="fas fa-2x fa-filter mx-4"></i> -->
+                </button>
             </div>  
             <!-- Filter -->
             <div class="mt-4 col">
-                <button class="ms-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <i class="fas fa-filter"></i>
-                </button>
-                    
                 <div class="collapse mt-3" id="collapseExample">
                     <div class="card card-body">
-                        <div>
-                            <h4>Rooms and Beds</h4>
-                            <select class="custom-select">
-                                <option selected>Select</option>
-                                <option value="1" v-for='(service, index) in services'
-                                    :key='index'>{{service.rooms_number}}</option>
-                                <!-- <option value="2">Two</option>
-                                <option value="3">Three</option> -->
-                            </select>
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <div class="flex-fill mb-5">
+                                <h4>Rooms and Beds</h4>
+                                <div class="d-flex">
+                                    <div>
+                                        <h6>Beds</h6>
+                                        <select class="custom-select">
+                                            <option selected>Select</option>
+                                            <option value="bed[index]" v-for='(bed, index) in beds'
+                                                    :key='index'>{{bed}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h6>Rooms</h6>
+                                        <select class="custom-select">
+                                            <option selected>Select</option>
+                                            <option value="room[index]" v-for='(room, index) in rooms'
+                                                    :key='index'>{{room}}</option>
+                                        </select>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-fill ">
+                                <h4>Distance</h4>
+                                <label for="customRange1">KM range</label>
+                                <input type="range" class="custom-range" id="customRange1">
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="mt-3">Distance</h4>
-                            <label for="customRange1">Example range</label>
-                            <input type="range" class="custom-range" id="customRange1">
-                            <form>
-                                <!-- <div class="form-group">
-                                    <label for="formControlDistance">Distance</label>
-                                    <input type="range" class="form-control-range" id="formControlDistance">
-                                </div> -->
-                            </form>
-                        </div>
-                        <div class="mt-3">
+                        <div class="mt-5">
                             <h4>Additional Services </h4>
                             <div class="d-flex justify-content-between flex-wrap">
                                 <div class="form-check ms-form-check"
@@ -113,11 +120,15 @@ export default {
                         this.appartments = res.data;
                         //Create rooms array
                         for(var i=0; i<this.appartments.length; i++){
-                            this.rooms.push(this.appartments[i]['rooms_number']);
-                        }
+                            if(!this.rooms.includes(this.appartments[i]['rooms_number'])){
+                                this.rooms.push(this.appartments[i]['rooms_number']);
+                            }
+                        };
                         //Create Beds Array
                         for(var i=0; i<this.appartments.length; i++){
-                            this.rooms.push(this.appartments[i]['beds_number']);
+                            if(!this.beds.includes(this.appartments[i]['beds_number'])){
+                                this.beds.push(this.appartments[i]['beds_number']);
+                            }
                         }
                         // this.current_page = res.data.current_page;
                         // this.last_page = res.data.last_page
@@ -159,27 +170,31 @@ export default {
 
 <style scoped lang="scss">
 @import '../../sass/app.scss';
-    .ms-btn {
-            width: 50px;
+    .ms-btn-filter {
+            // width: 50px;
             height: 50px;
             background-color: white;
-            color: #FD395C;
-            border: 1px solid #FD395C;
-            border-radius: 50%;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            -ms-border-radius: 50%;
-            -o-border-radius: 50%;
+            color: gray;
+            border: 1px solid gray;
+            border-radius: 35px;
+            -webkit-border-radius: 35px;
+            -moz-border-radius: 35px;
+            -ms-border-radius: 35px;
+            -o-border-radius: 35px;
             transition: all 0.2s;
             -webkit-transition: all 0.2s;
             -moz-transition: all 0.2s;
             -ms-transition: all 0.2s;
             -o-transition: all 0.2s;
             &:hover{
-                background-color: #f82e53;
                 border: 1px solid #f82e53;
-                color: white;
+                color: #f82e53;
             }
+            &:active{
+                border: 1px solid #f82e53;
+                color: #f82e53;
+            }
+            
         }
 
     img {
