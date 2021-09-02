@@ -20,7 +20,7 @@
                                         <h6>Beds</h6>
                                         <select class="custom-select">
                                             <option selected>Select</option>
-                                            <option value="bed[index]" v-for='(bed, index) in beds'
+                                            <option value="bed[index]" v-for='(bed, index) in bedsN'
                                                     :key='index'>{{bed}}</option>
                                         </select>
                                     </div>
@@ -28,7 +28,7 @@
                                         <h6>Rooms</h6>
                                         <select class="custom-select">
                                             <option selected>Select</option>
-                                            <option value="room[index]" v-for='(room, index) in rooms'
+                                            <option value="room[index]" v-for='(room, index) in roomsN'
                                                     :key='index'>{{room}}</option>
                                         </select>    
                                     </div>
@@ -60,8 +60,16 @@
             <h3 class="mt-5"><strong>In evidence</strong></h3>
             <h3 class="mt-5"><strong>Live anywhere</strong></h3>
             <div class="row">
-                <div class="d-flex flex-column mb-4">
-                    <!-- Da aggiornare in modo dinamico -->
+                <div class="d-flex flex-column mb-4"
+                v-if="searchedApps != undefined">
+                    <div class=" ms-appartment-container mt-4"
+                    v-for='(searchedApp, index) in searchedApps'
+                    :key='index'> 
+                        {{searchedApp}}
+                    </div>
+                </div> 
+                <div class="d-flex flex-column mb-4"
+                v-else>
                     <div class=" ms-appartment-container mt-4"
                     v-for='(appartment, index) in appartments'
                     :key='index'>
@@ -97,8 +105,10 @@ export default {
         return {
             appartments:[],
             services: [],
-            rooms: [],
-            beds: []
+            roomsN: [],
+            bedsN: [],
+            //dati recuperati dalla search bar
+            searchedApps: this.$route.query.app
             // current_page: 2,
             // last_page:1
         }
@@ -112,24 +122,28 @@ export default {
         //API Appartments
         getAppartments: function() {
             axios
-                // .get(`http://127.0.0.1:8000/api/posts?page=${page}`)
+                // .get(`http://127.0.0.1:8000/api/appartments?page=${page}`)
                 .get('http://127.0.0.1:8000/api/appartments')
                 .then(
                     res=>{
                         //Get appartments
                         this.appartments = res.data;
                         //Create rooms array
+                        var rooms =[]
                         for(var i=0; i<this.appartments.length; i++){
-                            if(!this.rooms.includes(this.appartments[i]['rooms_number'])){
-                                this.rooms.push(this.appartments[i]['rooms_number']);
+                            if(!rooms.includes(this.appartments[i]['rooms_number'])){
+                                rooms.push(this.appartments[i]['rooms_number']);
                             }
                         };
+                        this.roomsN=rooms.sort();
                         //Create Beds Array
+                        var beds =[]
                         for(var i=0; i<this.appartments.length; i++){
-                            if(!this.beds.includes(this.appartments[i]['beds_number'])){
-                                this.beds.push(this.appartments[i]['beds_number']);
+                            if(!beds.includes(this.appartments[i]['beds_number'])){
+                                beds.push(this.appartments[i]['beds_number']);
                             }
                         }
+                        this.bedsN=beds.sort();
                         // this.current_page = res.data.current_page;
                         // this.last_page = res.data.last_page
                     }
@@ -162,16 +176,12 @@ export default {
    
     }
 
-    
-
-
 }
 </script>
 
 <style scoped lang="scss">
 @import '../../sass/app.scss';
     .ms-btn-filter {
-            // width: 50px;
             height: 50px;
             background-color: white;
             color: gray;
@@ -214,6 +224,5 @@ export default {
             width: 25%;
         }
     }
-
 
 </style>
