@@ -1,30 +1,83 @@
 #ms_index {
-    text-align: center;
 
-    thead {
-        font-size: 25px;
-        //text-transform: uppercase;
-        color: black;
-    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .box_card {
+            width: calc((100% - 80px) / 4);
+            margin: 10px;
+            padding: 15px;
+            float: left;
+            background-color: white;
     
-    img {
-        width: 80%;
-        border-radius: 15px;
-    }
-    td {
-        a {
-            text-transform: uppercase;
-            color:  $primary-color;
-            border: 1px solid $primary-color;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             
+            img {
+                width: 80%;
+            }
+
+            h1 {
+                height: 25%;
+                font-size: 23px;
+                margin: 10px 0;
+            }
+
+            p {
+                height: 35%;
+                font-size: 15px;
+                margin: 5px 0;
+            }
+
+            .btn_card {
+                display: flex;
+                flex-direction: row;
+                a {
+                    text-transform: uppercase;
+                    color:  $primary-color;
+                    border: 1px solid $primary-color;
+                    
+                }
+                a:hover{
+                    color: white;
+                    background-color: $primary-color-hover;
+                }
+                .btn_delete {
+                    color: white;
+                    background-color: $primary-color;
+                } 
+
+                .btn {
+                    margin: 9px;
+                }
+            }
         }
-        a:hover{
-            color: white;
-            background-color: $primary-color-hover;
-        }
-        .btn_delete {
-            color: white;
-            background-color: $primary-color;
-        } 
     }
-} 
+
+    //MediaQuery
+    @media screen and ( max-width: 945px) and (min-width: 685px){
+        
+        height: 80vh;
+
+        h1 {
+            font-size: 19px !important;
+        }
+
+        p {
+            font-size: 12px !important;
+        }
+
+        .btn {
+            margin: 3px !important;
+        }
+    }
+    @media screen and ( max-width: 683px) {
+        .box_card {
+            width: 80% !important;
+        }
+    }
+}

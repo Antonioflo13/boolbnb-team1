@@ -4,44 +4,28 @@
 @section('content')
     <section id="ms_index">
         <article class="container">
-            <table class="table table-striped table-responsive">
-                <thead>
-                  <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th colspan="3" scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($appartments as $appartment)
-                        <tr>
-                            <td>
-                                @if (substr($appartment->image, 0, 5) == 'https')
-                                    <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
-                                @else
-                                    <img src="{{ asset('storage/' . $appartment->image) }}" alt="{{ $appartment->title }}">
-                                @endif
-                            </td>
-                            <td>{{ $appartment->title }}</td>
-                            <td>{{ substr($appartment->description, 0,100).'...' }}</td>
-                            <td>
-                                <a class="btn" href="{{ route('admin.appartments.show', $appartment->id) }}">Show</a>
-                            </td>
-                            <td>
-                                <a class="btn" href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit</a>
-                            </td>
-                            <td>
-                                <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn_delete">Delete</button>
-                                  </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-              </table>
+            @foreach ($appartments as $appartment)
+                <div class="box_card">
+                    @if (substr($appartment->image, 0, 5) == 'https')
+                        <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
+                    @else
+                        <img src="{{ asset('storage/' . $appartment->image) }}" alt="{{ $appartment->title }}">
+                    @endif
+
+                    <h1>{{ $appartment->title }}</h1>
+                    <p>{{ substr($appartment->description, 0,100).'...' }}</p>
+
+                    <div class="btn_card">
+                        <a class="btn" href="{{ route('admin.appartments.show', $appartment->id) }}">Show</a>
+
+                        <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn_delete">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            @endforeach
         </article>
     </section>
 @endsection
