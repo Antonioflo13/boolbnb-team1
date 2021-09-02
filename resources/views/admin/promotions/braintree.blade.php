@@ -98,7 +98,7 @@
             @endif
 
             <div class="content">
-                <form method="post" id="payment-form" action="{{ url('admin/checkout') }}">
+                <form method="post" id="payment-form" action="{{ url('/checkout') }}">
                     @csrf
 
                     <section>
@@ -117,6 +117,8 @@
                     <input id="nonce" name="payment_method_nonce" type="hidden" />
                     <button class="button" type="submit"><span>Test Transaction</span></button>
                 </form>
+                <br>
+                <a href="{{ route('tomtom') }}">TomTom Developer</a>
             </div>
         </div>
 
