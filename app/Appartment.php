@@ -44,6 +44,6 @@ class Appartment extends Model
     }
 
     public function promotions() {
-        return $this->belongsToMany('App\Promotion');
+        return $this->belongsToMany('App\Promotion')->withPivot(['start_promotion','end_promotion']);
     }
 }
