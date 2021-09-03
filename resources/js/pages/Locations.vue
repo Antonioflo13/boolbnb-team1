@@ -16,19 +16,21 @@
                             <div class="flex-fill mb-5">
                                 <h4>Rooms and Beds</h4>
                                 <div class="d-flex">
+                                    <!-- Select Beds -->
                                     <div>
                                         <h6>Beds</h6>
-                                        <select class="custom-select">
+                                        <select class="custom-select" v-model="selectOptionBeds">
                                             <option selected>Select</option>
-                                            <option value="bed[index]" v-for='(bed, index) in bedsN'
+                                            <option :value="bed" v-for='(bed, index) in bedsN'
                                                     :key='index'>{{bed}}</option>
                                         </select>
                                     </div>
+                                    <!-- Select Rooms -->
                                     <div class="ml-4">
                                         <h6>Rooms</h6>
-                                        <select class="custom-select">
+                                        <select class="custom-select" v-model="selectOptionRooms">
                                             <option selected>Select</option>
-                                            <option value="room[index]" v-for='(room, index) in roomsN'
+                                            <option :value="room" v-for='(room, index) in roomsN'
                                                     :key='index'>{{room}}</option>
                                         </select>    
                                     </div>
@@ -60,6 +62,7 @@
             <h3 class="mt-5"><strong>In evidence</strong></h3>
             <h3 class="mt-5"><strong>Live anywhere</strong></h3>
             <div class="row">
+                <!-- Appartments searched in search bar -->
                 <div class="d-flex flex-column mb-4"
                 v-if="searchedApps != undefined">
                     <div class=" ms-appartment-container mt-4"
@@ -68,14 +71,14 @@
                         {{searchedApp}}
                     </div>
                 </div> 
+                <!-- All Appartments -->
                 <div class="d-flex flex-column mb-4"
                 v-else>
                     <div class=" ms-appartment-container mt-4"
-                    v-for='(appartment, index) in appartments'
+                    v-for='(appartment, index) in selectedAppartments'
                     :key='index'>
                         <div class="col col-sm-3 ms-img-container" >
                             <img :src="appartment.image" :alt="appartment.title" v-if="appartment.image.substr(0,5) == 'https'">
-                            <!-- {{appartment.image.substr(0,5)}} -->
                             <img :src="'http://127.0.0.1:8000/storage/'  + appartment.image" :alt="appartment.title" v-else>
                         </div>
                         <div class="col col-sm-3">
@@ -91,7 +94,7 @@
                 </div>   
             </div>     
         </div>
-  </section>
+    </section>
 </template>
 
 <script>
@@ -108,9 +111,11 @@ export default {
             roomsN: [],
             bedsN: [],
             //dati recuperati dalla search bar
-            searchedApps: this.$route.query.app
+            searchedApps: this.$route.query.app,
             // current_page: 2,
             // last_page:1
+            selectOptionRooms:'Select',
+            selectOptionBeds: 'Select'
         }
     },
     created: function() {
@@ -118,6 +123,28 @@ export default {
         this.getServices();
         //this.getRooms();
     },
+    computed: {
+        selectedAppartments: function() {
+            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select") {
+                return this.appartments
+            } else {
+                const newAppartments = this.appartments.filter(
+                    element=>{
+                        if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select"){
+                            return element.beds_number == this.selectOptionBeds;
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select") {
+                            return element.rooms_number == this.selectOptionRooms;
+                        } else{
+                            return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms)
+                        }
+                    }     
+                )
+                 //console.log(newAppartments);
+                return newAppartments;  
+            }               
+        }
+    } ,  
+    
     methods: {
         //API Appartments
         getAppartments: function() {
@@ -128,6 +155,7 @@ export default {
                     res=>{
                         //Get appartments
                         this.appartments = res.data;
+
                         //Create rooms array
                         var rooms =[]
                         for(var i=0; i<this.appartments.length; i++){
@@ -136,6 +164,7 @@ export default {
                             }
                         };
                         this.roomsN=rooms.sort();
+                        
                         //Create Beds Array
                         var beds =[]
                         for(var i=0; i<this.appartments.length; i++){
@@ -173,6 +202,11 @@ export default {
                     err=>console.log(err)
                 )
         },
+
+        // //Select rooms
+        // selectRooms: function (change){
+        //     return this.selectOptionRooms = change;
+        // } 
    
     }
 
