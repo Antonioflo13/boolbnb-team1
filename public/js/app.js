@@ -561,7 +561,7 @@ eval("window._ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodas
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/antonioflore/Downloads/progetti/Boolean/boolbnb-team1/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/mariadulesova/Desktop/boolean34/boolbnb-team1/resources/js/app.js */"./resources/js/app.js");
 
 
 /***/ })

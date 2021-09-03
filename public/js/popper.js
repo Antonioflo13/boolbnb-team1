@@ -127,8 +127,8 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/antonioflore/Downloads/progetti/Boolean/boolbnb-team1/node_modules/popper.js/dist/popper.js */"./node_modules/popper.js/dist/popper.js");
-module.exports = __webpack_require__(/*! /Users/antonioflore/Downloads/progetti/Boolean/boolbnb-team1/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/mariadulesova/Desktop/boolean34/boolbnb-team1/node_modules/popper.js/dist/popper.js */"./node_modules/popper.js/dist/popper.js");
+module.exports = __webpack_require__(/*! /Users/mariadulesova/Desktop/boolean34/boolbnb-team1/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

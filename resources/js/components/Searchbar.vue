@@ -28,8 +28,9 @@ export default {
     },
     methods:  {
         postLocation: function(){
-            //this.searchedApps.push(this.searchedText);
-            axios
+            this.searchedApps=[];
+            if (this.searchedText!=''){
+                 axios
                 .post('http://127.0.0.1:8000/api/locations', {
                     params: {
                         query: this.searchedText 
@@ -39,10 +40,14 @@ export default {
                     this.lat=res.data.latitude;
                     this.lon=res.data.longitude;
                     this.getApps();
+                    this.searchedText='';
                 })
                 .catch(err=> {
                     console.log(err);
                 })
+
+            }
+           
         },
         
         getApps: function() {

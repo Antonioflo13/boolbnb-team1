@@ -110,7 +110,7 @@ export default {
             services: [],
             roomsN: [],
             bedsN: [],
-            res:[],
+            res: [],
             //dati recuperati dalla search bar
             //searchedApps: this.$route.query.app,
             // current_page: 2,
@@ -126,30 +126,40 @@ export default {
     },
     computed: {
         selectedAppartments: function() {
+            
             if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0) {
-                return this.appartments;
-            } else {
+                return this.appartments;            
+            } else if(this.res.length == 0 ){
                 const newAppartments = this.appartments.filter(
                     (element, i)=>{
                         if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select" && this.res.length==0 ){
+                            this.res = [];
                             return element.beds_number == this.selectOptionBeds;
                         } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.res.length==0 ) {
+                            this.res = [];
                             return element.rooms_number == this.selectOptionRooms;
-                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length > 0 ) {
-                            
-                            // if(this.res[i] < this.res.length){
-                            //     console.log(i);
-                            //     console.log(element.longitude == this.res[0].longitude && element.latitude == this.res[0].latitude);
-                            //     return (element.longitude == this.res[0].longitude && element.latitude == this.res[0].latitude);
-                            // }   
-                        } else{
-                            return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms && (element.longitude == this.res[0].longitude && element.latitude == this.res[0].latitude))
+                        
+                        } else {
+                            this.res = [];
+                            return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms )
                         }
                     }     
                 )
-                 //console.log(newAppartments);
                 return newAppartments;  
-            } 
+            } else { 
+                const newAppartment = [];
+                this.appartments.forEach(element => {
+                    this.res.forEach(el =>{
+                        if(el.id==element.id){
+                            newAppartment.push(element);
+                        }
+                    })
+                    
+                });
+                
+                console.log(newAppartment);  
+                return newAppartment
+            };
         }
     } ,  
     
