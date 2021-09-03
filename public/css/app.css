@@ -11188,7 +11188,7 @@ a.text-dark:focus {
   text-decoration: none;
 }
 
-#ms-jumbotron .ms-form {
+.ms-form {
   /*Thisbitsetsupthehorizontallayout*/
   display: flex;
   flex-direction: row;
@@ -11206,7 +11206,7 @@ a.text-dark:focus {
   height: 55px;
 }
 
-#ms-jumbotron .ms-form .ms-input {
+.ms-form .ms-input {
   /* Tell the input to use all the available space */
   flex-grow: 2;
   height: 50px;
@@ -11216,12 +11216,12 @@ a.text-dark:focus {
   height: 50px;
 }
 
-#ms-jumbotron .ms-form .ms-input:focus {
+.ms-form .ms-input:focus {
   /* removing the input focus blue box. Put this on the form if you like. */
   outline: none;
 }
 
-#ms-jumbotron .ms-form .ms-btn {
+.ms-form .ms-btn {
   width: 50px;
   height: 50px;
   background-color: #FD395C;
@@ -11239,7 +11239,7 @@ a.text-dark:focus {
   -o-transition: all 0.2s;
 }
 
-#ms-jumbotron .ms-form .ms-btn:hover {
+.ms-form .ms-btn:hover {
   background-color: #f82e53;
   border: 1px solid #f82e53;
 }
@@ -11250,34 +11250,87 @@ a.text-dark:focus {
   }
 }
 
-#ms_index {
+#ms_index .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#ms_index .container .box_card {
+  width: calc((100% - 80px) / 4);
+  margin: 10px;
+  padding: 15px;
+  float: left;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
-#ms_index thead {
-  font-size: 25px;
-  color: black;
-}
-
-#ms_index img {
+#ms_index .container .box_card img {
   width: 80%;
-  border-radius: 15px;
 }
 
-#ms_index td a {
+#ms_index .container .box_card h1 {
+  height: 25%;
+  font-size: 23px;
+  margin: 10px 0;
+}
+
+#ms_index .container .box_card p {
+  height: 35%;
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+#ms_index .container .box_card .btn_card {
+  display: flex;
+  flex-direction: row;
+}
+
+#ms_index .container .box_card .btn_card a {
   text-transform: uppercase;
   color: #FD395C;
   border: 1px solid #FD395C;
 }
 
-#ms_index td a:hover {
+#ms_index .container .box_card .btn_card a:hover {
   color: white;
   background-color: #f82e53;
 }
 
-#ms_index td .btn_delete {
+#ms_index .container .box_card .btn_card .btn_delete {
   color: white;
   background-color: #FD395C;
+}
+
+#ms_index .container .box_card .btn_card .btn {
+  margin: 9px;
+}
+
+@media screen and (max-width: 945px) and (min-width: 685px) {
+  #ms_index {
+    height: 80vh;
+  }
+
+  #ms_index h1 {
+    font-size: 19px !important;
+  }
+
+  #ms_index p {
+    font-size: 12px !important;
+  }
+
+  #ms_index .btn {
+    margin: 3px !important;
+  }
+}
+
+@media screen and (max-width: 683px) {
+  #ms_index .box_card {
+    width: 80% !important;
+  }
 }
 
 #ms_login .card-header {
@@ -11389,5 +11442,168 @@ a.text-dark:focus {
 #ms_verify .btn-primary:hover {
   color: white;
   background-color: #f82e53;
+}
+
+#ms_show {
+  text-align: center;
+}
+
+#ms_show img {
+  height: 70%;
+}
+
+#ms_show h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+#ms_show #list-photos {
+  height: 60vh;
+}
+
+#ms_show i {
+  display: inline-block;
+}
+
+#ms_show .row,
+#ms_show .d-flex {
+  flex-direction: row;
+  align-items: start;
+}
+
+#ms_show .list-group {
+  flex-direction: column;
+}
+
+#ms_show h5 {
+  font-weight: 600;
+}
+
+@media screen and (max-width: 945px) and (min-width: 685px) {
+  #ms_show h1 {
+    font-size: 19px !important;
+  }
+
+  #ms_show .row {
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 944px) {
+  #ms_show h1,
+  #ms_show span,
+  #ms_show a {
+    font-size: 25px !important;
+    margin: 10px;
+    display: block;
+  }
+
+  #ms_show .d-flex {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  #ms_show .row {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+
+  #ms_show .row a {
+    width: 100%;
+  }
+
+  #ms_show p,
+  #ms_show .indicator {
+    font-size: 10px !important;
+  }
+
+  #ms_show .list-group-item {
+    font-size: 20px !important;
+  }
+}
+
+#ms_promotions h1 {
+  margin: 15px 0;
+}
+
+#ms_promotions h3 {
+  margin-top: 25px;
+  color: #FD395C;
+}
+
+#ms_promotions .card {
+  width: calc((100% - 60px) / 3);
+  margin: 58px 10px;
+  padding: 20px;
+  float: left;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+}
+
+#ms_promotions .card h1 {
+  color: #FD395C;
+  margin: 5px 0;
+}
+
+#ms_promotions .card h2,
+#ms_promotions .card h4 {
+  margin: 10px 0;
+}
+
+#ms_promotions .card a {
+  margin: 5px 0;
+  text-transform: uppercase;
+  color: #FD395C;
+  border: 1px solid #FD395C;
+}
+
+#ms_promotions .card a:hover {
+  color: white;
+  background-color: #f82e53;
+}
+
+@media screen and (min-width: 950px) {
+  #ms_promotions {
+    height: 72vh;
+  }
+}
+
+@media screen and (max-width: 945px) and (min-width: 685px) {
+  #ms_promotions {
+    height: 78vh;
+  }
+
+  #ms_promotions .card {
+    width: calc((100% - 60px) / 3) !important;
+    margin: 58px 10px;
+    float: left;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 944px) {
+  #ms_promotions h1 {
+    font-size: 25px;
+  }
+
+  #ms_promotions .card {
+    width: 90%;
+    text-align: start;
+    margin: 30px 10px;
+    float: left;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+  }
 }
 

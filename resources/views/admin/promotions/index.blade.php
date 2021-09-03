@@ -10,9 +10,6 @@
                     <h1>{{ $promotion->price }} €</h1>
                     <h4> {{ $promotion->hours }} hours of sponsorship</h4>
                     <a href="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}" class="btn">Sponsorship</a>
-                <div>
-                    <h4>{{ $promotion->title }} {{ $promotion->price }} € {{ $promotion->hours }} hours of sponsorship</h4>
-                    <a href="{{ route('admin.getToken', [$promotion->id, $appartment->id]) }}" class="btn">Sponsorship</a>
                 </div>
                 @endforeach
             <br>
