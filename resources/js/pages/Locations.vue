@@ -5,7 +5,7 @@
                 <Searchbar class="mb-2"/>
                 <button class="ms-btn-filter" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fas fa-2x fa-sort-amount-down-alt mx-4"></i>
-                    <!-- <i class="fas fa-2x fa-filter mx-4"></i> -->
+            
                 </button>
             </div>  
             <!-- Filter -->
