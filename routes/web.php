@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 use Braintree\Gateway;
 
@@ -24,7 +25,8 @@ Route::middleware('auth')
     ->group( function() {
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('appartments/promotions/{appartment}', 'PromotionController@show')->name('promotions');
-        Route::get('appartments/payment/{promotion}/{appartment}', 'PromotionController@payment')->name('payment');
+        Route::get('appartments/payment/{promotion}/{appartment}', 'PromotionController@getToken')->name('getToken');
+        Route::post('appartments/payment/{promotion}/{appartment}', 'PromotionController@payment')->name('payment');
         Route::resource('appartments', 'AppartmentController');
 
 });
