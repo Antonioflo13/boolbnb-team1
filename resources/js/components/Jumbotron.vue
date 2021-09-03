@@ -17,9 +17,11 @@ import Searchbar from './Searchbar';
 
 export default {
     name: "Jumbotron",
+
     components: {
         Searchbar
     }
+   
 
 }
 </script>

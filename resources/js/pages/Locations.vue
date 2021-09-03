@@ -2,10 +2,10 @@
   <section>
         <div class="container">
             <div class="mt-5 d-flex  justify-content-between align-items-center flex-wrap">
-                <Searchbar class="mb-2"/>
+                <Searchbar class="mb-2"
+                @searchedApps="searchedApps"/>
                 <button class="ms-btn-filter" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fas fa-2x fa-sort-amount-down-alt mx-4"></i>
-            
                 </button>
             </div>  
             <!-- Filter -->
@@ -48,7 +48,7 @@
                                 <div class="form-check ms-form-check"
                                     v-for='(service, index) in services'
                                     :key='index'>
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <input class="form-check-input" type="checkbox" :value="service.name" v-model="selectedAppartments.services" id="defaultCheck1">
                                     <label class="form-check-label" for="defaultCheck1">
                                         {{service.name}}
                                     </label>
@@ -63,17 +63,16 @@
             <h3 class="mt-5"><strong>Live anywhere</strong></h3>
             <div class="row">
                 <!-- Appartments searched in search bar -->
-                <div class="d-flex flex-column mb-4"
+                <!-- <div class="d-flex flex-column mb-4"
                 v-if="searchedApps != undefined">
                     <div class=" ms-appartment-container mt-4"
                     v-for='(searchedApp, index) in searchedApps'
                     :key='index'> 
                         {{searchedApp}}
                     </div>
-                </div> 
+                </div>  -->
                 <!-- All Appartments -->
-                <div class="d-flex flex-column mb-4"
-                v-else>
+                <div class="d-flex flex-column mb-4">
                     <div class=" ms-appartment-container mt-4"
                     v-for='(appartment, index) in selectedAppartments'
                     :key='index'>
@@ -104,14 +103,16 @@ export default {
     components: {
         Searchbar
     },
+    //props: ['searchedApps'],
     data(){
         return {
             appartments:[],
             services: [],
             roomsN: [],
             bedsN: [],
+            res:[],
             //dati recuperati dalla search bar
-            searchedApps: this.$route.query.app,
+            //searchedApps: this.$route.query.app,
             // current_page: 2,
             // last_page:1
             selectOptionRooms:'Select',
@@ -125,27 +126,38 @@ export default {
     },
     computed: {
         selectedAppartments: function() {
-            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select") {
-                return this.appartments
+            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0) {
+                return this.appartments;
             } else {
                 const newAppartments = this.appartments.filter(
-                    element=>{
-                        if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select"){
+                    (element, i)=>{
+                        if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select" && this.res.length==0 ){
                             return element.beds_number == this.selectOptionBeds;
-                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select") {
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.res.length==0 ) {
                             return element.rooms_number == this.selectOptionRooms;
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length > 0 ) {
+                            
+                            // if(this.res[i] < this.res.length){
+                            //     console.log(i);
+                            //     console.log(element.longitude == this.res[0].longitude && element.latitude == this.res[0].latitude);
+                            //     return (element.longitude == this.res[0].longitude && element.latitude == this.res[0].latitude);
+                            // }   
                         } else{
-                            return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms)
+                            return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms && (element.longitude == this.res[0].longitude && element.latitude == this.res[0].latitude))
                         }
                     }     
                 )
                  //console.log(newAppartments);
                 return newAppartments;  
-            }               
+            } 
         }
     } ,  
     
     methods: {
+        searchedApps: function(res){
+            this.res=res;
+
+        },
         //API Appartments
         getAppartments: function() {
             axios
@@ -183,7 +195,6 @@ export default {
         },
         textExerpt: function(str) {
             if(str.length >100) {
-                
                 return str.substr(0, 100)+'...';
             } else {
                 return str;
@@ -201,12 +212,7 @@ export default {
                 .catch(
                     err=>console.log(err)
                 )
-        },
-
-        // //Select rooms
-        // selectRooms: function (change){
-        //     return this.selectOptionRooms = change;
-        // } 
+        }
    
     }
 
