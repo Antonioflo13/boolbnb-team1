@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 // import components
 import Home from './pages/Home';
 import Locations from './pages/Locations';
+import SingleLocation from './pages/SingleLocation';
 
 const router = new VueRouter({
     mode: 'history',
@@ -20,7 +21,12 @@ const router = new VueRouter({
             path: '/locations',
             name: 'locations',
             component: Locations, 
-        }
+        },
+        {
+            path:'/locations/:slug',
+            name:'single-location',
+            component: SingleLocation
+        },
     ]
 })
 

@@ -3,6 +3,13 @@
 @section('content')
 <section id="ms_show">
     <article class="container my-3">
+
+        @if (session('success_message'))
+            <div class="alert alert-success">
+                {{ session('success_message') }}
+            </div>
+        @endif
+
         <div>
             <div class="d-flex align-items-center justify-content-between">
                 <h1>{{ $appartment->title }}</h1>
