@@ -16,23 +16,22 @@
                 <div class="d-flex align-items-center">
                     @if (!$appartment->visible) 
                         {{-- pallino rosso --}}
-                        <i class="fas fa-circle mr-2"></i>
-                        <span class="mr-5">Not Available</span>
+                        {{-- <i class="fas fa-circle mr-2"></i> --}}
+                        <span class="mr-5"><i class="fas fa-circle mr-2"></i> Not Available</span>
                     @else
                         {{-- pallino verde --}}
-                        <i class="fas fa-circle mr-2"></i>
-                        <span class="mr-5">Available</span>
+                        
+                        <span class="mr-5"><i class="fas fa-circle mr-2"></i>Available</span>
                     @endif
-                    <i class="fas fa-sort-amount-up-alt mr-2"></i>
-                    <a href="{{ route('admin.promotions', $appartment->id) }}" class="mr-5">Upgrade</a>
+                    <a href="{{ route('admin.promotions', $appartment->id) }}" class="mr-5"><i class="fas fa-sort-amount-up-alt mr-2"></i> Upgrade</a>
                     <a href="#" class="btn">Preview listing</a>
                 </div>
             </div>
             {{-- edit collection --}}
             <div class="my-4">
-                <div class="row">
+                <div class="row mx-3">
                     {{-- edit menu --}}
-                    <div class="col-3">
+                    <div class="col-sm-8 col-lg-3 mb-3">
                       <div class="list-group" id="list-tab" role="tablist">
                         <a href="#" class="list-group-item disabled" aria-disabled="true">Listing Details</a>
                         <a class="list-group-item list-group-item-action active" id="list-photos-list" data-toggle="list" href="#list-photos" role="tab" aria-controls="photos">Photos</a>
@@ -40,7 +39,7 @@
                       </div>
                     </div>
                     {{-- /edit menu --}}
-                    <div class="col-8">
+                    <div class="col-sm-8 col-lg-8 mb-3">
                         {{-- edit specifications --}}
                         <div class="tab-content" id="nav-tabContent">
 
@@ -80,12 +79,10 @@
                                     <h5>Listing Status</h5>
                                     @if (!$appartment->visible) 
                                         {{-- pallino rosso --}}
-                                        <i class="fas fa-circle mr-2"></i>
-                                        <span class="mr-5">Not Available</span>
+                                        <span class="mr-5 indicator"><i class="fas fa-circle mr-2"></i> Not Available</span>
                                     @else
                                         {{-- pallino verde --}}
-                                        <i class="fas fa-circle mr-2"></i>
-                                        <span class="mr-5">Available - Guest can find your listing in search result and request or book available dates.</span>
+                                        <span class="mr-5 indicator"><i class="fas fa-circle mr-2"></i> Available - Guest can find your listing in search result and request or book available dates.</span>
                                     @endif
                                 </div>
                                 <div class="my-3">

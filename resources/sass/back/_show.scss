@@ -1,0 +1,78 @@
+#ms_show {
+    text-align: center;
+    img {
+        height: 70%;
+    }
+
+    h1 {
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    #list-photos {
+        height: 60vh;
+    }
+    i {
+        display: inline-block;
+    }
+
+    .row ,
+    .d-flex  {
+        flex-direction: row;
+        align-items: start;
+    }
+    .list-group {
+        flex-direction: column;
+    }
+
+    h5 {
+        font-weight: 600;
+    }
+
+    //MediaQuery
+    @media screen and ( max-width: 945px) and (min-width: 685px){
+
+        h1 {
+            font-size: 19px !important;
+        }
+
+        .row {
+            justify-content: center;
+        }
+    }
+    @media screen and ( min-width: 320px)
+    and (max-width: 944px) {
+        h1,
+        span ,
+        a {
+            font-size: 25px !important;
+            margin: 10px;
+            display: block;
+        }
+
+        .d-flex {
+            display: flex !important;
+            flex-direction: column;
+        }
+
+        .row {
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+
+            a {
+                width: 100%;
+            }
+        }
+
+        p,
+        .indicator {
+            font-size: 10px !important;
+        }
+
+        .list-group-item {
+            font-size: 20px !important;
+        }
+        
+    }
+}
