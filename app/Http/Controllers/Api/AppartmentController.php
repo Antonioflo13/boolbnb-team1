@@ -10,7 +10,8 @@ use App\Appartment;
 class AppartmentController extends Controller
 {   
     public function index() {
-        $appartments = Appartment::all();
+        $appartments = Appartment::orderBy('id', 'ASC')->with(['services', 'promotions'])->get();
+       
         return response()->json($appartments);
     }
 

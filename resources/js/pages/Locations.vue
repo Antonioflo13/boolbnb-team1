@@ -39,7 +39,7 @@
                             <div class="flex-fill ">
                                 <h4>Distance</h4>
                                 <label for="customRange1">KM range</label>
-                                <input type="range" class="custom-range" id="customRange1">
+                                <input type="range" class="custom-range" max="20" id="customRange1">
                             </div>
                         </div>
                         <div class="mt-5">
