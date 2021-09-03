@@ -48,7 +48,7 @@
                                 <div class="form-check ms-form-check"
                                     v-for='(service, index) in services'
                                     :key='index'>
-                                    <input class="form-check-input" type="checkbox" :value="service.name" v-model="selectedAppartments.services" id="defaultCheck1">
+                                    <input class="form-check-input" type="checkbox"  id="defaultCheck1">
                                     <label class="form-check-label" for="defaultCheck1">
                                         {{service.name}}
                                     </label>
@@ -126,7 +126,6 @@ export default {
     },
     computed: {
         selectedAppartments: function() {
-            
             if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0) {
                 return this.appartments;            
             } else if(this.res.length == 0 ){
@@ -138,7 +137,6 @@ export default {
                         } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.res.length==0 ) {
                             this.res = [];
                             return element.rooms_number == this.selectOptionRooms;
-                        
                         } else {
                             this.res = [];
                             return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms )
@@ -154,9 +152,7 @@ export default {
                             newAppartment.push(element);
                         }
                     })
-                    
                 });
-                
                 console.log(newAppartment);  
                 return newAppartment
             };
