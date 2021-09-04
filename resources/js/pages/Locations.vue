@@ -60,10 +60,9 @@
                 </div> 
             </div>
              <!-- Content     -->
-            <h3 class="mt-5"><strong>In evidence</strong></h3>
             <h3 class="mt-5"><strong>Live anywhere</strong></h3>
             <div class="row">
-                <div class="d-flex flex-column mb-4">
+                <div class="d-flex flex-column mb-4" v-if="selectedAppartments.length > 0">
                     <div class=" ms-appartment-container mt-4"
                     v-for='(appartment, index) in selectedAppartments'
                     :key='index'>
@@ -79,11 +78,16 @@
                             <router-link :to="{name: 'single-location', params: { slug: appartment.slug}}">
                                 <button type="submit" class="btn">View details
                                 </button>
-                            </router-link>
-                            
+                            </router-link>    
                         </div>    
                     </div>
-                </div>   
+                </div> 
+                <div class="mt-4" v-else>
+                    <div class="d-flex flex-wrap align-items-center">
+                        <i class="fas fa-exclamation-circle mr-2 fa-2x"></i>
+                        <p class="mb-0">No appartments exists with the selected criteria, please select different criteries</p>
+                    </div> 
+                </div>  
             </div>     
         </div>
     </section>
@@ -259,6 +263,9 @@ export default {
     img {
         width: 100%;
         border-radius: 10px;
+    }
+    .fa-exclamation-circle{
+        color: $primary-color;
     }
     .ms-form-check{
         width: 100%;

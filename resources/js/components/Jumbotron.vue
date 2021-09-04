@@ -4,7 +4,7 @@
             <Searchbar 
                 @searchedApps="searchedApps"
             />
-            <h3 class="text-center my-5">Not sure where to go? Perfect.</h3>
+            <h3 class="text-center my-5">Want to explore more? Perfect!</h3>
                 <router-link :to="{name: 'locations'}">
                     <button type="submit" class="ms-style px-5 py-3">Advanced Search </button>
                 </router-link>

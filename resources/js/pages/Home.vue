@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="mb-5">
         <Jumbotron 
             @searchedApps="searchedApps"
         />
@@ -18,7 +18,7 @@
             </div> 
             <!-- //Fatto MD -->
             <h3 class="mt-5"><strong>Live Anywhere</strong></h3>
-            <div class=" mb-4  row">
+            <div class=" mb-4  row " v-if="selectedAppartmentsHome.length > 0">
                 <div class="mt-4 col col-sm-6 col-lg-4" v-for='(app, index) in selectedAppartmentsHome' :key='index'>
                     <div class="ms-img-container">
                         <img :src="app.image" :alt="app.title" v-if="app.image.substr(0,5) == 'https'">
@@ -29,7 +29,13 @@
                                 {{app.title}}
                     </router-link>
                 </div>
-            </div>     
+            </div> 
+            <div class="mt-4" v-else>
+                    <div class="d-flex flex-wrap align-items-center">
+                        <i class="fas fa-exclamation-circle mr-2 fa-2x"></i>
+                        <p class="mb-0">No appartments exists with the selected criteria, please select different criteries</p>
+                    </div> 
+            </div>      
         </section>
     </section> 
 </template>
@@ -51,7 +57,7 @@ export default {
     // Fatto MD
     computed: {
         selectedAppartmentsHome: function() {
-            if(this.res.length == 0 ) {
+            if(this.res.length == 0) {
                 return this.appartments;
             } else {
                 let newAppartmentsHome = [];
@@ -59,6 +65,8 @@ export default {
                     this.res.forEach(item =>{
                         if(item.id == element.id ){
                             newAppartmentsHome.push(element);
+                        } else {
+                            return newAppartmentsHome = [];
                         }
                     })
                 }) 
