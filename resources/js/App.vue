@@ -1,9 +1,9 @@
 <template>
     <div>
-        <Nav/>
+        <Nav @searchedApps="searchedApps" />
         <main>  
             <!-- component matched by the route will render here -->
-            <router-view></router-view>
+            <router-view :resultApps="resultApps" ></router-view>
         </main> 
         <Footer/>   
     </div>
@@ -18,6 +18,16 @@ export default {
     components:  {
         Nav,
         Footer
+    },
+    data () {
+        return {
+            resultApps : []
+        }
+    },
+    methods: {
+        searchedApps: function(res){
+            this.resultApps=res;
+        },
     }
 }
 </script>

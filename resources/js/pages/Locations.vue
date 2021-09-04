@@ -2,9 +2,6 @@
   <section>
         <div class="container">
             <div class="mt-5 d-flex  justify-content-between align-items-center flex-wrap">
-                <Searchbar class="mb-2"
-                    @searchedApps="searchedApps"
-                />
                 <button class="ms-btn-filter" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fas fa-2x fa-sort-amount-down-alt mx-4"></i>
                 </button>
@@ -100,11 +97,11 @@
 <script>
 import Searchbar from '../components/Searchbar';
 export default {
+    props: ['resultApps'],
     name:"Locations",
     components: {
         Searchbar
     },
-    //props: ['searchedApps'],
     data(){
         return {
             appartments:[],
@@ -127,9 +124,9 @@ export default {
     },
     computed: {
         selectedAppartments: function() {
-            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0 && this.res != 'empty') {
+            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.resultApps.length==0 && this.resultApps != 'empty') {
                 return this.appartments;            
-            } else if(this.res.length == 0 && this.res != 'empty'){
+            } else if(this.resultApps.length == 0 && this.resultApps != 'empty'){
                 let newAppartments = this.appartments.filter(
                     (element, i)=>{
                         if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select"){
@@ -142,10 +139,10 @@ export default {
                     }     
                 )
                 return newAppartments;  
-            } else if (this.res != 'empty') { 
+            } else if (this.resultApps != 'empty') { 
                 let newAppartment = [];
                 this.appartments.forEach(element => {
-                    this.res.forEach(item =>{
+                    this.resultApps.forEach(item =>{
                         if(item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select"){
                             newAppartment.push(element);
                         } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select") {
@@ -172,9 +169,6 @@ export default {
     } ,  
     
     methods: {
-        searchedApps: function(res){
-            this.res=res;
-        },
         //API Appartments
         getAppartments: function() {
             axios
