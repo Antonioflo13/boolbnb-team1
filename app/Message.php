@@ -22,4 +22,8 @@ class Message extends Model
     public function appartment() {
         return $this->belongsTo('App\Appartment');
     }
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }

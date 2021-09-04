@@ -1,6 +1,6 @@
 @extends('layouts.app')
+@section('title', config('app.name', 'BoolBnB').' | Payment')
 @section('content')
-
 <section id="ms_payment">
     <article class="container">
         @if (session('success_message'))

@@ -24,6 +24,7 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group( function() {
         Route::get('/', 'HomeController@index')->name('home');
+        Route::get('inbox', 'MessageController@index')->name('inbox');
         Route::get('appartments/promotions/{appartment}', 'PromotionController@show')->name('promotions');
         Route::get('appartments/payment/{promotion}/{appartment}', 'PromotionController@getToken')->name('getToken');
         Route::post('appartments/payment/{promotion}/{appartment}', 'PromotionController@payment')->name('payment');

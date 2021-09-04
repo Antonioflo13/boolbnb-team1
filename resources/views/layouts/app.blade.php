@@ -41,7 +41,7 @@
                         @guest
                         @else 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Inbox</a>
+                            <a class="nav-link" href="{{ route('admin.inbox') }}">Inbox</a>
                         </li>
                         <li>
                             <a class="nav-link" href="#">Insights</a>
