@@ -63,16 +63,6 @@
             <h3 class="mt-5"><strong>In evidence</strong></h3>
             <h3 class="mt-5"><strong>Live anywhere</strong></h3>
             <div class="row">
-                <!-- Appartments searched in search bar -->
-                <!-- <div class="d-flex flex-column mb-4"
-                v-if="searchedApps != undefined">
-                    <div class=" ms-appartment-container mt-4"
-                    v-for='(searchedApp, index) in searchedApps'
-                    :key='index'> 
-                        {{searchedApp}}
-                    </div>
-                </div>  -->
-                <!-- All Appartments -->
                 <div class="d-flex flex-column mb-4">
                     <div class=" ms-appartment-container mt-4"
                     v-for='(appartment, index) in selectedAppartments'
@@ -86,9 +76,11 @@
                         </div>
                         <div class="col col-sm-6">
                             <p class="mt-3 ">{{ textExerpt(appartment.description) }}</p>
-                            <button type="submit" class="btn">
-                                <router-link :to="{name: 'single-location', params: { slug: appartment.slug}}">View details</router-link>
-                            </button>
+                            <router-link :to="{name: 'single-location', params: { slug: appartment.slug}}">
+                                <button type="submit" class="btn">View details
+                                </button>
+                            </router-link>
+                            
                         </div>    
                     </div>
                 </div>   
