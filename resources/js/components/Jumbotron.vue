@@ -1,7 +1,9 @@
 <template>
     <section id="ms-jumbotron" class="d-flex flex-column justify-content-center align-items-center py-5">
         <div class="my-5 d-flex flex-column justify-content-center align-items-center">
-            <Searchbar />
+            <Searchbar 
+                @searchedApps="searchedApps"
+            />
             
             <h3 class="text-center my-5">Not sure where to go? Perfect.</h3>
             <button type="submit" class="ms-style px-5 py-3">
@@ -17,9 +19,13 @@ import Searchbar from './Searchbar';
 
 export default {
     name: "Jumbotron",
-
     components: {
         Searchbar
+    },
+    methods: {
+        searchedApps: function(res) {
+            this.$emit('searchedApps', res);
+        }
     }
    
 

@@ -1,6 +1,8 @@
 <template>
     <section>
-        <Jumbotron />
+        <Jumbotron 
+            @searchedApps="searchedApps"
+        />
         <!-- Test prima di API -->
         <section class="container">
             <h3 class="mt-5"><strong>In Evidence</strong></h3>
@@ -27,10 +29,14 @@ export default {
     },
     data(){
         return{
-            promotedApps: []
+            promotedApps: [],
+            res: []
         }
     },
     methods: {
+        searchedApps: function(res) {
+            this.res = res;
+        },
         getPromotedApps: function(){
             axios
             .get('http://127.0.0.1:8000/api/appartments')
