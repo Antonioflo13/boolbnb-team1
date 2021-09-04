@@ -3,7 +3,8 @@
         <div class="container">
             <div class="mt-5 d-flex  justify-content-between align-items-center flex-wrap">
                 <Searchbar class="mb-2"
-                @searchedApps="searchedApps"/>
+                    @searchedApps="searchedApps"
+                />
                 <button class="ms-btn-filter" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fas fa-2x fa-sort-amount-down-alt mx-4"></i>
                 </button>
@@ -126,43 +127,53 @@ export default {
     },
     computed: {
         selectedAppartments: function() {
-            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0) {
+            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0 && this.res != 'empty') {
                 return this.appartments;            
-            } else if(this.res.length == 0 ){
-                const newAppartments = this.appartments.filter(
+            } else if(this.res.length == 0 && this.res != 'empty'){
+                let newAppartments = this.appartments.filter(
                     (element, i)=>{
-                        if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select" && this.res.length==0 ){
-                            this.res = [];
+                        if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select"){
                             return element.beds_number == this.selectOptionBeds;
-                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.res.length==0 ) {
-                            this.res = [];
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select") {
                             return element.rooms_number == this.selectOptionRooms;
                         } else {
-                            this.res = [];
                             return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms )
                         }
                     }     
                 )
                 return newAppartments;  
-            } else { 
-                const newAppartment = [];
+            } else if (this.res != 'empty') { 
+                let newAppartment = [];
                 this.appartments.forEach(element => {
-                    this.res.forEach(el =>{
-                        if(el.id==element.id){
+                    this.res.forEach(item =>{
+                        if(item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select"){
                             newAppartment.push(element);
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select") {
+                            if (this.selectOptionBeds == item.beds_number) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select") {
+                            if (this.selectOptionRooms == item.rooms_number) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms != "Select") {
+                            if (this.selectOptionRooms == item.rooms_number && this.selectOptionBeds == item.beds_number) {
+                                newAppartment.push(element);
+                            }
                         }
                     })
                 });
-                console.log(newAppartment);  
-                return newAppartment
-            };
+                return newAppartment;
+            } else {
+                let newAppartment = [];
+                return newAppartment;
+            }
         }
     } ,  
     
     methods: {
         searchedApps: function(res){
             this.res=res;
-
         },
         //API Appartments
         getAppartments: function() {
