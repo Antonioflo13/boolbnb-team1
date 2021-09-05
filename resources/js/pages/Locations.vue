@@ -49,8 +49,8 @@
                                 <div class="form-check ms-form-check"
                                     v-for='(service, index) in services'
                                     :key='index'>
-                                    <input class="form-check-input" type="checkbox"  id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
+                                    <input class="form-check-input" type="checkbox" :value="service.name" v-model="checked" :id="service.name">
+                                    <label class="form-check-label" :for="service.name">
                                         {{service.name}}
                                     </label>
                                 </div>
@@ -76,29 +76,34 @@
                         <div class="col col-sm-6">
                             <p class="mt-3 ">{{ textExerpt(appartment.description) }}</p>
                             <router-link :to="{name: 'single-location', params: { slug: appartment.slug}}">
-                                <button type="submit" class="btn">View details
+                                <button type="submit" class="btn ms-btn-view">View details
                                 </button>
                             </router-link>    
                         </div>    
                     </div>
                 </div> 
-                <div class="mt-4" v-else>
+                <Loader v-else />
+                <!-- <div class="mt-4" v-else>
+                    
                     <div class="d-flex flex-wrap align-items-center">
                         <i class="fas fa-exclamation-circle mr-2 fa-2x"></i>
                         <p class="mb-0">No appartments exists with the selected criteria, please select different criteries</p>
                     </div> 
-                </div>  
+                </div>   -->
             </div>     
         </div>
     </section>
+
 </template>
 
 <script>
 import Searchbar from '../components/Searchbar';
+import Loader from '../components/Loader';
 export default {
     name:"Locations",
     components: {
-        Searchbar
+        Searchbar,
+        Loader
     },
     //props: ['searchedApps'],
     data(){
@@ -113,7 +118,8 @@ export default {
             // current_page: 2,
             // last_page:1
             selectOptionRooms:'Select',
-            selectOptionBeds: 'Select'
+            selectOptionBeds: 'Select',
+            checked:[],
         }
     },
     created: function() {
@@ -259,7 +265,14 @@ export default {
             }
             
         }
-
+    .ms-btn-view {
+        color: white;
+        background-color: $primary-color;
+        &:hover{
+            background-color: $primary-color-hover;
+            color: white;
+        }
+    }
     img {
         width: 100%;
         border-radius: 10px;
