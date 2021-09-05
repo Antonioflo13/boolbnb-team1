@@ -4,6 +4,7 @@
             <div class="mt-5 d-flex  justify-content-between align-items-center flex-wrap">
                 <Searchbar class="mb-2"
                     @searchedApps="searchedApps"
+                    :newRadius="radius"
                 />
                 <button class="ms-btn-filter" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fas fa-2x fa-sort-amount-down-alt mx-4"></i>
@@ -40,7 +41,8 @@
                             <div class="flex-fill ">
                                 <h4>Distance</h4>
                                 <label for="customRange1">KM range</label>
-                                <input type="range" class="custom-range" max="20" id="customRange1">
+                                <span>( {{ radius / 1000 }} Km )</span>
+                                <input type="range" class="custom-range" min="0" max="100000" id="customRange1" v-model="radius">
                             </div>
                         </div>
                         <div class="mt-5">
@@ -112,6 +114,7 @@ export default {
             roomsN: [],
             bedsN: [],
             res: [],
+            radius: 0,
             //dati recuperati dalla search bar
             //searchedApps: this.$route.query.app,
             // current_page: 2,

@@ -3,7 +3,7 @@
         <input class="ms-input px-4 my-2 " placeholder="Start your search"
         v-model="searchedText">
         <button class="ms-btn my-2 my-sm-0" type="submit"
-        @click.prevent="postLocation()">
+        @click.prevent="postLocation(newRadius)">
             <!-- <router-link
                 :to="{name:'locations'}">
             </router-link> -->
@@ -15,28 +15,29 @@
 <script>
 export default {
     name: 'Searchbar',
+    props: ['newRadius'],
     data(){
         return{
             searchedText: '',
             searchedApps: [],
-            lat:'',
-            lon: ''
+            results: [],
+            radius: 0
         }
     },
     methods:  {
-        postLocation: function(){
+        postLocation: function(rad){
             this.searchedApps=[];
             if (this.searchedText!=''){
                  axios
                 .post('http://127.0.0.1:8000/api/locations', {
                     params: {
-                        query: this.searchedText 
+                        query: this.searchedText,
+                        radius: rad
                     }
                 })
                 .then(res=> {
                     this.searchedText='';
-                    this.lat=res.data.latitude;
-                    this.lon=res.data.longitude;
+                    this.results = res.data;
                     this.getApps();
                 })
                 .catch(err=> {
@@ -49,19 +50,25 @@ export default {
             axios
             .get(('http://127.0.0.1:8000/api/appartments'))
             .then(res=> {
-                    this.searchedApps = res.data.filter(
-                        element => {
-                            return (element.longitude == this.lon && element.latitude == this.lat);   
-                        }
-                    );
-                    if (this.searchedApps.length == 0) {
-                        this.searchedApps = 'empty';
-                    }
-                    this.$emit('searchedApps',this.searchedApps);
-                })
-                .catch(err=> {
-                    console.log(err);
-                })
+                const newArray = [];
+                if (this.results.length > 0) {
+                    this.results.forEach(element => {
+                        res.data.forEach(item => {
+                            if (element.longitude == item.longitude && element.latitude == item.latitude) {
+                                newArray.push(item);
+                            }
+                        });
+                    });
+                }
+                this.searchedApps = newArray;
+                if (this.searchedApps.length == 0) {
+                    this.searchedApps = 'empty';
+                }
+                this.$emit('searchedApps',this.searchedApps);
+            })
+            .catch(err=> {
+                console.log(err);
+            })
         }                 
     }
     
