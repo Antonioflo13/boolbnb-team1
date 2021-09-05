@@ -49,7 +49,7 @@
                                 <div class="form-check ms-form-check"
                                     v-for='(service, index) in services'
                                     :key='index'>
-                                    <input class="form-check-input" type="checkbox" :value="service.name" v-model="checked" :id="service.name">
+                                    <input class="form-check-input" type="checkbox" :value="service.id" v-model="checked" :id="service.name">
                                     <label class="form-check-label" :for="service.name">
                                         {{service.name}}
                                     </label>
@@ -82,14 +82,14 @@
                         </div>    
                     </div>
                 </div> 
-                <Loader v-else />
-                <!-- <div class="mt-4" v-else>
+                <!-- <Loader v-else /> -->
+                <div class="mt-4" v-else>
                     
                     <div class="d-flex flex-wrap align-items-center">
                         <i class="fas fa-exclamation-circle mr-2 fa-2x"></i>
                         <p class="mb-0">No appartments exists with the selected criteria, please select different criteries</p>
                     </div> 
-                </div>   -->
+                </div>  
             </div>     
         </div>
     </section>
