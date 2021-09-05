@@ -72,6 +72,7 @@ export default {
 @import '../../sass/app.scss';
     img{
         width: 100%;
+        border-radius: 10px;
     }
     i{
         color: $primary-color;
