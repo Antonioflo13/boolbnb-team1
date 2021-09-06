@@ -11171,6 +11171,7 @@ a.text-dark:focus {
   background-color: white;
   border-radius: 35px 35px;
   border: 1px solid #e2e1e1;
+  font-size: 1.1rem;
   transition: all 0.2s;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
@@ -11180,12 +11181,7 @@ a.text-dark:focus {
 
 #ms-jumbotron .ms-style:hover {
   box-shadow: 2px 2px 4px 1px rgba(223, 222, 222, 0.6);
-}
-
-#ms-jumbotron .ms-style a {
-  font-size: 1.1rem;
-  color: darkmagenta;
-  text-decoration: none;
+  color: #FD395C;
 }
 
 .ms-form {
