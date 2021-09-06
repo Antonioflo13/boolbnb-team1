@@ -20,7 +20,8 @@ export default {
         return{
             searchedText: '',
             searchedApps: [],
-            results: []
+            results: [],
+            rad : 0,
         }
     },
     computed: {
@@ -31,12 +32,17 @@ export default {
     methods:  {
         postLocation: function(){
             this.searchedApps=[];
+            if (this.radius && this.radius != 0) {
+                this.rad = this.radius;
+            } else {
+                this.rad = 0;
+            }
             if (this.searchedText!=''){
                  axios
                 .post('http://127.0.0.1:8000/api/locations', {
                     params: {
                         query: this.searchedText,
-                        radius: this.radius
+                        radius: this.rad
                     }
                 })
                 .then(res=> {

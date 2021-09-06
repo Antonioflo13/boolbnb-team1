@@ -20,8 +20,14 @@ export default {
     components: {
         Searchbar
     },
+    data () {
+        return {
+            
+        }
+    },
     methods: {
         searchedApps: function(res) {
+            
             this.$emit('searchedApps', res);
         }
     }
