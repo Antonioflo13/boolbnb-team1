@@ -69,7 +69,7 @@ export default {
             name: this.name,
             email:this.email,
             message: this.message,
-            appartment: this.msgApp.id,
+            appartment_id: this.msgApp.id,
         })
         .then(
             res=> {
@@ -84,7 +84,7 @@ export default {
                 this.name ='',
                 this.email='',
                 this.message='',
-                this.appartment = this.msgApp.id,
+                this.appartment_id = this.msgApp.id,
                 this.success=true
             }
             }

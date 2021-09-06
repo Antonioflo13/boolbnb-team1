@@ -16,9 +16,10 @@ class MessageController extends Controller
         $data=$request->all();
         //1.Validation
         $validator = Validator::make($data, [
+            'appartment_id' => 'required',
             'name'=>'required',
             'email'=> 'required',
-            'message'=>'required'
+            'message'=>'required',
              //aggiungendo un altro array in formato: 'name.requred'=>'Qui personalizzo il messaggio di errore'
         ]);
 
@@ -39,7 +40,9 @@ class MessageController extends Controller
         Mail::to('admin@sito.it')->send(new ContactMessage($message)); //Here you define email adress to which all emails will be send
 
         return response()->json([
-            'success'=>true
+            'success'=>true,
+            'message'=>$message,
+
         ]);
     }
 }

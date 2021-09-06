@@ -31,7 +31,7 @@ class ContactMessage extends Mailable
         return $this
             ->view('mails.contact')
             ->with([
-            'message'=> $this->message
+                'message'=> $this->message
         ]);
         //return $this->view('view.name');
     }
