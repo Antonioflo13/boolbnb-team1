@@ -22,7 +22,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
-                    <Contact/>
+                    <Contact
+                    :msgApp="appartment"/>
                 </div>
             </div>
             
@@ -53,7 +54,7 @@ export default {
                 .get(`http://127.0.0.1:8000/api/appartments/${slug}`)
                 .then(
                     res=> {
-                        console.log(res.data);
+                        //console.log(res.data);
                         this.appartment=res.data;
                         //this.loading=false;
                     }
