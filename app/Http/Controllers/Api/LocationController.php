@@ -12,15 +12,18 @@ class LocationController extends Controller
     public function index(Request $request){
         $data= $request->all();
         $query=$data['params']['query'];
-        $location=Http::get('https://api.tomtom.com/search/2/search/.json?key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9&query='.$query);
-        $longitude=$location['results']['0']['position']['lon'];
-        $latitude=$location['results']['0']['position']['lat'];
-        
+        $radius=$data['params']['radius'];
 
+        $locations=Http::get('https://api.tomtom.com/search/2/search/.json?key=V6jaRxKPvoOCGO0ZXknXlcxxIUKTmAl9&query='. $query .'&radius=' . $radius . '&limit=100');
 
-        return response()->json([
-            'longitude'=> $longitude,
-            'latitude'=> $latitude
-        ]);
+        $results = [];
+        foreach ($locations['results'] as $location) {
+            $results[] = [
+                'longitude' => $location['position']['lon'],
+                'latitude' => $location['position']['lat'],
+            ];
+        }
+
+        return response()->json($results);
     }
 }
