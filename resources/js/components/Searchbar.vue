@@ -3,7 +3,7 @@
         <input class="ms-input px-4 my-2 " placeholder="Start your search"
         v-model="searchedText">
         <button class="ms-btn my-2 my-sm-0" type="submit"
-        @click.prevent="postLocation(newRadius)">
+        @click.prevent="postLocation()">
             <!-- <router-link
                 :to="{name:'locations'}">
             </router-link> -->
@@ -20,22 +20,27 @@ export default {
         return{
             searchedText: '',
             searchedApps: [],
-            results: [],
-            radius: 0
+            results: []
+        }
+    },
+    computed: {
+        radius: function() {
+            return this.newRadius;
         }
     },
     methods:  {
-        postLocation: function(rad){
+        postLocation: function(){
             this.searchedApps=[];
             if (this.searchedText!=''){
                  axios
                 .post('http://127.0.0.1:8000/api/locations', {
                     params: {
                         query: this.searchedText,
-                        radius: rad
+                        radius: this.radius
                     }
                 })
                 .then(res=> {
+                    this.$emit('searchedText', this.searchedText);
                     this.searchedText='';
                     this.results = res.data;
                     this.getApps();
