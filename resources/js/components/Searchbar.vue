@@ -1,5 +1,5 @@
 <template>
-    <form class="ms-form my-lg-0 mt-5">
+    <form class="ms-form my-lg-0">
         <input class="ms-input px-4 my-2 " placeholder="Start your search"
         v-model="searchedText">
         <button class="ms-btn my-2 my-sm-0" type="submit"

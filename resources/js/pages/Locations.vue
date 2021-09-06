@@ -52,8 +52,8 @@
                                 <div class="form-check ms-form-check"
                                     v-for='(service, index) in services'
                                     :key='index'>
-                                    <input class="form-check-input" type="checkbox"  id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
+                                    <input class="form-check-input" type="checkbox" :value="service.id" v-model="checked" :id="service.name">
+                                    <label class="form-check-label" :for="service.name">
                                         {{service.name}}
                                     </label>
                                 </div>
@@ -63,20 +63,9 @@
                 </div> 
             </div>
              <!-- Content     -->
-            <h3 class="mt-5"><strong>In evidence</strong></h3>
             <h3 class="mt-5"><strong>Live anywhere</strong></h3>
             <div class="row">
-                <!-- Appartments searched in search bar -->
-                <!-- <div class="d-flex flex-column mb-4"
-                v-if="searchedApps != undefined">
-                    <div class=" ms-appartment-container mt-4"
-                    v-for='(searchedApp, index) in searchedApps'
-                    :key='index'> 
-                        {{searchedApp}}
-                    </div>
-                </div>  -->
-                <!-- All Appartments -->
-                <div class="d-flex flex-column mb-4">
+                <div class="d-flex flex-column mb-4" v-if="selectedAppartments.length > 0">
                     <div class=" ms-appartment-container mt-4"
                     v-for='(appartment, index) in selectedAppartments'
                     :key='index'>
@@ -89,23 +78,35 @@
                         </div>
                         <div class="col col-sm-6">
                             <p class="mt-3 ">{{ textExerpt(appartment.description) }}</p>
-                            <button type="submit" class="btn">
-                                <router-link :to="{name: 'single-location', params: { slug: appartment.slug}}">View details</router-link>
-                            </button>
+                            <router-link :to="{name: 'single-location', params: { slug: appartment.slug}}">
+                                <button type="submit" class="btn ms-btn-view">View details
+                                </button>
+                            </router-link>    
                         </div>    
                     </div>
-                </div>   
+                </div> 
+                <!-- <Loader v-else /> -->
+                <div class="mt-4" v-else>
+                    
+                    <div class="d-flex flex-wrap align-items-center">
+                        <i class="fas fa-exclamation-circle mr-2 fa-2x"></i>
+                        <p class="mb-0">No appartments exists with the selected criteria, please select different criteries</p>
+                    </div> 
+                </div>  
             </div>     
         </div>
     </section>
+
 </template>
 
 <script>
 import Searchbar from '../components/Searchbar';
+import Loader from '../components/Loader';
 export default {
     name:"Locations",
     components: {
-        Searchbar
+        Searchbar,
+        Loader
     },
     //props: ['searchedApps'],
     data(){
@@ -123,7 +124,8 @@ export default {
             // current_page: 2,
             // last_page:1
             selectOptionRooms:'Select',
-            selectOptionBeds: 'Select'
+            selectOptionBeds: 'Select',
+            checked:[],
         }
     },
     created: function() {
@@ -316,10 +318,20 @@ export default {
             }
             
         }
-
+    .ms-btn-view {
+        color: white;
+        background-color: $primary-color;
+        &:hover{
+            background-color: $primary-color-hover;
+            color: white;
+        }
+    }
     img {
         width: 100%;
         border-radius: 10px;
+    }
+    .fa-exclamation-circle{
+        color: $primary-color;
     }
     .ms-form-check{
         width: 100%;

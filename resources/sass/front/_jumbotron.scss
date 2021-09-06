@@ -11,6 +11,8 @@
         background-color: white;
         border-radius: 35px 35px;
         border: 1px solid rgb(226, 225, 225);
+        font-size: 1.1rem;
+        //color: darkmagenta;
         transition: all 0.2s;
         -webkit-transition: all 0.2s;
         -moz-transition: all 0.2s;
@@ -18,12 +20,9 @@
         -o-transition: all 0.2s;
         &:hover{
             box-shadow:2px 2px 4px 1px rgb(223, 222, 222, 0.6);
+            color: $primary-color;
         }
-        a {
-            font-size: 1.1rem;
-            color: darkmagenta;
-            text-decoration: none;
-        }
+        
     }
 
    
