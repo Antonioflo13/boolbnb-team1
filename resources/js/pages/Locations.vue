@@ -135,17 +135,71 @@ export default {
     },
     computed: {
         selectedAppartments: function() {
-            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0 && this.res != 'empty') {
+            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0 && this.res != 'empty' && this.checked.length == 0) {
                 return this.appartments;            
             } else if(this.res.length == 0 && this.res != 'empty'){
                 let newAppartments = this.appartments.filter(
                     (element, i)=>{
-                        if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select"){
+                        if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select" && this.checked.length == 0){
                             return element.beds_number == this.selectOptionBeds;
-                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select") {
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.checked.length == 0) {
                             return element.rooms_number == this.selectOptionRooms;
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            return !arrayTest3.includes(false);
+                        } else if (this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            return (element.beds_number == this.selectOptionBeds && !arrayTest3.includes(false))
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            return (element.rooms_number == this.selectOptionRooms && !arrayTest3.includes(false))
                         } else {
-                            return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms )
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms && !arrayTest3.includes(false))
                         }
                     }     
                 )
@@ -154,18 +208,82 @@ export default {
                 let newAppartment = [];
                 this.appartments.forEach(element => {
                     this.res.forEach(item =>{
-                        if(item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select"){
+                        if(item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.checked.length == 0){
                             newAppartment.push(element);
-                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select") {
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select" && this.checked.length == 0) {
                             if (this.selectOptionBeds == item.beds_number) {
                                 newAppartment.push(element);
                             }
-                        } else if (item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select") {
+                        } else if (item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.checked.length == 0) {
                             if (this.selectOptionRooms == item.rooms_number) {
                                 newAppartment.push(element);
                             }
-                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms != "Select") {
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms != "Select" && this.checked.length == 0) {
                             if (this.selectOptionRooms == item.rooms_number && this.selectOptionBeds == item.beds_number) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            if (!arrayTest3.includes(false)) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            if (!arrayTest3.includes(false) && this.selectOptionBeds == item.beds_number) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            if (!arrayTest3.includes(false) && this.selectOptionRooms == item.rooms_number) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms != "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            if (!arrayTest3.includes(false) && this.selectOptionRooms == item.rooms_number && this.selectOptionBeds == item.beds_number) {
                                 newAppartment.push(element);
                             }
                         }
