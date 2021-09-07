@@ -62,6 +62,7 @@ export default {
             } else {
                 let newAppartmentsHome = [];
                 this.appartments.forEach(element => {
+                    console.log(this.res);
                     this.res.forEach(item =>{
                         if(item.id == element.id ){
                             newAppartmentsHome.push(element);

@@ -21,7 +21,7 @@ export default {
             searchedText: '',
             searchedApps: [],
             results: [],
-            rad : 0
+            rad : 20
         }
     },
     computed: {
