@@ -24,5 +24,6 @@ Route::namespace('Api')
         Route::get('appartments/{slug}','AppartmentController@show');
         Route::get('services','ServiceController@index');
         Route::post('locations', 'LocationController@index');
+        Route::post('messages', 'MessageController@store');
         Route::post('distance', 'LocationController@distance');
     });
