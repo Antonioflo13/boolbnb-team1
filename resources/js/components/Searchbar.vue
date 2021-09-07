@@ -21,7 +21,7 @@ export default {
             searchedText: '',
             searchedApps: [],
             results: [],
-            rad : 0,
+            rad : 0
         }
     },
     computed: {
@@ -34,8 +34,6 @@ export default {
             this.searchedApps=[];
             if (this.radius && this.radius != 0) {
                 this.rad = this.radius;
-            } else {
-                this.rad = 0;
             }
             if (this.searchedText!=''){
                  axios
@@ -60,22 +58,25 @@ export default {
         getApps: function() {
             axios
             .get(('http://127.0.0.1:8000/api/appartments'))
-            .then(res=> {
-                const newArray = [];
-                if (this.results.length > 0) {
-                    this.results.forEach(element => {
-                        res.data.forEach(item => {
-                            if (element.longitude == item.longitude && element.latitude == item.latitude) {
-                                newArray.push(item);
-                            }
-                        });
-                    });
-                }
-                this.searchedApps = newArray;
-                if (this.searchedApps.length == 0) {
-                    this.searchedApps = 'empty';
-                }
-                this.$emit('searchedApps',this.searchedApps);
+            .then(res => {
+                axios 
+                    .post('http://127.0.0.1:8000/api/distance', {
+                        params: {
+                            appartments: res.data,
+                            coordinate: this.results,
+                            radius: this.rad
+                        }
+                    })
+                    .then(res=> {
+                        this.searchedApps = res.data;
+                        if (this.searchedApps.length == 0) {
+                            this.searchedApps = 'empty';
+                        }
+                        this.$emit('searchedApps',this.searchedApps);
+                    })
+                    .catch(err=> {
+                        console.log(err);
+                    })
             })
             .catch(err=> {
                 console.log(err);
