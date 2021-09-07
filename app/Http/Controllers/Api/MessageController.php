@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMessage;
 use App\Message;
-//use App\Appartment;
+
 
 class MessageController extends Controller
 {

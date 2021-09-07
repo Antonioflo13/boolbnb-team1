@@ -7,7 +7,7 @@
     <title>Message</title>
 </head>
 <body>
-    {{-- <h2>Hai ricevuto un nuovo messagio</h2>
+    <h2>You have received a new message:</h2>
     <div>
         <h3>Name:</h3>
         <p> {{ $message->name }}</p>
@@ -15,7 +15,7 @@
         <p> {{ $message->email }}</p>
         <h3 >Message:</h3>
         <p> {{ $message->message }}</p>
-    </div> --}}
+    </div>
     
 </body>
 </html>

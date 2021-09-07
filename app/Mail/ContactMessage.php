@@ -10,7 +10,9 @@ use Illuminate\Queue\SerializesModels;
 class ContactMessage extends Mailable
 {
     use Queueable, SerializesModels;
+
     private $message;
+
     /**
      * Create a new message instance.
      *
@@ -28,11 +30,7 @@ class ContactMessage extends Mailable
      */
     public function build()
     {
-        return $this
-            ->view('mails.contact')
-            ->with([
-                'message'=> $this->message
-        ]);
+        return $this->view('mails.contact')->with(["message" => $this->message]);
         //return $this->view('view.name');
     }
 }
