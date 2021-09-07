@@ -65,8 +65,6 @@ export default {
                     this.res.forEach(item =>{
                         if(item.id == element.id ){
                             newAppartmentsHome.push(element);
-                        } else {
-                            return newAppartmentsHome = [];
                         }
                     })
                 }) 
