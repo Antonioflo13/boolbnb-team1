@@ -37,7 +37,7 @@ class MessageController extends Controller
             $message->save();
 
         //3. Invio mail ad admin
-        Mail::to('admin@sito.it')->send(new ContactMessage($message)); //Here you define email adress to which all emails will be send
+        Mail::to('admin@sito.it')->send(new ContactMessage($message));//Here you define email adress to which all emails will be send
 
         return response()->json([
             'success'=>true,

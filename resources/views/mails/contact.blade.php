@@ -10,11 +10,11 @@
     <h2>You have received a new message:</h2>
     <div>
         <h3>Name:</h3>
-        <p> {{ $message->name }}</p>
+        <p> {{ $email->name }}</p>
         <h3>Email:</h3>
-        <p> {{ $message->email }}</p>
+        <p> {{ $email->email }}</p>
         <h3 >Message:</h3>
-        <p> {{ $message->message }}</p>
+        <p> {{ $email->message }}</p>
     </div>
     
 </body>
