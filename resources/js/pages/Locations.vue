@@ -42,8 +42,8 @@
                             <div class="flex-fill ">
                                 <h4>Distance</h4>
                                 <label for="customRange1">KM range</label>
-                                <span>( {{ (radius / 1000).toFixed(0) }} Km )</span>
-                                <input type="range" class="custom-range" min="0" max="100000" id="customRange1" v-model="radius" @click.prevent="apiCall()">
+                                <span>( {{ radius }} Km )</span>
+                                <input type="range" class="custom-range" min="20" max="500" id="customRange1" v-model="radius" @click.prevent="apiCall()">
                             </div>
                         </div>
                         <div class="mt-5">
@@ -117,7 +117,7 @@ export default {
             bedsN: [],
             res: [],
             results: [],
-            radius: 0,
+            radius: 20,
             query: '',
             //dati recuperati dalla search bar
             //searchedApps: this.$route.query.app,
@@ -135,17 +135,71 @@ export default {
     },
     computed: {
         selectedAppartments: function() {
-            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0 && this.res != 'empty') {
+            if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0 && this.res != 'empty' && this.checked.length == 0) {
                 return this.appartments;            
             } else if(this.res.length == 0 && this.res != 'empty'){
                 let newAppartments = this.appartments.filter(
                     (element, i)=>{
-                        if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select"){
+                        if(this.selectOptionBeds != "Select"  && this.selectOptionRooms == "Select" && this.checked.length == 0){
                             return element.beds_number == this.selectOptionBeds;
-                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select") {
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.checked.length == 0) {
                             return element.rooms_number == this.selectOptionRooms;
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            return !arrayTest3.includes(false);
+                        } else if (this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            return (element.beds_number == this.selectOptionBeds && !arrayTest3.includes(false))
+                        } else if (this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            return (element.rooms_number == this.selectOptionRooms && !arrayTest3.includes(false))
                         } else {
-                            return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms )
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            return (element.beds_number == this.selectOptionBeds && element.rooms_number == this.selectOptionRooms && !arrayTest3.includes(false))
                         }
                     }     
                 )
@@ -154,18 +208,82 @@ export default {
                 let newAppartment = [];
                 this.appartments.forEach(element => {
                     this.res.forEach(item =>{
-                        if(item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select"){
+                        if(item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.checked.length == 0){
                             newAppartment.push(element);
-                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select") {
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select" && this.checked.length == 0) {
                             if (this.selectOptionBeds == item.beds_number) {
                                 newAppartment.push(element);
                             }
-                        } else if (item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select") {
+                        } else if (item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.checked.length == 0) {
                             if (this.selectOptionRooms == item.rooms_number) {
                                 newAppartment.push(element);
                             }
-                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms != "Select") {
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms != "Select" && this.checked.length == 0) {
                             if (this.selectOptionRooms == item.rooms_number && this.selectOptionBeds == item.beds_number) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            if (!arrayTest3.includes(false)) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms == "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            if (!arrayTest3.includes(false) && this.selectOptionBeds == item.beds_number) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds == "Select" && this.selectOptionRooms != "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            if (!arrayTest3.includes(false) && this.selectOptionRooms == item.rooms_number) {
+                                newAppartment.push(element);
+                            }
+                        } else if (item.id == element.id && this.selectOptionBeds != "Select" && this.selectOptionRooms != "Select" && this.checked.length > 0) {
+                            let arrayTest = [];
+                            element.services.forEach(service => {
+                                arrayTest.push(service.id);
+                            });
+                            let arrayTest2 = [];
+                            this.checked.forEach(id => {
+                                arrayTest2.push(id);
+                            });
+                            let arrayTest3 = [];
+                            arrayTest2.forEach(id => {
+                                arrayTest3.push(arrayTest.includes(id));
+                            });
+                            if (!arrayTest3.includes(false) && this.selectOptionRooms == item.rooms_number && this.selectOptionBeds == item.beds_number) {
                                 newAppartment.push(element);
                             }
                         }
@@ -266,20 +384,23 @@ export default {
             axios
             .get(('http://127.0.0.1:8000/api/appartments'))
             .then(res=> {
-                const newArray = [];
-                if (this.results.length > 0) {
-                    this.results.forEach(element => {
-                        res.data.forEach(item => {
-                            if (element.longitude == item.longitude && element.latitude == item.latitude) {
-                                newArray.push(item);
-                            }
-                        });
-                    });
-                }
-                this.res = newArray;
-                if (this.res.length == 0) {
-                    this.res = 'empty';
-                }
+                axios 
+                    .post('http://127.0.0.1:8000/api/distance', {
+                        params: {
+                            appartments: res.data,
+                            coordinate: this.results,
+                            radius: this.radius
+                        }
+                    })
+                    .then(res=> {
+                        this.res = res.data;
+                        if (this.res.length == 0) {
+                            this.res = 'empty';
+                        }
+                    })
+                    .catch(err=> {
+                        console.log(err);
+                    })
             })
             .catch(err=> {
                 console.log(err);

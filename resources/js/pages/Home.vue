@@ -62,13 +62,13 @@ export default {
             } else {
                 let newAppartmentsHome = [];
                 this.appartments.forEach(element => {
-                    this.res.forEach(item =>{
-                        if(item.id == element.id ){
-                            newAppartmentsHome.push(element);
-                        } else {
-                            return newAppartmentsHome = [];
-                        }
-                    })
+                    if (this.res != 'empty' && this.res.length != 0) {
+                        this.res.forEach(item =>{
+                            if(item.id == element.id ){
+                                newAppartmentsHome.push(element);
+                            }
+                        })
+                    }
                 }) 
                 return newAppartmentsHome;    
             }   
