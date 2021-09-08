@@ -1,9 +1,24 @@
 <template>
     <div id="contact">
-        <h3 class="mt-4">Send Us a Message</h3>
-        <div class="alert alert-success" v-show="success">
-          <p>The message has been send successfully, thank you for contacting us. We will reply to you within 24h</p>
+        <div class="modal-dialog" v-show="success">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="alert alert-success">
+                        <p>The message has been send successfully, thank you for contacting us. We will reply to you within 24h</p>
+                    </div>  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ms-btn" data-dismiss="modal" @click.prevent="success=false">
+                        Close
+                    </button>    
+                </div>
+            </div>
         </div>
+        <h3 class="mt-4">Send Us a Message</h3>
+        
+        <!-- <div class="alert alert-success" v-show="success">
+          <p>The message has been send successfully, thank you for contacting us. We will reply to you within 24h</p>
+        </div> -->
         <form @submit.prevent="sendForm">
             <div class="d-flex ">
                 <div class="form-group mr-1 ms-items">
@@ -103,26 +118,16 @@ export default {
 
 <style scoped lang="scss">
 @import '../../sass/app.scss';
-    // .form-control{
-    //     border: 2px solid $primary-color;
-    // }
     h3 {
         color: $primary-color;
     }
     .ms-items{
         flex-grow:1;
     }
-    // a{
-    //     color:white;
-    //     text-decoration:none;
-    //     transition: all 0.3s;
-    //     &:hover{
-    //         color: #fa697c;
-    //     }
-    // }
+    i{
+        color: $primary-color;
+    }
     
-
-
     .ms-btn {
         width: 100%;
         border: 1px solid $primary-color;
