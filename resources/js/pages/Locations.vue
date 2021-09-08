@@ -486,9 +486,6 @@ export default {
     .ms-form-check{
         width: 100%;
     }
-    i{
-        color: $primary-color;
-    }
     
     @media all and (min-width: 768px){
         .ms-appartment-container{

@@ -10,3 +10,9 @@ $line-height-base: 1.6;
 $primary-color: #FD395C;
 $primary-color-hover: #f82e53;
 $secondary-color: #F7F7F7;
+
+// Contenuto
+main{
+    min-height: calc(100vh - 200px);
+
+}

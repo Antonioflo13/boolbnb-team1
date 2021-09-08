@@ -9,7 +9,7 @@
                         <p class="ml-3 mb-0">{{appartment.address}}</p>
                     </div>
                     <router-link :to="{name: 'locations'}" class="" >
-                        <button type="submit" class="btn"><i class="fas fa-arrow-right"></i></button>
+                        <button type="submit" class="btn"><i class="fas fa-arrow-right fa-2x"></i></button>
                     </router-link>
                 </div>
                 
@@ -95,8 +95,13 @@ export default {
         width: 100%;
         border-radius: 10px;
     }
-    i{
-        color: $primary-color;
-    }
+    .fa-arrow-right{
+            color: gray;
+            transition: all 0.2s;
+            &:hover{
+                color: $primary-color;
+            }
+
+        }
 
 </style>

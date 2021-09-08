@@ -9,8 +9,9 @@
                 <div class="mt-4 col-12 col-sm-6 col-lg-4" v-for='(appProm, index) in promotedApps' :key='index'>
                     <div class="ms-img-container">
                         <img :src="appProm.image" :alt="appProm.title" v-if="appProm.image.substr(0,5) == 'https'">
-                        <img :src="'http://127.0.0.1:8000/storage/'  + appProm.image" :alt="appProm.title" v-else>
+                        <img :src="'http://127.0.0.1:8000/storage/'  + appProm.image" :alt="appProm.title" v-else>    
                     </div>
+                    
                     <div class="d-flex flex-wrap align-items-center mt-3 mb-1">
                         <i class="fas fa-map-marker-alt"></i>
                         <p class="ml-2 mb-0 ms-adress-color">{{appProm.address}}</p>
@@ -18,7 +19,8 @@
                     <router-link :to="{name: 'single-location', params: { slug: appProm.slug}}" class="ms-router-color">
                         {{appProm.title}}
                     </router-link>
-                </div>
+                    <!-- <i class="fas fa-star position-absolute"></i> -->
+                </div>   
             </div> 
             <!-- //Fatto MD -->
             <h3 class="mt-5"><strong>Live Anywhere</strong></h3>
@@ -131,9 +133,6 @@ export default {
             width: 100%;
             
         }
-    }
-    i{
-        color: $primary-color;
     }
     .ms-adress-color{
         color: gray;

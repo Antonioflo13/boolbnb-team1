@@ -22,10 +22,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+// @import '../sass/app/scss';
     main{
         min-height: calc(100vh - 200px);
 
-}
+    }
 
 </style>
