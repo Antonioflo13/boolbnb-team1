@@ -11,6 +11,7 @@ class Message extends Model
      */
     protected $fillable = [
         'appartment_id',
+        'user_id',
         'name',
         'email',
         'message'

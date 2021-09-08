@@ -57,6 +57,7 @@ export default {
         email: '',
         message:'',
         appartment: this.msgApp.id,
+        user: this.msgApp.user_id,
         errors: {},
         success:false,
         sending:false
@@ -70,6 +71,7 @@ export default {
             email:this.email,
             message: this.message,
             appartment_id: this.msgApp.id,
+            user_id: this.user
         })
         .then(
             res=> {

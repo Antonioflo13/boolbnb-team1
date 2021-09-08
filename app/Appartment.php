@@ -21,7 +21,8 @@ class Appartment extends Model
         'image',
         'visible',
         'longitude',
-        'latitude'
+        'latitude',
+        'address'
     ];
 
     /**

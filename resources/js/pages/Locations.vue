@@ -43,7 +43,7 @@
                                 <h4>Distance</h4>
                                 <label for="customRange1">KM range</label>
                                 <span>( {{ radius }} Km )</span>
-                                <input type="range" class="custom-range" min="20" max="500" id="customRange1" v-model="radius" @click.prevent="apiCall()">
+                                <input type="range" class="custom-range" min="20" max="100" id="customRange1" v-model="radius" @click.prevent="apiCall()">
                             </div>
                         </div>
                         <div class="mt-5">

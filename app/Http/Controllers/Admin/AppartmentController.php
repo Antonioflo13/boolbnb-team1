@@ -19,7 +19,7 @@ class AppartmentController extends Controller
      */
     private $appartmentsValidationArray = [
         'title' => 'required|min:3|max:150',
-        'address' => 'required|min:3|max:150',
+        'address' => 'required|min:3|max:255',
         'rooms_number' => 'required|numeric|min:1|max:999',
         'bathrooms_number' => 'required|numeric|min:1|max:999',
         'beds_number' => 'required|numeric|min:1|max:999',
@@ -31,7 +31,7 @@ class AppartmentController extends Controller
     ];
     private $appartmentsValidationArrayImage = [
         'title' => 'required|min:3|max:150',
-        'address' => 'required|min:3|max:150',
+        'address' => 'required|min:3|max:255',
         'rooms_number' => 'required|numeric|min:1|max:999',
         'bathrooms_number' => 'required|numeric|min:1|max:999',
         'beds_number' => 'required|numeric|min:1|max:999',
@@ -157,25 +157,25 @@ class AppartmentController extends Controller
         $services = Service::all();
 
         // Add address in $appartment
-        $address = Http::get('https://api.tomtom.com/search/2/search/' . $appartment->latitude . ',' . $appartment->longitude . '.json?key=ubO6kthk3bpiLfR8uiFmtyF9dnZxYok3');
-        $address = $address['results'][0]['address'];
-        if (array_key_exists('streetName', $address)) {
-            $street_name = $address['streetName'];
-        } else {
-            $street_name = '';
-        }
-        if (array_key_exists('municipality', $address)) {
-            $municipalty = $address['municipality'];
-        } else {
-            $municipalty = '';
-        }
-        if (array_key_exists('countrySecondarySubdivision', $address)) {
-            $country_secondary_municipalty = $address['countrySecondarySubdivision'];
-        } else {
-            $country_secondary_municipalty = '';
-        }
-        $address = $street_name . ' ' . $municipalty . ' '  . $country_secondary_municipalty;
-        $appartment->address = $address;
+        // $address = Http::get('https://api.tomtom.com/search/2/search/' . $appartment->latitude . ',' . $appartment->longitude . '.json?key=ubO6kthk3bpiLfR8uiFmtyF9dnZxYok3');
+        // $address = $address['results'][0]['address'];
+        // if (array_key_exists('streetName', $address)) {
+        //     $street_name = $address['streetName'];
+        // } else {
+        //     $street_name = '';
+        // }
+        // if (array_key_exists('municipality', $address)) {
+        //     $municipalty = $address['municipality'];
+        // } else {
+        //     $municipalty = '';
+        // }
+        // if (array_key_exists('countrySecondarySubdivision', $address)) {
+        //     $country_secondary_municipalty = $address['countrySecondarySubdivision'];
+        // } else {
+        //     $country_secondary_municipalty = '';
+        // }
+        // $address = $street_name . ' ' . $municipalty . ' '  . $country_secondary_municipalty;
+        // $appartment->address = $address;
 
         // Change in a string value $data['visible']
         if ($appartment->visible == 1) {
