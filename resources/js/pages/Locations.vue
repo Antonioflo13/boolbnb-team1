@@ -135,6 +135,7 @@ export default {
             res: [],
             results: [],
             radius: 20,
+            appartmentNumber: 20,
             query: '',
             loading:true,
             selectOptionRooms:'Select',
@@ -327,11 +328,11 @@ export default {
         getAppartments: function() {
             axios
                 // .get(`http://127.0.0.1:8000/api/appartments?page=${page}`)
-                .get('http://127.0.0.1:8000/api/appartments')
+                .get(`http://127.0.0.1:8000/api/appartments/pagination?number=${this.appartmentNumber}`)
                 .then(
                     res=>{
                         //Get appartments
-                        this.appartments = res.data;
+                        this.appartments = res.data.data;
                         this.loading=false;
 
                         //Create rooms array
@@ -351,8 +352,6 @@ export default {
                             }
                         }
                         this.bedsN=beds.sort();
-                        // this.current_page = res.data.current_page;
-                        // this.last_page = res.data.last_page
                     }
                 )
                 .catch(

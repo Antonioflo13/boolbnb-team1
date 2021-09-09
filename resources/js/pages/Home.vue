@@ -66,6 +66,7 @@ export default {
             promotedApps: [],
             appartments:[],
             res: [],
+            appartmentNumber: 9,
             loading: true
         }
     },
@@ -91,7 +92,7 @@ export default {
         },
         getPromotedApps: function(){
             axios
-            .get('http://127.0.0.1:8000/api/appartments/pagination')
+            .get(`http://127.0.0.1:8000/api/appartments/pagination?number=${this.appartmentNumber}`)
             .then(res=> {
                     this.appartments=res.data.data;
                     axios

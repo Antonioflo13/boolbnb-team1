@@ -32,6 +32,7 @@ export default {
     methods:  {
         postLocation: function(){
             if (this.$route.name == 'locations' && this.$route.params.slug != undefined && this.$route.params.slug != 'search' && this.searchedApps == 0) {
+                console.log('entrato');
                 this.searchedText = this.$route.params.slug;
             }
             if (this.$route.name == 'locations' ) {
