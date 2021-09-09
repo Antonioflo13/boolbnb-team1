@@ -17,6 +17,9 @@
                     <!-- <img :src="appartment.image" :alt="appartment.title" v-if="appartment.image.substr(0,5) == 'https'"> -->
                     <img :src="'http://127.0.0.1:8000/storage/'  + appartment.image" :alt="appartment.title">
                 </div>
+                <div class="col-12 col-lg-4 mt-3" >
+                    <Map/>
+                </div>
             </div>
             <div class="row">
                 <div class="col-12 col-lg-8">
@@ -51,12 +54,14 @@
 
 <script>
 import Contact from '../components/Contact';
-import Loader from '../components/Loader'
+import Loader from '../components/Loader';
+import Map from '../components/Map';
 export default {
     name: 'SingleLocation',
     components: {
         Contact,
-        Loader
+        Loader,
+        Map
     },
     data(){
         return{
