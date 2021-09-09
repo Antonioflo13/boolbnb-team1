@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Carbon;
+use DateTime;
+use DateTimeZone;
 
 use App\Promotion;
 use App\Appartment;
@@ -63,8 +64,9 @@ class PromotionController extends Controller
         
         $appartment = Appartment::where('id', $appartment)->first();
 
-        $startpromotion = date("Y-m-d H:i:s");
-        $endpromotion = date("Y-m-d H:i:s", strtotime($promotion->hours . 'hours'));
+        $localtime = new DateTime("now", new DateTimeZone('Europe/Rome'));
+        $startpromotion = $localtime->format('Y-m-d H:i:s');
+        $endpromotion = date_add($localtime, date_interval_create_from_date_string($promotion->hours . 'hours'));
 
         if ($result->success) {
             $transaction = $result->transaction;
