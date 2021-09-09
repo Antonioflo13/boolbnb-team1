@@ -11277,6 +11277,7 @@ a.text-dark:focus {
 
 #ms_index .container .box_card img {
   width: 80%;
+  border-radius: 10px;
 }
 
 #ms_index .container .box_card h1 {
@@ -11456,7 +11457,7 @@ a.text-dark:focus {
 }
 
 #ms_show img {
-  height: 70%;
+  width: 70%;
 }
 
 #ms_show h1 {
@@ -11612,5 +11613,186 @@ a.text-dark:focus {
     align-items: flex-start;
     text-align: center;
   }
+}
+
+#card_secondary {
+  width: 100%;
+  margin: 58px 10px;
+  padding: 20px;
+  float: left;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: white;
+}
+
+#ms_form .come_back {
+  display: inline-block;
+  padding: 10px 45px;
+}
+
+#ms_form .come_back a {
+  font-size: 30px;
+  text-transform: uppercase;
+  color: #FD395C;
+  border: 1px solid #FD395C;
+  padding: 0px 26px;
+}
+
+#ms_form .come_back a:hover {
+  color: white;
+  background-color: #f82e53;
+}
+
+#ms_form h1 {
+  text-align: center;
+  color: #FD395C;
+  margin: 20px;
+}
+
+#ms_form .form-group {
+  margin: 15px;
+  width: 45%;
+}
+
+#ms_form .form-group .img {
+  width: 100%;
+}
+
+#ms_form .form-group .img img {
+  width: 100%;
+  margin: 30px auto;
+}
+
+#ms_form .form_primary {
+  display: flex;
+  margin: 0 auto;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#ms_form button {
+  display: block;
+  text-transform: uppercase;
+  color: #FD395C;
+  border: 1px solid #FD395C;
+  margin: 0 auto;
+}
+
+#ms_form button:hover {
+  color: white;
+  background-color: #f82e53;
+}
+
+#ms_form .width_100 {
+  width: 100%;
+  margin: 5%;
+}
+
+#ms_form .width_100 button i {
+  font-size: 40px;
+  margin: 10px 30px;
+}
+
+@media screen and (max-width: 989px) {
+  #ms_form .form_primary {
+    width: 100%;
+  }
+
+  #ms_form .form_primary .form-group {
+    width: 80%;
+  }
+}
+
+#ms_payment_checkout .flex-center {
+  display: flex;
+}
+
+#ms_payment_checkout button {
+  text-transform: uppercase;
+  margin-left: 45%;
+  border: 1px solid #FD395C;
+  color: #FD395C;
+  background-color: transparent;
+}
+
+#ms_payment_checkout button i {
+  font-size: 20px;
+  margin: 5px 15px;
+}
+
+#ms_payment_checkout button:hover {
+  color: white;
+  background-color: #f82e53;
+}
+
+#ms_payment_checkout a {
+  width: 100%;
+  text-transform: uppercase;
+  color: #FD395C;
+  border: 1px solid #FD395C;
+  padding: 5px 15px;
+}
+
+#ms_payment_checkout a:hover {
+  color: white;
+  background-color: #f82e53;
+}
+
+#ms_payment_checkout .price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#ms_payment_checkout .price label {
+  font-size: 25px;
+}
+
+#ms_payment_checkout .price label span {
+  color: #FD395C;
+}
+
+#ms_payment_checkout .price label .amount-wrapper {
+  font-weight: 600;
+}
+
+#ms_payment_checkout .braintree-heading {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#ms_payment_checkout .appartament_information {
+  width: 35%;
+  padding: 25px;
+  margin: 45px;
+  text-align: center;
+  box-shadow: 0 0 4px 4px;
+  border: 3px solid #FD395C;
+}
+
+#ms_payment_checkout .appartament_information img {
+  width: 60%;
+  margin: 15px auto;
+}
+
+#ms_payment_checkout .appartament_information h4,
+#ms_payment_checkout .appartament_information h3 {
+  color: #FD395C;
+}
+
+#ms_payment_checkout .appartament_information h4 span,
+#ms_payment_checkout .appartament_information h3 span {
+  color: black;
+}
+
+#ms_payment_checkout .content {
+  width: 45%;
+}
+
+#ms_payment_checkout .box_payment {
+  justify-content: center;
+  align-items: center;
 }
 
