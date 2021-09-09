@@ -1,6 +1,6 @@
 <template>
   <section>
-        <div class="container">
+        <div class="container" v-if="(!loading && JSON.stringify(selectedAppartments) !='{}')">
             <div class="mt-5 d-flex  justify-content-between align-items-center flex-wrap">
                 <Searchbar class="mb-2"
                     @searchedApps="searchedApps"
@@ -68,7 +68,7 @@
              <!-- Content     -->
             <h3 class="mt-5"><strong>Live anywhere</strong></h3>
             <div class="row">
-                <div class="d-flex flex-column mb-4" v-if="(!loading && JSON.stringify(selectedAppartments) !='{}')">
+                <div class="d-flex flex-column mb-4">
                     <div v-if="selectedAppartments.length>0">
                         <div class=" ms-appartment-container mt-4"
                         v-for='(appartment, index) in selectedAppartments'
@@ -109,9 +109,9 @@
                         </div> 
                     </div> 
                 </div> 
-                <Loader v-else/> 
             </div>     
         </div>
+        <Loader v-else/> 
     </section>
 
 </template>
@@ -135,7 +135,6 @@ export default {
             res: [],
             results: [],
             radius: 20,
-            appartmentNumber: 20,
             query: '',
             loading:true,
             selectOptionRooms:'Select',
@@ -149,7 +148,9 @@ export default {
     },
     computed: {
         selectedAppartments: function() {
+            this.loading = true;
             if(this.selectOptionBeds == "Select" && this.selectOptionRooms == "Select" && this.res.length==0 && this.res != 'empty' && this.checked.length == 0) {
+                this.loading = false;
                 return this.appartments;            
             } else if(this.res.length == 0 && this.res != 'empty'){
                 let newAppartments = this.appartments.filter(
@@ -217,6 +218,7 @@ export default {
                         }
                     }     
                 )
+                this.loading = false;
                 return newAppartments;  
             } else if (this.res != 'empty') { 
                 let newAppartment = [];
@@ -303,9 +305,11 @@ export default {
                         }
                     })
                 });
+                this.loading = false;
                 return newAppartment;
             } else {
                 let newAppartment = [];
+                this.loading = false;
                 return newAppartment;
             }
         }
@@ -323,16 +327,17 @@ export default {
         },
         searchedApps: function(res){
             this.res=res;
+            this.loading = false;
         },
         //API Appartments
         getAppartments: function() {
             axios
                 // .get(`http://127.0.0.1:8000/api/appartments?page=${page}`)
-                .get(`http://127.0.0.1:8000/api/appartments/pagination?number=${this.appartmentNumber}`)
+                .get(`http://127.0.0.1:8000/api/appartments`)
                 .then(
                     res=>{
                         //Get appartments
-                        this.appartments = res.data.data;
+                        this.appartments = res.data;
                         this.loading=false;
 
                         //Create rooms array
