@@ -1,9 +1,11 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center w-100 vh-100">
         <!-- <h3>Loading...</h3> -->
-        <div class="loader">Loading...</div>
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
     </div>
-  
 </template>
 
 <script>
@@ -14,23 +16,39 @@ export default {
 
 <style scoped lang="scss">
 @import '../../sass/app.scss';
-    div{
-        height: 80vh;
-        .loader {
-            color: $primary-color;
-            font-size: 20px;
-            margin: 100px auto;
-            width: 1em;
-            height: 1em;
+  
+    .lds-ripple {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+        //color: $primary-color;
+        div {
+            position: absolute;
+            border: 4px solid $primary-color;
+            opacity: 1;
             border-radius: 50%;
-            position: relative;
-            text-indent: -9999em;
-            -webkit-animation: load4 1.3s infinite linear;
-            animation: load4 1.3s infinite linear;
-            -webkit-transform: translateZ(0);
-            -ms-transform: translateZ(0);
-            transform: translateZ(0);
+            animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+            &:nth-child(2) {
+                animation-delay: -0.5s;
+            }
         }
-       
-}
+    }
+    
+    @keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+    }
 </style>

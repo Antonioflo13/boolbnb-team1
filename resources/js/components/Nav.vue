@@ -9,14 +9,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            
-
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <!-- <Searchbar/> -->
-                
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <router-link :to="{name: 'home'}" class="nav-link d-flex align-items-center"> Home </router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://127.0.0.1:8000/register">Become a host</a>

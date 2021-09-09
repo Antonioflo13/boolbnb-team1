@@ -7,6 +7,9 @@
                     @searchedText="searchedText"
                     :newRadius="radius"
                 />
+                <!-- <button class="ms-btn-filter px-5" type="button" @click.prevent="selectedAppartments = appartments">
+                    Reset
+                </button> -->
                 <button class="ms-btn-filter" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fas fa-2x fa-sort-amount-down-alt mx-4"></i>
                 </button>
@@ -65,34 +68,48 @@
              <!-- Content     -->
             <h3 class="mt-5"><strong>Live anywhere</strong></h3>
             <div class="row">
-                <div class="d-flex flex-column mb-4" v-if="selectedAppartments.length > 0">
-                    <div class=" ms-appartment-container mt-4"
-                    v-for='(appartment, index) in selectedAppartments'
-                    :key='index'>
-                        <div class="col col-sm-3 ms-img-container" >
-                            <img :src="appartment.image" :alt="appartment.title" v-if="appartment.image.substr(0,5) == 'https'">
-                            <img :src="'http://127.0.0.1:8000/storage/'  + appartment.image" :alt="appartment.title" v-else>
+                <div class="d-flex flex-column mb-4" v-if="(!loading && JSON.stringify(selectedAppartments) !='{}')">
+                    <div v-if="selectedAppartments.length>0">
+                        <div class=" ms-appartment-container mt-4"
+                        v-for='(appartment, index) in selectedAppartments'
+                        :key='index' >
+                            <div class="col col-sm-3 ms-img-container mb-3">
+                                <img :src="appartment.image" :alt="appartment.title" v-if="appartment.image.substr(0,5) == 'https'">
+                                <img :src="'http://127.0.0.1:8000/storage/'  + appartment.image" :alt="appartment.title" v-else>
+                            </div>
+                            <div class="col col-sm-5 mb-3">
+                                <h5 class="">{{appartment.title}}</h5>
+                                <div class="d-flex flex-wrap align-items-center mt-3 mb-1" >
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <p class="ml-2 mb-0 ms-adress-color"><small>{{appartment.address}}</small></p>
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center mt-2 mb-1" >
+                                    <div class="d-flex flex-wrap align-items-center mt-1 mb-1 mr-4" >
+                                        <i class="fas fa-house-user"></i>
+                                        <p class="ml-2 mb-0 ms-adress-color"><small>{{appartment.rooms_number}} rooms</small></p>
+                                    </div>
+                                    <div class="d-flex flex-wrap align-items-center mt-1 mb-1 mr-4" >
+                                        <i class="fas fa-bed"></i>
+                                        <p class="ml-2 mb-0 ms-adress-color"><small>{{appartment.beds_number}} beds</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-sm-4">
+                                <p class="">{{ textExerpt(appartment.description) }}</p>
+                                <router-link :to="{name: 'single-location', params: { slug: appartment.slug}}">
+                                    <button type="submit" class="btn ms-btn-view">View details</button>
+                                </router-link>    
+                            </div>    
                         </div>
-                        <div class="col col-sm-3">
-                            <h5 class="mt-3 ">{{appartment.title}}</h5>
-                        </div>
-                        <div class="col col-sm-6">
-                            <p class="mt-3 ">{{ textExerpt(appartment.description) }}</p>
-                            <router-link :to="{name: 'single-location', params: { slug: appartment.slug}}">
-                                <button type="submit" class="btn ms-btn-view">View details
-                                </button>
-                            </router-link>    
-                        </div>    
                     </div>
-                </div> 
-                <!-- <Loader v-else /> -->
-                <div class="mt-4" v-else>
-                    
-                    <div class="d-flex flex-wrap align-items-center">
-                        <i class="fas fa-exclamation-circle mr-2 fa-2x"></i>
-                        <p class="mb-0">No appartments exists with the selected criteria, please select different criteries</p>
+                    <div class="mt-4 mb-4 col" v-else >
+                        <div class="d-flex flex-wrap align-items-center">
+                            <i class="fas fa-exclamation-circle mr-2 fa-2x mb-3"></i>
+                            <p class="">No appartments exists with the selected criteria, please select different criteries</p>
+                        </div> 
                     </div> 
-                </div>  
+                </div> 
+                <Loader v-else/> 
             </div>     
         </div>
     </section>
@@ -102,13 +119,13 @@
 <script>
 import Searchbar from '../components/Searchbar';
 import Loader from '../components/Loader';
+
 export default {
     name:"Locations",
     components: {
         Searchbar,
         Loader
     },
-    //props: ['searchedApps'],
     data(){
         return {
             appartments:[],
@@ -119,10 +136,7 @@ export default {
             results: [],
             radius: 20,
             query: '',
-            //dati recuperati dalla search bar
-            //searchedApps: this.$route.query.app,
-            // current_page: 2,
-            // last_page:1
+            loading:true,
             selectOptionRooms:'Select',
             selectOptionBeds: 'Select',
             checked:[],
@@ -131,7 +145,6 @@ export default {
     created: function() {
         this.getAppartments();
         this.getServices();
-        //this.getRooms();
     },
     computed: {
         selectedAppartments: function() {
@@ -298,6 +311,9 @@ export default {
     } ,  
     
     methods: {
+        // resetFilters: function(){
+        //     selectedAppartments() = this.appartments
+        // },
         searchedText: function(res) {
             this.query = res;
         },
@@ -316,6 +332,7 @@ export default {
                     res=>{
                         //Get appartments
                         this.appartments = res.data;
+                        this.loading=false;
 
                         //Create rooms array
                         var rooms =[]
@@ -447,10 +464,22 @@ export default {
             color: white;
         }
     }
-    img {
-        width: 100%;
+    .ms-img-container{
+        height: 200px;
+        overflow: hidden;
         border-radius: 10px;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
     }
+    .ms-adress-color{
+        color: gray;
+    }
+    
     .fa-exclamation-circle{
         color: $primary-color;
     }

@@ -4,10 +4,10 @@
             <Searchbar 
                 @searchedApps="searchedApps"
             />
-            <h3 class="text-center my-5">Want to explore more? Perfect!</h3>
-                <router-link :to="{name: 'locations'}">
-                    <button type="submit" class="ms-style px-5 py-3">Advanced Search </button>
-                </router-link>
+            <h3 class="text-center my-5 px-3">Want to explore more? Perfect!</h3>
+            <router-link :to="{name: 'locations'}">
+                <button type="submit" class="ms-style px-5 py-3">Advanced Search </button>
+            </router-link>
         </div>
     </section> 
 </template>
