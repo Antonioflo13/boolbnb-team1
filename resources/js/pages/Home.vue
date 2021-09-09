@@ -98,13 +98,15 @@ export default {
             .get('http://127.0.0.1:8000/api/appartments')
             .then(res=> {
                     this.appartments=res.data;
-                    this.loading=false;
-                    this.promotedApps = res.data.filter(
-                        (element)=> {
-                            return element.promotions.length !=0;   
-                        }
-                        
-                    )
+                    axios
+                        .get('http://127.0.0.1:8000/api/appartment/promotion')
+                        .then(res=> {
+                            this.promotedApps = res.data;
+                            this.loading=false;
+                        })
+                        .catch(err=> {
+                            console.log(err);
+                        })
                 })
                 .catch(err=> {
                     console.log(err);
