@@ -168,6 +168,10 @@
 
 /* Common */
 
+main {
+  min-height: calc(100vh - 200px);
+}
+
 .ms-logo {
   width: 40px;
 }
@@ -11244,6 +11248,13 @@ a.text-dark:focus {
   .ms-form {
     width: 50vw;
   }
+}
+
+.fa-house-user,
+.fa-bed,
+.fa-map-marker-alt,
+.fa-star {
+  color: #FD395C;
 }
 
 #ms_index .container {
