@@ -4,8 +4,13 @@
 @section('content')
     <section id="ms_form">
         <div class="container">
+
+            <div class="come_back">
+                <a class="nav-link" href="http://127.0.0.1:8000/admin/appartments/{{ $appartment->id }}"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </div>
+
             <h1>Edit {{ $appartment->title }}</h1>
-            <form action="{{ route('admin.appartments.update', $appartment->id) }}" method="POST" enctype="multipart/form-data">
+            <form class="form_primary" action="{{ route('admin.appartments.update', $appartment->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
@@ -69,26 +74,6 @@
                 </div>
                 {{-- /SQUARE METERS --}}
 
-                 {{-- SERVICES --}}
-                <div class="form-group">
-                    @foreach ($services as $service)
-                        <div class="form-check form-check-inline">
-                            @if ($errors->any())
-                                <input name="services[]" class="form-check-input @error('services') is-invalid @enderror" type="checkbox" id="service-{{ $service->id }}" value="{{ $service->id }}" {{ in_array($service->id, old('services', []))? 'checked':'' }}>
-                            @else
-                                <input name="services[]" class="form-check-input @error('services') is-invalid @enderror" type="checkbox" id="service-{{ $service->id }}" value="{{ $service->id }}" {{ $appartment->services->contains($service->id)? 'checked':'' }}>
-                            @endif
-                            <label class="form-check-label" for="service-{{ $service->id }}">{{ $service->name }}</label>
-                        </div>
-                    @endforeach
-                    <div>
-                        @error('services')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
-                {{-- /SERVICES --}}
-
                 {{-- DESCRIPTION --}}
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -113,16 +98,36 @@
                 </div>
                 {{-- /VISIBILITY --}}
 
+                 {{-- SERVICES --}}
+                 <div class="form-group width_100">
+                    @foreach ($services as $service)
+                        <div class="form-check form-check-inline">
+                            @if ($errors->any())
+                                <input name="services[]" class="form-check-input @error('services') is-invalid @enderror" type="checkbox" id="service-{{ $service->id }}" value="{{ $service->id }}" {{ in_array($service->id, old('services', []))? 'checked':'' }}>
+                            @else
+                                <input name="services[]" class="form-check-input @error('services') is-invalid @enderror" type="checkbox" id="service-{{ $service->id }}" value="{{ $service->id }}" {{ $appartment->services->contains($service->id)? 'checked':'' }}>
+                            @endif
+                            <label class="form-check-label" for="service-{{ $service->id }}">{{ $service->name }}</label>
+                        </div>
+                    @endforeach
+                    <div>
+                        @error('services')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                {{-- /SERVICES --}}
+
+
                 {{-- IMAGE --}}
                 <div class="form-group">
-                    <div>
+                    <div class="img">
                         @if (substr($appartment->image, 0, 5) == 'https')
                             <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
                         @else
                             <img src="{{ asset('storage/' . $appartment->image) }}" alt="{{ $appartment->title }}">
                         @endif
                     </div>
-                    <label for="image">Image</label>
                     <input name="image" type="file" class="form-control-file" id="image">
                     @error('image')
                         <small class="text-danger">{{ $message }}</small>
@@ -131,7 +136,11 @@
                 {{-- /IMAGE --}}
 
                 {{-- BUTTONS --}}
-                <button type="submit">Save</button>
+                <div class="width_100">
+                    <button type="submit">
+                        <i class="fas fa-save"></i>
+                    </button>
+                </div>
                 {{-- /BUTTONS --}}
             </form>
         </div>

@@ -13,20 +13,22 @@
                 </div>
                 @endforeach
             <br>
-            <h3>Sponsorship detail</h3>
-                <ul>
-                    <li>
-                        <h4>
-                            Appare in Homepage nella sezione “Appartamenti in Evidenza”.
-                        </h4>
-                    </li>
-                    <li>
-                        <h4>
-                            Nella pagina di ricerca, viene posizionato sempre prima di un
-                            appartamento non sponsorizzato che soddisfa le stesse caratteristiche di ricerca.
-                        </h4>
-                    </li>
-                </ul>
+            <div id="card_secondary">
+                <h3>Sponsorship detail</h3>
+                    <ul>
+                        <li>
+                            <h4>
+                                Appare in Homepage nella sezione “Appartamenti in Evidenza”.
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                Nella pagina di ricerca, viene posizionato sempre prima di un
+                                appartamento non sponsorizzato che soddisfa le stesse caratteristiche di ricerca.
+                            </h4>
+                        </li>
+                    </ul>
+            </div>
         </div>
     </section>
 @endsection

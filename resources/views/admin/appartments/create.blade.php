@@ -4,8 +4,12 @@
 @section('content')
     <section id="ms_form">
         <div class="container">
+            <div class="come_back">
+                <a class="nav-link" href="http://127.0.0.1:8000/admin/appartments"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </div>
+
             <h1>Add New Appartment</h1>
-            <form action="{{ route('admin.appartments.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="form_primary" action="{{ route('admin.appartments.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
 
@@ -69,21 +73,6 @@
                 </div>
                 {{-- /SQUARE METERS --}}
 
-                 {{-- SERVICES --}}
-                <div class="form-group">
-                    @foreach ($services as $service)
-                        <div class="form-check form-check-inline">
-                            <input name="services[]" class="form-check-input @error('services') is-invalid @enderror" type="checkbox" id="service-{{ $service->id }}" value="{{ $service->id }}" {{ in_array($service->id, old('services', [])) ? 'checked':'' }}>
-                            <label class="form-check-label" for="service-{{ $service->id }}">{{ $service->name }}</label>
-                        </div>
-                    @endforeach
-                    <div>
-                        @error('services')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
-                {{-- /SERVICES --}}
 
                 {{-- DESCRIPTION --}}
                 <div class="form-group">
@@ -109,6 +98,22 @@
                 </div>
                 {{-- /VISIBILITY --}}
 
+                 {{-- SERVICES --}}
+                 <div class="form-group width_100">
+                    @foreach ($services as $service)
+                        <div class="form-check form-check-inline">
+                            <input name="services[]" class="form-check-input @error('services') is-invalid @enderror" type="checkbox" id="service-{{ $service->id }}" value="{{ $service->id }}" {{ in_array($service->id, old('services', [])) ? 'checked':'' }}>
+                            <label class="form-check-label" for="service-{{ $service->id }}">{{ $service->name }}</label>
+                        </div>
+                    @endforeach
+                    <div>
+                        @error('services')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                {{-- /SERVICES --}}
+
                 {{-- IMAGE --}}
                 <div class="form-group">
                     <label for="image">Image</label>
@@ -119,8 +124,13 @@
                 </div>
                 {{-- /IMAGE --}}
 
+
                 {{-- BUTTONS --}}
-                <button type="submit">Save</button>
+                <div class="width_100">
+                    <button type="submit">
+                        <i class="fas fa-save"></i>
+                    </button>
+                </div>
                 {{-- /BUTTONS --}}
             </form>
         </div>
