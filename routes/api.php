@@ -22,6 +22,7 @@ Route::namespace('Api')
     ->group(function() {
         Route::get('appartments','AppartmentController@index');
         Route::get('appartments/{slug}','AppartmentController@show');
+        Route::get('appartment/promotion','AppartmentController@promotion');
         Route::get('services','ServiceController@index');
         Route::post('locations', 'LocationController@index');
         Route::post('messages', 'MessageController@store');
