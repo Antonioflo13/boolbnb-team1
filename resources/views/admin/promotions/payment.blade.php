@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-<section id="ms_payment">
+<section id="ms_payment_checkout">
+
     <article class="container">
+
         @if (session('success_message'))
             <div class="alert alert-success">
                 {{ session('success_message') }}
@@ -21,32 +23,42 @@
             </div>
         @endif
         
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
         
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+        @if (Route::has('login'))
+            <div class="top-right links">
+                @auth
+                    <a href="{{ url('/home') }}">Home</a>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Register</a>
+                    @endif
+                @endauth
+            </div>
+        @endif
+        
+        <div class="flex-center position-ref full-height box_payment">
+
+            <div class="appartament_information">
+                <h3>Appartment name : <br> <span>{{ $appartment->title}}</span></h3>
+                <img src="http://127.0.0.1:8000/storage/{{$appartment->image}}" alt="image">
+                <h4>Promotion : <span>{{$promotion->title}}</span></h4>
+
+
+            </div>
         
             <div class="content">
                 <form method="post" id="payment-form" action="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}">
                     @csrf
         
-                    <section>
+                    <section class="price">
                         <label for="amount">
                             <span class="input-label">Amount</span>
                             <div class="input-wrapper amount-wrapper">
                                 {{-- <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10"> --}}
                                 <div>
-                                    {{ $promotion->price }}
+                                    {{ $promotion->price }} €
                                 </div>
                             </div>
                         </label>
@@ -57,7 +69,11 @@
                     </section>
         
                     <input id="nonce" name="payment_method_nonce" type="hidden" />
-                    <button class="button" type="submit"><span>Test Transaction</span></button>
+                    <button class="button" type="submit">
+                        <span>
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                    </button>
                 </form>
             </div>
         </div>
