@@ -97,7 +97,7 @@ export default {
 <style scoped lang="scss">
 @import '../../sass/app.scss';
     .ms-single-page-img-container{
-        height: 480px;
+       
         overflow: hidden;
         border-radius: 10px;
         img{
@@ -117,8 +117,10 @@ export default {
         }
 
     }
-    
-    @media all and (min-width: 768px){
 
+    @media all and (min-width: 1200px){
+    .ms-single-page-img-container{
+        height: 480px;
+    }
     }
 </style>

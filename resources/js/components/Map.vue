@@ -22,8 +22,8 @@ export default {
             L.tileLayer(
                 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
                 {
-                    attribution:
-                    'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+                    // attribution:
+                    // 'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
                     maxZoom: 18,
                     id: "mapbox/streets-v11",
                     accessToken:'pk.eyJ1IjoibWFyaWFkdWxlc292YSIsImEiOiJja3RkMnFlazAyNTdmMnVwY3NlbGo2YnljIn0.1qKfuYdbIQcK-mzjDq57Zw',
@@ -54,8 +54,17 @@ export default {
 <style scoped lang="scss">
     #mapContainer {
         width: 100%;
-        height: 480px;
+        height: 200px;
         border-radius: 10px 10px 0px 0px;
     }
-
+    @media all and (min-width: 992px){
+    #mapContainer {
+            height: 407.156px;
+        }
+    }
+    @media all and (min-width: 1200px){
+    #mapContainer {
+            height: 480px;
+        }
+    }
 </style>
