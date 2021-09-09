@@ -68,8 +68,19 @@ class PromotionController extends Controller
 
         if ($result->success) {
             $transaction = $result->transaction;
+            if (count($appartment->promotions) > 0 && $appartment->promotions[0]->pivot->end_promotion >= $startpromotion) {
+                
+                $date = date_create($appartment->promotions[0]->pivot->end_promotion);
+                date_add($date, date_interval_create_from_date_string($promotion->hours . 'hours'));
+                $endpromotion = date_format($date, "Y-m-d H:i:s");
 
-            $appartment->promotions()->detach($promotion->id, array('start_promotion' => $startpromotion,'end_promotion' => $endpromotion));
+                $appartment->promotions()->detach($appartment->promotions[0]->pivot->promotion_id, array('start_promotion' => $startpromotion,'end_promotion' => $endpromotion));
+
+            } else if (count($appartment->promotions) > 0) {
+
+                $appartment->promotions()->detach($appartment->promotions[0]->pivot->promotion_id, array('start_promotion' => $startpromotion,'end_promotion' => $endpromotion));
+                
+            }
 
             $appartment->promotions()->attach($promotion->id, array('start_promotion' => $startpromotion,'end_promotion' => $endpromotion));
             
