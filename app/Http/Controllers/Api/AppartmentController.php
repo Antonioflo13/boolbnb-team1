@@ -16,6 +16,12 @@ class AppartmentController extends Controller
         return response()->json($appartments);
     }
 
+    public function paginateappartments() {
+        $appartments = Appartment::orderBy('id', 'ASC')->with(['services', 'promotions'])->paginate(6);
+       
+        return response()->json($appartments);
+    }
+
     public function show($slug) {
         $appartment = Appartment::where('slug',$slug)->with('services','promotions')->first();
 

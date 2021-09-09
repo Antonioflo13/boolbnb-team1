@@ -76,15 +76,11 @@ export default {
                 return this.appartments;
             } else {
                 let newAppartmentsHome = [];
-                this.appartments.forEach(element => {
-                    if (this.res != 'empty' && this.res.length != 0) {
-                        this.res.forEach(item =>{
-                            if(item.id == element.id ){
-                                newAppartmentsHome.push(element);
-                            }
-                        })
-                    }
-                }) 
+                if (this.res != 'empty' && this.res.length != 0) {
+                    this.res.forEach(item =>{
+                        newAppartmentsHome.push(item);
+                    })
+                }
                 return newAppartmentsHome;    
             }   
         }
@@ -95,9 +91,9 @@ export default {
         },
         getPromotedApps: function(){
             axios
-            .get('http://127.0.0.1:8000/api/appartments')
+            .get('http://127.0.0.1:8000/api/appartments/pagination')
             .then(res=> {
-                    this.appartments=res.data;
+                    this.appartments=res.data.data;
                     axios
                         .get('http://127.0.0.1:8000/api/appartment/promotion')
                         .then(res=> {
