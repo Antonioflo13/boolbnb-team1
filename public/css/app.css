@@ -11722,6 +11722,7 @@ a.text-dark:focus {
 
 #ms_payment_checkout button:hover {
   color: white;
+  border-radius: 10px;
   background-color: #f82e53;
 }
 
@@ -11768,8 +11769,8 @@ a.text-dark:focus {
   padding: 25px;
   margin: 45px;
   text-align: center;
-  box-shadow: 0 0 4px 4px;
-  border: 3px solid #FD395C;
+  box-shadow: 0 0 5px 5px rgba(253, 57, 92, 0.5);
+  border-radius: 10px;
 }
 
 #ms_payment_checkout .appartament_information img {
