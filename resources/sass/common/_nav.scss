@@ -7,3 +7,14 @@
     font-size: 20px;
     color: #FD395C;  
 }
+.nav-link {
+    &:hover{
+        //border: 1px solid rgb(190, 188, 188);
+        box-shadow: 5px 5px 10px 5px rgba(190, 188, 188, 0.6);
+        border-radius: 10px;    
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+}
+}

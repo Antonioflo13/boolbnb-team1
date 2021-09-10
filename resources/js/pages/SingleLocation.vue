@@ -132,6 +132,17 @@ export default {
         }
 
     }
+    .btn{
+        &:hover{ 
+            box-shadow: 5px 5px 10px 5px rgba(190, 188, 188, 0.6);
+            color: $primary-color;
+            border-radius: 10px;    
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+        }
+    }
 
     @media all and (min-width: 1200px){
     .ms-single-page-img-container{

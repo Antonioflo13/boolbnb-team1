@@ -3,9 +3,7 @@
 @section('content')
 
 <section id="ms_payment_checkout">
-
     <article class="container">
-
         @if (session('success_message'))
             <div class="alert alert-success">
                 {{ session('success_message') }}
@@ -23,13 +21,15 @@
                 </ul>
             </div>
         @endif
-        
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
-                    <a href="http://127.0.0.1:8000/admin/appartments/{{$appartment->id}}">
+                <div class="d-flex">
+                    <a href="http://127.0.0.1:8000/admin/appartments/{{$appartment->id}}" >
                         <i class="fas fa-arrow-left fa-2x"></i>
                     </a>
+                </div>
+                    
                 @else
                     <a href="{{ route('login') }}">Login</a>
 
@@ -39,44 +39,42 @@
                 @endauth
             </div>
         @endif
-        
-        <div class="flex-center position-ref full-height box_payment">
-
-            <div class="appartament_information">
-                <h3>Appartment name : <br> <span>{{ $appartment->title}}</span></h3>
-                <img src="http://127.0.0.1:8000/storage/{{$appartment->image}}" alt="image">
-                <h4>Promotion : <span>{{$promotion->title}}</span></h4>
-
-
-            </div>
-        
-            <div class="content">
-                <form method="post" id="payment-form" action="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}">
-                    @csrf
-                    
-                    <section class="price">
-                        <label for="amount">
-                            <span class="input-label">Amount</span>
-                            <div class="input-wrapper amount-wrapper">
-                                {{-- <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10"> --}}
-                                <div>
-                                    {{ $promotion->price }} €
+        <div class="container">
+            <div class="row ">
+                <div class=" col-12 col-md-6 mt-3">
+                    <div class="appartament_information">
+                        <h3>Appartment name : <br> <span>{{ $appartment->title}}</span></h3>
+                        <img src="http://127.0.0.1:8000/storage/{{$appartment->image}}" alt="image">
+                        <h4>Promotion : <span>{{$promotion->title}}</span></h4>
+                    </div> 
+                </div>
+            
+                <div class="content col-12 col-md-6 box_payment mt-3">
+                    <form method="post" id="payment-form" action="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}">
+                        @csrf
+                        <section class="price">
+                            <label for="amount ">
+                                <span class="input-label">Amount</span>
+                                <div class="input-wrapper amount-wrapper">
+                                    {{-- <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10"> --}}
+                                    <div class="mb-3">
+                                        {{ $promotion->price }} €
+                                    </div>
                                 </div>
+                            </label>
+            
+                            <div class="bt-drop-in-wrapper">
+                                <div id="bt-dropin"></div>
                             </div>
-                        </label>
-        
-                        <div class="bt-drop-in-wrapper">
-                            <div id="bt-dropin"></div>
-                        </div>
-                    </section>
-        
-                    <input id="nonce" name="payment_method_nonce" type="hidden" />
-                    <button class="button" type="submit">
-                        <span>
-                            <i class="fas fa-shopping-cart"></i>
-                        </span>
-                    </button>
-                </form>
+                        </section>
+                        <input id="nonce" name="payment_method_nonce" type="hidden" />
+                        <button class="button" type="submit">
+                            <span>
+                                <i class="fas fa-shopping-cart"></i>
+                            </span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </article>
