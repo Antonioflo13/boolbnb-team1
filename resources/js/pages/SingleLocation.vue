@@ -11,7 +11,7 @@
                     <router-link v-if="$route.params.query.length > 0" :to="{name: 'locations', params: { slug: $route.params.query } }" class="" >
                         <button type="submit" class="btn"><i class="fas fa-arrow-right fa-2x"></i></button>
                     </router-link>
-                    <router-link v-else :to="{name: 'locations', params: { slug: 'search' } }" class="" >
+                    <router-link v-else :to="{name: 'locations' }" class="" >
                         <button type="submit" class="btn"><i class="fas fa-arrow-right fa-2x"></i></button>
                     </router-link>
                 </div>

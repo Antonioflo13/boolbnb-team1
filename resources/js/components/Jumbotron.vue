@@ -10,7 +10,7 @@
             <router-link v-if="(query.length > 0)" :to="{name: 'locations', params: { slug: query } }">
                 <button type="submit" class="ms-style px-5 py-3">Advanced Search </button>
             </router-link>
-            <router-link v-else :to="{name: 'locations', params: { slug: 'search' } }">
+            <router-link v-else :to="{name: 'locations'}">
                 <button type="submit" class="ms-style px-5 py-3">Advanced Search </button>
             </router-link>
         </div>
