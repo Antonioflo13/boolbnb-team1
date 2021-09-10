@@ -83,6 +83,18 @@ export default {
                 .then(
                     res=> {
                         //console.log(res.data);
+                        
+                        axios
+                         .post('http://127.0.0.1:8000/api/views', {
+                             appartment_id: res.data.id
+                         })
+                         .then(res => {
+                             console.log(res.data);
+                         })
+                         .catch(err => {
+                             console.log(err);
+                         })
+
                         this.appartment=res.data;
                         this.loading = false;
                     }
