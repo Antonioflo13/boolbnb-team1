@@ -8,8 +8,11 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <p class="ml-3 mb-0">{{appartment.address}}</p>
                     </div>
-                    <router-link :to="{name: 'locations'}" class="" >
-                        <button type="submit" class="btn"><i class="fas fa-arrow-left fa-2x"></i></button>
+                    <router-link v-if="$route.params.query != undefined && $route.params.query.length > 0" :to="{name: 'locations', params: { slug: $route.params.query } }" class="" >
+                        <button type="submit" class="btn"><i class="fas fa-arrow-right fa-2x"></i></button>
+                    </router-link>
+                    <router-link v-else :to="{name: 'locations' }" class="" >
+                        <button type="submit" class="btn"><i class="fas fa-arrow-right fa-2x"></i></button>
                     </router-link>
                 </div>
                 <div class="col-12 col-lg-8 mt-3 ms-single-page-img-container" >
@@ -80,6 +83,18 @@ export default {
                 .then(
                     res=> {
                         //console.log(res.data);
+                        
+                        axios
+                         .post('http://127.0.0.1:8000/api/views', {
+                             appartment_id: res.data.id
+                         })
+                         .then(res => {
+                             console.log(res.data);
+                         })
+                         .catch(err => {
+                             console.log(err);
+                         })
+
                         this.appartment=res.data;
                         this.loading = false;
                     }
