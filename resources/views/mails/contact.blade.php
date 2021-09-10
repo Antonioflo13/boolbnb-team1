@@ -6,15 +6,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Styles -->
     <style>
@@ -84,6 +80,52 @@
     section {
         padding: 20px;
     }
+
+    .card {
+        width: 100%;
+        margin: 10px 0px;
+        padding: 20px;
+        background-color: white;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+
+        
+    }
+    h3 {
+        font-size: 18px;
+        color: $primary-color;
+        margin: 5px 0;
+    }
+
+    h2,
+    h4 {
+        margin: 10px 0;
+    }
+
+    h4 {
+        font-size: 16px;
+        color: #FD395C;
+    }
+
+    a {
+        margin: 5px 0;
+        text-transform: uppercase;
+        color:  $primary-color;
+        border: 1px solid $primary-color;
+        
+    }
+    a:hover{
+        color: white;
+        background-color: $primary-color-hover;
+    }
+
+
+
+
+
         footer{
         background-color: #FFFFFF;
         border-top: 1px solid rgb(255, 255, 255);
@@ -129,8 +171,8 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="{{ route('home') }}">Search your Appartment</a>
-                        <a href="{{ route('home') }}">Become a Host</a>
+                        <a href="http://127.0.0.1:8000/location">Search your Appartment</a>
+                        <a href="http://127.0.0.1:8000/location/register">Become a Host</a>
                     </li>
                 </ul>
             </nav>
@@ -140,10 +182,12 @@
         {{-- main --}}
         <main>
             <section>
-                <h4>{{ $email->appartment->title }}</h4>
-                <h5>{{ $email->name }}</h5>
-                <h5>{{ $email->email }}</h5>
-                <p>{{ $email->message }}</p>
+                <article class="card">
+                    <h4>{{ $email->appartment->title }}</h4>
+                    <h5>{{ $email->name }}</h5>
+                    <h5>{{ $email->email }}</h5>
+                    <p>{{ $email->message }}</p>
+                </article>
             </section>
         </main>
         {{-- /main --}}

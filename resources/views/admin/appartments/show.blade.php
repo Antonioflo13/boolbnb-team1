@@ -2,6 +2,23 @@
 @section('title', config('app.name', 'BoolBnB').' | Appartment List')
 @section('content')
 <section id="ms_show">
+    {{-- popup --}}
+    <div id="ms_popup">
+        <div class="popup container">
+            <div class="popupcontainer">
+                <p>Are you sure you want to delete this apartment? <strong>"{{ $appartment->title }}"</strong></p>
+                <div class="d-flex align-item-center justify-content-center">
+                    <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn_delete">Delete</button>
+                    </form>
+                    <button class="btn btn_delete" onclick="popdown()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- /popup --}}
     <article class="container my-3">
 
         @if (session('success_message'))
@@ -9,7 +26,6 @@
                 {{ session('success_message') }}
             </div>
         @endif
-
         <div>
             <div class="d-flex align-items-center justify-content-between">
                 <h1>{{ $appartment->title }}</h1>
@@ -31,13 +47,7 @@
                     @endif
                     <a href="{{ route('admin.promotions', $appartment->id) }}" class="mr-5"><i class="fas fa-sort-amount-up-alt mr-2"></i> Upgrade</a>
                     <a href="http://127.0.0.1:8000/singlelocation/{{ $appartment->slug }}" class="btn">Preview listing</a>
-                    
-                    <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn_delete">Delete</button>
-                    </form>
-                    
+                    <button class="btn btn_delete" onclick="popup()">Delete</button>
                     <a href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit<i class="fas fa-chevron-right ml-2"></i></a>
                 </div>
             </div>
@@ -117,6 +127,16 @@
 </section>
 
 <script>
+        //popup
+        function popup() {
+        document.getElementsByClassName("popup")[0].className = "PopupPanel";
+        };
+
+        function popdown() {
+            document.getElementsByClassName("PopupPanel")[0].className = "popup";
+        }
+
+
         // Assign a php variable to js
         var endPromotion = "<?php
             if (count($appartment->promotions) > 0) {
