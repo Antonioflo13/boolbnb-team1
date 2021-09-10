@@ -30,13 +30,13 @@ class AppartmentController extends Controller
     }
 
     public function promotion() {
-        $appartmentpromotion = AppartmentPromotion::where('visible', 1);
+        $appartmentpromotion = AppartmentPromotion::all();
         $currentDate = date("Y-m-d H:i:s");
         $appartments = [];
 
         foreach ($appartmentpromotion as $item) {
             if ($item->end_promotion >= $currentDate) {
-                $appartments[] = Appartment::where('id', $item->appartment_id)->first();
+                $appartments[] = Appartment::where('id', $item->appartment_id)->where('visible', 1)->first();
             }
         }
 

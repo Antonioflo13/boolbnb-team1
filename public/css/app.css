@@ -169,7 +169,7 @@
 /* Common */
 
 main {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 150px);
 }
 
 .ms-logo {
@@ -179,6 +179,15 @@ main {
 .ms-text {
   font-size: 20px;
   color: #FD395C;
+}
+
+.nav-link:hover {
+  box-shadow: 5px 5px 10px 5px rgba(190, 188, 188, 0.6);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 footer {
@@ -11452,6 +11461,28 @@ a.text-dark:focus {
   background-color: #f82e53;
 }
 
+#ms_popup .popup {
+  display: none;
+}
+
+#ms_popup .PopupPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  height: 100vh;
+}
+
+#ms_popup .PopupPanel .popupcontainer {
+  width: 50%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+}
+
 #ms_show {
   text-align: center;
 }
@@ -11551,8 +11582,12 @@ a.text-dark:focus {
   }
 }
 
+#ms_promotions {
+  min-height: calc(100vh - 200px );
+}
+
 #ms_promotions h1 {
-  margin: 15px 0;
+  margin: 15px 10px;
 }
 
 #ms_promotions h3 {
@@ -11561,10 +11596,8 @@ a.text-dark:focus {
 }
 
 #ms_promotions .card {
-  width: calc((100% - 60px) / 3);
-  margin: 20px 10px;
+  margin: 15px 10px;
   padding: 20px;
-  float: left;
   border-radius: 10px;
   background-color: white;
 }
@@ -11591,48 +11624,15 @@ a.text-dark:focus {
   background-color: #f82e53;
 }
 
-@media screen and (min-width: 950px) {
-  #ms_promotions {
-    height: 72vh;
-  }
-}
-
-@media screen and (max-width: 945px) and (min-width: 685px) {
-  #ms_promotions {
-    height: 78vh;
-  }
-
-  #ms_promotions .card {
-    width: calc((100% - 60px) / 3) !important;
-    margin: 58px 10px;
-    float: left;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    text-align: center;
-  }
-}
-
 @media screen and (min-width: 320px) and (max-width: 944px) {
   #ms_promotions h1 {
     font-size: 25px;
   }
-
-  #ms_promotions .card {
-    width: 90%;
-    text-align: start;
-    margin: 30px 10px;
-    float: left;
-    background-color: white;
-  }
 }
 
-#card_secondary {
-  width: 100%;
-  margin: 0 10px;
-  padding: 20px;
-  float: left;
+.card_secondary {
+  margin: 20px 10px;
+  padding: 19px;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 10px;
   background-color: white;
@@ -11669,6 +11669,11 @@ a.text-dark:focus {
 #ms_form .form-group .img img {
   width: 100%;
   margin: 30px auto;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 #ms_form .form_primary {
@@ -11684,7 +11689,18 @@ a.text-dark:focus {
   text-transform: uppercase;
   color: #FD395C;
   border: 1px solid #FD395C;
+  border-radius: 10px;
   margin: 0 auto;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 #ms_form button:hover {
@@ -11712,16 +11728,19 @@ a.text-dark:focus {
   }
 }
 
-#ms_payment_checkout .flex-center {
-  display: flex;
-}
-
 #ms_payment_checkout button {
   text-transform: uppercase;
   margin-left: 45%;
   border: 1px solid #FD395C;
   color: #FD395C;
   background-color: transparent;
+  padding: 10px 20px;
+  transition: all 0.2s;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 #ms_payment_checkout button:hover {
@@ -11760,15 +11779,9 @@ a.text-dark:focus {
   font-weight: 600;
 }
 
-#ms_payment_checkout .braintree-heading {
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 #ms_payment_checkout .appartament_information {
-  width: 35%;
+  width: 100%;
   padding: 25px;
-  margin: 45px;
   text-align: center;
   box-shadow: 0 0 5px 5px rgba(253, 57, 92, 0.5);
   border-radius: 10px;
@@ -11787,10 +11800,6 @@ a.text-dark:focus {
 #ms_payment_checkout .appartament_information h4 span,
 #ms_payment_checkout .appartament_information h3 span {
   color: black;
-}
-
-#ms_payment_checkout .content {
-  width: 45%;
 }
 
 #ms_payment_checkout .box_payment {
@@ -11831,6 +11840,7 @@ a.text-dark:focus {
 
 #ms_inbox .card h4 {
   font-size: 16px;
+  color: #4C4C4C;
 }
 
 #ms_inbox .card a {
@@ -11860,10 +11870,14 @@ a.text-dark:focus {
   background-color: #f82e53;
 }
 
-@media screen and (min-width: 950px) {
-  #ms_inbox {
-    height: 72vh;
-  }
+#ms_inbox .paginator .page-item .page-link {
+  color: #FD395C;
+}
+
+#ms_inbox .paginator .page-item.active .page-link {
+  color: white;
+  background-color: #FD395C;
+  border-color: #FD395C;
 }
 
 @media screen and (max-width: 945px) and (min-width: 685px) {
