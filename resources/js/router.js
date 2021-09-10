@@ -8,6 +8,7 @@ Vue.use(VueRouter);
 import Home from './pages/Home';
 import Locations from './pages/Locations';
 import SingleLocation from './pages/SingleLocation';
+import Error404 from './components/Error404';
 
 const router = new VueRouter({
     mode: 'history',
@@ -18,7 +19,7 @@ const router = new VueRouter({
             component: Home,
         },
         {
-            path: '/locations',
+            path: '/locations/:slug',
             name: 'locations',
             component: Locations
         },
@@ -27,6 +28,11 @@ const router = new VueRouter({
             name:'single-location',
             component: SingleLocation
         },
+        {
+            path:'*',
+            name:'error-404',
+            component: Error404
+        }
     ]
 })
 

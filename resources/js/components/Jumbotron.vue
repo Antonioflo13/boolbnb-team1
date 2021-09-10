@@ -5,7 +5,7 @@
                 @searchedApps="searchedApps"
             />
             <h3 class="text-center my-5 px-3">Want to explore more? Perfect!</h3>
-            <router-link :to="{name: 'locations'}">
+            <router-link :to="{name: 'locations', params: { slug: 'search' } }">
                 <button type="submit" class="ms-style px-5 py-3">Advanced Search </button>
             </router-link>
         </div>

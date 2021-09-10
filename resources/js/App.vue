@@ -25,7 +25,7 @@ export default {
 <style lang="scss">
 // @import '../sass/app/scss';
     main{
-        min-height: calc(100vh - 200px);
+        min-height: calc(100vh - 148.66px);
 
     }
 
