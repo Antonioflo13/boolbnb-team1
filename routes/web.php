@@ -30,6 +30,7 @@ Route::middleware('auth')
         Route::post('appartments/payment/{promotion}/{appartment}', 'PromotionController@payment')->name('payment');
         Route::resource('appartments', 'AppartmentController');
         Route::resource('inboxdelete', 'InboxDeleteController');
+        Route::get('/charts', 'ChartController@index')->name('charts');
 
 });
 
