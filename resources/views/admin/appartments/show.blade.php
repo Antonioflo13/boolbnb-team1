@@ -26,11 +26,11 @@
                     @endif
                     @if ($appartment->promotions && count($appartment->promotions) > 0 && $appartment->promotions[0]->pivot->end_promotion >= date("Y-m-d H:i:s"))
                         <strong>
-                            <div id="demo" class="mr-3"></div>
+                            <div id="demo" class="mr-3 text-success"></div>
                         </strong>
                     @endif
                     <a href="{{ route('admin.promotions', $appartment->id) }}" class="mr-5"><i class="fas fa-sort-amount-up-alt mr-2"></i> Upgrade</a>
-                    <a href="http://127.0.0.1:8000/locations/{{ $appartment->slug }}" class="btn">Preview listing</a>
+                    <a href="http://127.0.0.1:8000/singlelocation/{{ $appartment->slug }}" class="btn">Preview listing</a>
                     
                     <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
                         @csrf

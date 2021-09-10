@@ -24,7 +24,7 @@ const router = new VueRouter({
             component: Locations
         },
         {
-            path:'/locations/:slug',
+            path:'/singlelocation/:slug',
             name:'single-location',
             component: SingleLocation
         },
