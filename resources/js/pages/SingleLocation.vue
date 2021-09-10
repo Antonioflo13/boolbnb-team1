@@ -9,7 +9,7 @@
                         <p class="ml-3 mb-0">{{appartment.address}}</p>
                     </div>
                     <router-link :to="{name: 'locations'}" class="" >
-                        <button type="submit" class="btn"><i class="fas fa-arrow-right fa-2x"></i></button>
+                        <button type="submit" class="btn"><i class="fas fa-arrow-left fa-2x"></i></button>
                     </router-link>
                 </div>
                 <div class="col-12 col-lg-8 mt-3 ms-single-page-img-container" >
@@ -116,6 +116,17 @@ export default {
             color: $primary-color;
         }
 
+    }
+    .btn{
+        &:hover{ 
+            box-shadow: 5px 5px 10px 5px rgba(190, 188, 188, 0.6);
+            color: $primary-color;
+            border-radius: 10px;    
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+        }
     }
 
     @media all and (min-width: 1200px){

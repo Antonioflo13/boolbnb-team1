@@ -1,7 +1,8 @@
 #ms_payment_checkout {
-    .flex-center {
-        display: flex;
-    }
+    // .flex-center {
+    //     display: flex;
+    //     flex-wrap:wrap;
+    // }
     button{
         text-transform: uppercase;
         margin-left: 45%;
@@ -9,12 +10,12 @@
         color:  $primary-color;
         background-color: transparent;
         padding: 10px 20px;
-        tranition: all 0.2s;
-        border-radius: 10px    ;
-        -webkit-border-radius: 10px    ;
-        -moz-border-radius: 10px    ;
-        -ms-border-radius: 10px    ;
-        -o-border-radius: 10px    ;
+        transition: all 0.2s;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
 }
 
     button:hover{
@@ -55,20 +56,18 @@
         }
     }
 
-    .braintree-heading {
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+    // .braintree-heading {
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    // }
 
     .appartament_information {
-        width: 35%;
+        width: 100%;
         padding: 25px;
-        margin: 45px;
+        // margin: 45px;
         text-align: center;
         box-shadow: 0 0 5px 5px rgb(253 57 92 / 50%);
         border-radius: 10px;
-
-
 
         img {
             width: 60%;
@@ -85,9 +84,9 @@
         }
     }
 
-    .content {
-        width: 45%;
-    }
+    // .content {
+    //     width: 45%;
+    // }
 
     .box_payment {
         justify-content: center;
