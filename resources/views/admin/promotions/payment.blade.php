@@ -24,7 +24,6 @@
             </div>
         @endif
         
-        @csrf
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
