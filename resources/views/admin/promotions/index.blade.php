@@ -4,6 +4,7 @@
     <section id="ms_promotions">
         <div class="container">
             <h1>Promotion for {{ $appartment->title }}</h1>
+        <div class="promotion_cards">
             @foreach ($promotions as $promotion)
                 <div class="card">
                     <h2>{{ $promotion->title }}</h2>
@@ -12,19 +13,19 @@
                     <a href="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}" class="btn">Sponsorship</a>
                 </div>
                 @endforeach
+        </div>
             <br>
             <div id="card_secondary">
                 <h3>Sponsorship detail</h3>
                     <ul>
                         <li>
                             <h4>
-                                Appare in Homepage nella sezione “Appartamenti in Evidenza”.
+                                It appears on the Homepage in the “Featured Apartments” section.
                             </h4>
                         </li>
                         <li>
                             <h4>
-                                Nella pagina di ricerca, viene posizionato sempre prima di un
-                                appartamento non sponsorizzato che soddisfa le stesse caratteristiche di ricerca.
+                                On the search page, it is always placed before an unsponsored apartment that meets the same search characteristics.
                             </h4>
                         </li>
                     </ul>
