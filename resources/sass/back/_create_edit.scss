@@ -26,8 +26,12 @@
             img{
                 width: 100%;
                 margin: 30px auto;
-
-            }
+                border-radius: 10px            ;
+                -webkit-border-radius: 10px            ;
+                -moz-border-radius: 10px            ;
+                -ms-border-radius: 10px            ;
+                -o-border-radius: 10px            ;
+}
         }
     }
     .form_primary {
@@ -42,9 +46,19 @@
         text-transform: uppercase;
         color:  $primary-color;
         border: 1px solid $primary-color;
+        border-radius: 10px;
         margin: 0 auto;
-        
-    }
+        transition:all 0.2s;
+        -webkit-transition:all 0.2s;
+        -moz-transition:all 0.2s;
+        -ms-transition:all 0.2s;
+        -o-transition:all 0.2s;
+        -webkit-transition: all 0.2s;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+}
     button:hover{
         color: white;
         background-color: $primary-color-hover;

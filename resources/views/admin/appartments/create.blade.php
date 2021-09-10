@@ -4,8 +4,10 @@
 @section('content')
     <section id="ms_form">
         <div class="container">
-            <div class="come_back">
-                <a class="nav-link" href="http://127.0.0.1:8000/admin/appartments"><i class="fas fa-long-arrow-alt-left"></i></a>
+            <div class="come_back d-flex flex-row-reverse">
+                <a class="nav-link" href="http://127.0.0.1:8000/admin/appartments">
+                    <i class="fas fa-arrow-right fa-2x"></i>
+                </a>
             </div>
 
             <h1>Add New Appartment</h1>

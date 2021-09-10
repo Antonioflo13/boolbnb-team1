@@ -28,9 +28,12 @@
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
-                    <a href="http://127.0.0.1:8000/admin/appartments/{{$appartment->id}}">
+                <div class="d-flex">
+                    <a href="http://127.0.0.1:8000/admin/appartments/{{$appartment->id}}" >
                         <i class="fas fa-arrow-left fa-2x"></i>
                     </a>
+                </div>
+                    
                 @else
                     <a href="{{ route('login') }}">Login</a>
 
@@ -59,7 +62,7 @@
                             <span class="input-label">Amount</span>
                             <div class="input-wrapper amount-wrapper">
                                 {{-- <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10"> --}}
-                                <div>
+                                <div class="mb-3">
                                     {{ $promotion->price }} €
                                 </div>
                             </div>
