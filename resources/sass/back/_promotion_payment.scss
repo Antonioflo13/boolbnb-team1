@@ -7,12 +7,14 @@
         margin-left: 45%;
         border: 1px solid $primary-color;
         color:  $primary-color;
+        border-radius: 10px;
         background-color: transparent;
+        padding: 10px 40px;
+        font-size: 25px;
     }
 
     button:hover{
         color: white;
-        border-radius: 10px;
         background-color: $primary-color-hover;
     }
 
@@ -86,4 +88,5 @@
         justify-content: center;
         align-items: center;
     }
+
 }
