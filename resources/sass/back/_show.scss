@@ -2,6 +2,7 @@
     text-align: center;
     img {
         width: 70%;
+        border-radius: 10px;
     }
 
     h1 {
@@ -27,6 +28,25 @@
 
     h5 {
         font-weight: 600;
+        color:  $primary-color;
+    }
+
+    a,
+    .btn_delete {
+        color:  $primary-color;
+        margin: 5px;
+        padding: 7px;
+        text-decoration: none;
+        border-radius: 10px;
+        border: 1px solid $primary-color;
+        white-space: nowrap;
+    }
+
+    a:hover,
+    .btn_delete:hover,
+    .list-group-item.active {
+        color: white;
+        background-color: $primary-color-hover;
     }
 
     //MediaQuery

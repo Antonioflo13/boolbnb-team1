@@ -6,7 +6,9 @@
         <div class="container">
 
             <div class="come_back">
-                <a class="nav-link" href="http://127.0.0.1:8000/admin/appartments/{{ $appartment->id }}"><i class="fas fa-long-arrow-alt-left"></i></a>
+                <a class="nav-link" href="http://127.0.0.1:8000/admin/appartments/{{ $appartment->id }}">
+                    <i class="fas fa-arrow-left fa-2x"></i>
+                </a>
             </div>
 
             <h1>Edit {{ $appartment->title }}</h1>
