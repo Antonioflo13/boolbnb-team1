@@ -53,7 +53,8 @@
         
             <div class="content">
                 <form method="post" id="payment-form" action="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}">
-        
+                    @csrf
+                    
                     <section class="price">
                         <label for="amount">
                             <span class="input-label">Amount</span>
