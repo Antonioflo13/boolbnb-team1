@@ -96,7 +96,7 @@
                             </div>
                             <div class="col col-sm-4">
                                 <p class="">{{ textExerpt(appartment.description) }}</p>
-                                <router-link :to="{name: 'single-location', params: { slug: appartment.slug}}">
+                                <router-link :to="{name: 'single-location', params: { slug: appartment.slug, query: query}}">
                                     <button type="submit" class="btn ms-btn-view">View details</button>
                                 </router-link>    
                             </div>    

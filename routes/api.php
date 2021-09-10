@@ -28,4 +28,5 @@ Route::namespace('Api')
         Route::post('locations', 'LocationController@index');
         Route::post('messages', 'MessageController@store');
         Route::post('distance', 'LocationController@distance');
+        Route::post('views', 'ViewController@store');
     });

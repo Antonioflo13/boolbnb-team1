@@ -31,10 +31,12 @@ export default {
     },
     methods:  {
         postLocation: function(){
-            if (this.$route.name == 'locations' && this.$route.params.slug != undefined && this.$route.params.slug != 'search' && this.searchedApps == 0) {
+            if (this.$route.name == 'locations' && this.$route.params.slug != undefined && this.searchedApps == 0) {
                 this.searchedText = this.$route.params.slug;
             }
-            if (this.$route.name == 'locations' ) {
+            if (this.$route.name == 'locations' && this.$route.fullPath == '/locations') {
+                this.$router.push('locations/' + this.searchedText).catch(()=>{});
+            } else if (this.$route.name == 'locations' && this.$route.fullPath != '/locations') {
                 this.$router.push(this.searchedText).catch(()=>{});
             }
             this.searchedApps=[];
@@ -90,7 +92,7 @@ export default {
         }                 
     },
     mounted: function() {
-        if (this.$route.name == 'locations' && this.$route.params.slug != undefined && this.$route.params.slug != 'search') {
+        if (this.$route.name == 'locations' && this.$route.params.slug != undefined) {
             this.postLocation();
         }
     }
