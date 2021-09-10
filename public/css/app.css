@@ -11515,15 +11515,22 @@ a.text-dark:focus {
   flex-direction: column;
 }
 
+#ms_show .tab-pane {
+  height: auto !important;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+}
+
 #ms_show h5 {
   font-weight: 600;
   color: #FD395C;
 }
 
-#ms_show a,
+#ms_show .btn_listing,
 #ms_show .btn_delete {
   color: #FD395C;
-  margin: 5px;
+  margin: 2px;
   padding: 7px;
   text-decoration: none;
   border-radius: 10px;
@@ -11531,11 +11538,27 @@ a.text-dark:focus {
   white-space: nowrap;
 }
 
-#ms_show a:hover,
+#ms_show .btn_listing:hover,
 #ms_show .btn_delete:hover,
 #ms_show .list-group-item.active {
   color: white;
   background-color: #f82e53;
+}
+
+#ms_show .listing {
+  font-size: 25px;
+  font-weight: 600;
+  padding: 5px;
+  margin: 10px;
+  border: 0px solid;
+  border-bottom: 3px solid #FD395C;
+  color: #FD395C;
+  background-color: transparent;
+}
+
+#ms_show strong {
+  text-align: center;
+  margin: 5px;
 }
 
 @media screen and (max-width: 945px) and (min-width: 685px) {
@@ -11641,6 +11664,8 @@ a.text-dark:focus {
 #ms_form .come_back {
   display: inline-block;
   padding: 10px 45px;
+  text-align: right;
+  width: 100%;
 }
 
 #ms_form .come_back a {
@@ -11670,10 +11695,6 @@ a.text-dark:focus {
   width: 100%;
   margin: 30px auto;
   border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
 }
 
 #ms_form .form_primary {
@@ -11691,16 +11712,8 @@ a.text-dark:focus {
   border: 1px solid #FD395C;
   border-radius: 10px;
   margin: 0 auto;
+  border-radius: 10px;
   transition: all 0.2s;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  -webkit-transition: all 0.2s;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
 }
 
 #ms_form button:hover {
@@ -11733,7 +11746,9 @@ a.text-dark:focus {
   margin-left: 45%;
   border: 1px solid #FD395C;
   color: #FD395C;
+  border-radius: 10px;
   background-color: transparent;
+  font-size: 25px;
   padding: 10px 20px;
   transition: all 0.2s;
   border-radius: 10px;
@@ -11745,7 +11760,6 @@ a.text-dark:focus {
 
 #ms_payment_checkout button:hover {
   color: white;
-  border-radius: 10px;
   background-color: #f82e53;
 }
 

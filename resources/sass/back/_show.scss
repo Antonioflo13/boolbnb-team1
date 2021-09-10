@@ -27,6 +27,13 @@
         flex-direction: column;
     }
 
+    .tab-pane {
+        height: auto !important;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: white;
+    }
+
     h5 {
         font-weight: 600;
         color:  $primary-color;
@@ -61,11 +68,9 @@
     }
 
     strong {
-        box-shadow: 0 0 5px 5px rgb(253 57 92 / 50%);
         text-align: center;
         margin: 5px;
     }
-
 
     //MediaQuery
     @media screen and ( max-width: 945px) and (min-width: 685px){
