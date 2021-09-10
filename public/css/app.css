@@ -11458,6 +11458,7 @@ a.text-dark:focus {
 
 #ms_show img {
   width: 70%;
+  border-radius: 10px;
 }
 
 #ms_show h1 {
@@ -11485,6 +11486,25 @@ a.text-dark:focus {
 
 #ms_show h5 {
   font-weight: 600;
+  color: #FD395C;
+}
+
+#ms_show a,
+#ms_show .btn_delete {
+  color: #FD395C;
+  margin: 5px;
+  padding: 7px;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid #FD395C;
+  white-space: nowrap;
+}
+
+#ms_show a:hover,
+#ms_show .btn_delete:hover,
+#ms_show .list-group-item.active {
+  color: white;
+  background-color: #f82e53;
 }
 
 @media screen and (max-width: 945px) and (min-width: 685px) {
@@ -11542,14 +11562,11 @@ a.text-dark:focus {
 
 #ms_promotions .card {
   width: calc((100% - 60px) / 3);
-  margin: 58px 10px;
+  margin: 20px 10px;
   padding: 20px;
   float: left;
+  border-radius: 10px;
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: center;
 }
 
 #ms_promotions .card h1 {
@@ -11608,19 +11625,16 @@ a.text-dark:focus {
     margin: 30px 10px;
     float: left;
     background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: center;
   }
 }
 
 #card_secondary {
   width: 100%;
-  margin: 58px 10px;
+  margin: 0 10px;
   padding: 20px;
   float: left;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 10px;
   background-color: white;
 }
 
@@ -11630,16 +11644,11 @@ a.text-dark:focus {
 }
 
 #ms_form .come_back a {
-  font-size: 30px;
-  text-transform: uppercase;
-  color: #FD395C;
-  border: 1px solid #FD395C;
-  padding: 0px 26px;
+  color: gray;
 }
 
 #ms_form .come_back a:hover {
-  color: white;
-  background-color: #f82e53;
+  color: #f82e53;
 }
 
 #ms_form h1 {
@@ -11715,11 +11724,6 @@ a.text-dark:focus {
   background-color: transparent;
 }
 
-#ms_payment_checkout button i {
-  font-size: 20px;
-  margin: 5px 15px;
-}
-
 #ms_payment_checkout button:hover {
   color: white;
   border-radius: 10px;
@@ -11728,15 +11732,12 @@ a.text-dark:focus {
 
 #ms_payment_checkout a {
   width: 100%;
-  text-transform: uppercase;
-  color: #FD395C;
-  border: 1px solid #FD395C;
+  color: grey;
   padding: 5px 15px;
 }
 
 #ms_payment_checkout a:hover {
-  color: white;
-  background-color: #f82e53;
+  color: #FD395C;
 }
 
 #ms_payment_checkout .price {
@@ -11795,5 +11796,108 @@ a.text-dark:focus {
 #ms_payment_checkout .box_payment {
   justify-content: center;
   align-items: center;
+}
+
+#ms_inbox h1 {
+  margin: 15px 0;
+}
+
+#ms_inbox h3 {
+  margin-top: 25px;
+  color: #FD395C;
+}
+
+#ms_inbox .card {
+  width: 100%;
+  margin: 10px 0px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+}
+
+#ms_inbox .card h3 {
+  font-size: 18px;
+  color: #FD395C;
+  margin: 5px 0;
+}
+
+#ms_inbox .card h2,
+#ms_inbox .card h4 {
+  margin: 10px 0;
+}
+
+#ms_inbox .card h4 {
+  font-size: 16px;
+}
+
+#ms_inbox .card a {
+  margin: 5px 0;
+  text-transform: uppercase;
+  color: #FD395C;
+  border: 1px solid #FD395C;
+}
+
+#ms_inbox .card a:hover {
+  color: white;
+  background-color: #f82e53;
+}
+
+#ms_inbox button {
+  text-transform: uppercase;
+  margin-left: 45%;
+  border-radius: 10px;
+  border: 1px solid #FD395C;
+  color: #FD395C;
+  background-color: transparent;
+}
+
+#ms_inbox button:hover {
+  color: white;
+  border-radius: 10px;
+  background-color: #f82e53;
+}
+
+@media screen and (min-width: 950px) {
+  #ms_inbox {
+    height: 72vh;
+  }
+}
+
+@media screen and (max-width: 945px) and (min-width: 685px) {
+  #ms_inbox {
+    height: 78vh;
+  }
+
+  #ms_inbox .card {
+    width: calc((100% - 60px) / 3) !important;
+    margin: 58px 10px;
+    float: left;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 944px) {
+  #ms_inbox h1 {
+    font-size: 25px;
+  }
+
+  #ms_inbox .card {
+    width: 90%;
+    text-align: start;
+    margin: 30px 10px;
+    float: left;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+  }
 }
 
