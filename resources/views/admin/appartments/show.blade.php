@@ -57,9 +57,9 @@
                     {{-- edit menu --}}
                     <div class="col-sm-8 col-lg-3 mb-3">
                       <div class="list-group" id="list-tab" role="tablist">
-                        <a href="#" class="list-group-item disabled" aria-disabled="true">Listing Details</a>
-                        <a class="list-group-item list-group-item-action active" id="list-photos-list" data-toggle="list" href="#list-photos" role="tab" aria-controls="photos">Photos</a>
-                        <a class="list-group-item list-group-item-action" id="list-listing-basics-list" data-toggle="list" href="#list-listing-basics" role="tab" aria-controls="listing-basics">Listing Basics</a>
+                        <a href="#" class="list-group-item disabled listing" aria-disabled="true">Listing Details</a>
+                        <a class="list-group-item list-group-item-action active btn_listing" id="list-photos-list" data-toggle="list" href="#list-photos" role="tab" aria-controls="photos">Photos</a>
+                        <a class="list-group-item list-group-item-action btn_listing" id="list-listing-basics-list" data-toggle="list" href="#list-listing-basics" role="tab" aria-controls="listing-basics">Listing Basics</a>
                       </div>
                     </div>
                     {{-- /edit menu --}}
@@ -96,16 +96,19 @@
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between my-3">
                                     <h5>Number of guest</h5>
-                                    <p>{{ $appartment->beds_number }}</p>
+
+                                    @for ($i = 0; $i < $appartment->beds_number; $i++)
+                                        <i class="fas fa-male"></i>
+                                    @endfor
                                 </div>
                                 <div class="my-3">
                                     <h5>Listing Status</h5>
                                     @if (!$appartment->visible) 
                                         {{-- pallino rosso --}}
-                                        <span class="mr-5 indicator"><i class="fas fa-circle mr-2"></i> Not Available</span>
+                                        <span class="mr-5 indicator"><i style="color: red" class="fas fa-circle mr-2"></i> Not Available</span>
                                     @else
                                         {{-- pallino verde --}}
-                                        <span class="mr-5 indicator"><i class="fas fa-circle mr-2"></i> Available - Guest can find your listing in search result and request or book available dates.</span>
+                                        <span class="mr-5 indicator"><i style="color: green" class="fas fa-circle mr-2"></i> Available - Guest can find your listing in search result and request or book available dates.</span>
                                     @endif
                                 </div>
                                 <div class="my-3">
@@ -177,6 +180,8 @@
             }
             }, 1000);
         }
+        }, 1000);
+    }
 
 </script>
 @endsection

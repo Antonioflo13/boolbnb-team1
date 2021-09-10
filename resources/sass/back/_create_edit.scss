@@ -2,6 +2,8 @@
     .come_back {
         display: inline-block;
         padding: 10px 45px;
+        text-align: right;
+        width: 100%;
 
         a {
             color: gray;
@@ -26,12 +28,9 @@
             img{
                 width: 100%;
                 margin: 30px auto;
-                border-radius: 10px            ;
-                -webkit-border-radius: 10px            ;
-                -moz-border-radius: 10px            ;
-                -ms-border-radius: 10px            ;
-                -o-border-radius: 10px            ;
-}
+                border-radius: 10px;
+
+            }
         }
     }
     .form_primary {
@@ -48,16 +47,8 @@
         border: 1px solid $primary-color;
         border-radius: 10px;
         margin: 0 auto;
+        border-radius: 10px; 
         transition:all 0.2s;
-        -webkit-transition:all 0.2s;
-        -moz-transition:all 0.2s;
-        -ms-transition:all 0.2s;
-        -o-transition:all 0.2s;
-        -webkit-transition: all 0.2s;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -ms-border-radius: 10px;
-        -o-border-radius: 10px;
 }
     button:hover{
         color: white;
