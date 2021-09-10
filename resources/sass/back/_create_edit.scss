@@ -4,16 +4,10 @@
         padding: 10px 45px;
 
         a {
-            font-size: 30px;
-            text-transform: uppercase;
-            color:  $primary-color;
-            border: 1px solid $primary-color;
-            padding: 0px 26px;
-            
+            color: gray;
         }
         a:hover{
-            color: white;
-            background-color: $primary-color-hover;
+            color: $primary-color-hover;
         }
     }
     h1 {

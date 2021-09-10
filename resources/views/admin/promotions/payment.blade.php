@@ -24,11 +24,13 @@
             </div>
         @endif
         
-        
+        @csrf
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
-                    <a href="{{ url('/home') }}">Home</a>
+                    <a href="http://127.0.0.1:8000/admin/appartments/{{$appartment->id}}">
+                        <i class="fas fa-arrow-left fa-2x"></i>
+                    </a>
                 @else
                     <a href="{{ route('login') }}">Login</a>
 
@@ -51,7 +53,6 @@
         
             <div class="content">
                 <form method="post" id="payment-form" action="{{ route('admin.payment', [$promotion->id, $appartment->id]) }}">
-                    @csrf
         
                     <section class="price">
                         <label for="amount">

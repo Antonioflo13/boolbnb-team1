@@ -4,9 +4,9 @@
         v-model="searchedText">
         <button class="ms-btn my-2 my-sm-0" type="submit"
         @click.prevent="postLocation()">
-            <!-- <router-link
-                :to="{name:'locations'}">
-            </router-link> -->
+            <router-link v-if="$route.name == 'locations'"
+                :to="{name:'locations', params: { slug: searchedText } }">
+            </router-link>
             <i class="fas fa-search"></i>
         </button>
     </form>
@@ -31,6 +31,12 @@ export default {
     },
     methods:  {
         postLocation: function(){
+            if (this.$route.name == 'locations' && this.$route.params.slug != undefined && this.$route.params.slug != 'search' && this.searchedApps == 0) {
+                this.searchedText = this.$route.params.slug;
+            }
+            if (this.$route.name == 'locations' ) {
+                this.$router.push(this.searchedText).catch(()=>{});
+            }
             this.searchedApps=[];
             if (this.radius && this.radius != 0) {
                 this.rad = this.radius;
@@ -82,6 +88,11 @@ export default {
                 console.log(err);
             })
         }                 
+    },
+    mounted: function() {
+        if (this.$route.name == 'locations' && this.$route.params.slug != undefined && this.$route.params.slug != 'search') {
+            this.postLocation();
+        }
     }
     
 

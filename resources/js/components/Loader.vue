@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center w-100 vh-100">
+    <div class="d-flex justify-content-center align-items-center" style="width: 100%; height: calc(100vh - 148.66px)">
         <!-- <h3>Loading...</h3> -->
         <div class="lds-ripple">
             <div></div>
@@ -20,8 +20,6 @@ export default {
     .lds-ripple {
         display: inline-block;
         position: relative;
-        width: 80px;
-        height: 80px;
         //color: $primary-color;
         div {
             position: absolute;

@@ -8,17 +8,14 @@
         margin-top: 25px;
         color: $primary-color;
     }
+    
     .card {
         width: calc((100% - 60px) / 3);
-        margin: 58px 10px;
+        margin: 20px 10px;
         padding: 20px;
         float: left;
+        border-radius: 10px;
         background-color: white;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: center;
 
         h1 {
             color: $primary-color;
@@ -73,20 +70,16 @@
             margin: 30px 10px;
             float: left;
             background-color: white;
-
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: center;
         }
     }
 }
 
 #card_secondary {
     width: 100%;
-    margin: 58px 10px;
+    margin: 0 10px;
     padding: 20px;
     float: left;
     border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 10px;
     background-color: white;
 }

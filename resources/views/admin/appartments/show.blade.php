@@ -16,12 +16,13 @@
                 <div class="d-flex align-items-center">
                     @if (!$appartment->visible) 
                         {{-- pallino rosso --}}
+
                         {{-- <i class="fas fa-circle mr-2"></i> --}}
-                        <span class="mr-3"><i class="fas fa-circle mr-2"></i> Not Available</span>
+                        <span class="mr-3"><i style="color: red" class="fas fa-circle mr-2"></i> Not Available</span>
                     @else
                         {{-- pallino verde --}}
                         
-                        <span class="mr-3"><i class="fas fa-circle mr-2"></i>Available</span>
+                        <span class="mr-3"><i style="color: green" class="fas fa-circle mr-2"></i>Available</span>
                     @endif
                     @if ($appartment->promotions && count($appartment->promotions) > 0 && $appartment->promotions[0]->pivot->end_promotion >= date("Y-m-d H:i:s"))
                         <strong>
@@ -29,7 +30,15 @@
                         </strong>
                     @endif
                     <a href="{{ route('admin.promotions', $appartment->id) }}" class="mr-5"><i class="fas fa-sort-amount-up-alt mr-2"></i> Upgrade</a>
-                    <a href="#" class="btn">Preview listing</a>
+                    <a href="http://127.0.0.1:8000/locations/{{ $appartment->slug }}" class="btn">Preview listing</a>
+                    
+                    <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn_delete">Delete</button>
+                    </form>
+                    
+                    <a href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit<i class="fas fa-chevron-right ml-2"></i></a>
                 </div>
             </div>
             {{-- edit collection --}}
@@ -52,7 +61,7 @@
                             <div class="tab-pane fade show active" id="list-photos" role="tabpanel" aria-labelledby="list-photos-list">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h4>Photos</h4>
-                                    <a href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit<i class="fas fa-chevron-right ml-2"></i></a>
+
                                 </div>
                                 @if (substr($appartment->image, 0, 5) == 'https')
                                     <img src="{{ $appartment->image }}" alt="{{ $appartment->title }}">
@@ -66,7 +75,6 @@
                             <div class="tab-pane fade" id="list-listing-basics" role="tabpanel" aria-labelledby="list-listing-basics-list">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h4>Listing basics</h4>
-                                    <a href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit</a>
                                 </div>
                                 <div class="my-3">
                                     <h5>Listing Title</h5>

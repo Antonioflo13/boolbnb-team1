@@ -252,7 +252,7 @@ class AppartmentController extends Controller
     public function destroy(Appartment $appartment)
     {
         $appartment->delete();
-        
-        return redirect()->route('admin.appartment.index');
+      
+        return redirect()->route('admin.appartments.index');
     }
 }

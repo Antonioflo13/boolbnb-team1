@@ -17,12 +17,6 @@
 
                     <div class="btn_card">
                         <a class="btn" href="{{ route('admin.appartments.show', $appartment->id) }}">Show</a>
-
-                        {{-- <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn_delete">Delete</button>
-                        </form> --}}
                     </div>
                 </div>
             @endforeach
