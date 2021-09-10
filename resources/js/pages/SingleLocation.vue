@@ -12,10 +12,13 @@
                         <button type="submit" class="btn"><i class="fas fa-arrow-right fa-2x"></i></button>
                     </router-link>
                 </div>
-                
-                <div class="col-12 col-lg-8 mt-3" >
+                <div class="col-12 col-lg-8 mt-3 ms-single-page-img-container" >
                     <!-- <img :src="appartment.image" :alt="appartment.title" v-if="appartment.image.substr(0,5) == 'https'"> -->
                     <img :src="'http://127.0.0.1:8000/storage/'  + appartment.image" :alt="appartment.title">
+                </div>
+                <div class="col-12 col-lg-4 mt-3" >
+                    <Map
+                    :appartmentLoc='appartment'/>
                 </div>
             </div>
             <div class="row">
@@ -51,12 +54,14 @@
 
 <script>
 import Contact from '../components/Contact';
-import Loader from '../components/Loader'
+import Loader from '../components/Loader';
+import Map from '../components/Map';
 export default {
     name: 'SingleLocation',
     components: {
         Contact,
-        Loader
+        Loader,
+        Map
     },
     data(){
         return{
@@ -91,17 +96,31 @@ export default {
 
 <style scoped lang="scss">
 @import '../../sass/app.scss';
-    img{
-        width: 100%;
+    .ms-single-page-img-container{
+       
+        overflow: hidden;
         border-radius: 10px;
+        img{
+            //height: 100%;
+            width: 100%;
+            border-radius: 10px 10px 0px 0px;
+            object-fit: cover;
+        
+        }
     }
+    
     .fa-arrow-right{
-            color: gray;
-            transition: all 0.2s;
-            &:hover{
-                color: $primary-color;
-            }
-
+        color: gray;
+        transition: all 0.2s;
+        &:hover{
+            color: $primary-color;
         }
 
+    }
+
+    @media all and (min-width: 1200px){
+    .ms-single-page-img-container{
+        height: 480px;
+    }
+    }
 </style>
