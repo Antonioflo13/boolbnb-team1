@@ -1,3 +1,4 @@
+@import './_popup'; 
 #ms_show {
     text-align: center;
     img {
@@ -64,6 +65,7 @@
         text-align: center;
         margin: 5px;
     }
+
 
     //MediaQuery
     @media screen and ( max-width: 945px) and (min-width: 685px){

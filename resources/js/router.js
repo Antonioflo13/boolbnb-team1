@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-
 Vue.use(VueRouter);
 
 // import components
@@ -19,7 +18,7 @@ const router = new VueRouter({
             component: Home,
         },
         {
-            path: '/locations/:slug',
+            path: '/locations/:slug?',
             name: 'locations',
             component: Locations
         },
@@ -33,7 +32,13 @@ const router = new VueRouter({
             name:'error-404',
             component: Error404
         }
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition){
+        if(savedPosition){
+          return savedPosition
+        }
+        return{ x: 0, y: 0}
+    }
 })
 
 export default router;

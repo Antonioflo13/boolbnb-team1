@@ -2,6 +2,23 @@
 @section('title', config('app.name', 'BoolBnB').' | Appartment List')
 @section('content')
 <section id="ms_show">
+    {{-- popup --}}
+    <div id="ms_popup">
+        <div class="popup container">
+            <div class="popupcontainer">
+                <p>Are you sure you want to delete this apartment? <strong>"{{ $appartment->title }}"</strong></p>
+                <div class="d-flex align-item-center justify-content-center">
+                    <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn_delete">Delete</button>
+                    </form>
+                    <button class="btn btn_delete" onclick="popdown()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- /popup --}}
     <article class="container my-3">
 
         @if (session('success_message'))
@@ -9,7 +26,6 @@
                 {{ session('success_message') }}
             </div>
         @endif
-
         <div>
             <div class="d-flex align-items-center justify-content-between">
                 <h1>{{ $appartment->title }}</h1>
@@ -29,16 +45,10 @@
                             <div id="demo" class="mr-3 text-success"></div>
                         </strong>
                     @endif
-                    <a class="btn_listing" href="{{ route('admin.promotions', $appartment->id) }}" class="mr-5"><i class="fas fa-sort-amount-up-alt mr-2"></i> Upgrade</a>
-                    <a class="btn_listing" href="http://127.0.0.1:8000/singlelocation/{{ $appartment->slug }}" class="btn">Preview listing</a>
-                    
-                    <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn_delete">Delete</button>
-                    </form>
-                    
-                    <a class="btn_listing" href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit<i class="fas fa-chevron-right ml-2"></i></a>
+                    <a href="{{ route('admin.promotions', $appartment->id) }}" class="mr-5"><i class="fas fa-sort-amount-up-alt mr-2"></i> Upgrade</a>
+                    <a href="http://127.0.0.1:8000/singlelocation/{{ $appartment->slug }}" class="btn">Preview listing</a>
+                    <button class="btn btn_delete" onclick="popup()">Delete</button>
+                    <a href="{{ route('admin.appartments.edit', $appartment->id) }}">Edit<i class="fas fa-chevron-right ml-2"></i></a>
                 </div>
             </div>
             {{-- edit collection --}}
@@ -120,43 +130,55 @@
 </section>
 
 <script>
-    // Assign a php variable to js
-    var endPromotion = "<?php
-        if (count($appartment->promotions) > 0) {
-            echo $appartment->promotions[0]->pivot->end_promotion; 
-        } else {
-            echo '';
+        //popup
+        function popup() {
+        document.getElementsByClassName("popup")[0].className = "PopupPanel";
+        };
+
+        function popdown() {
+            document.getElementsByClassName("PopupPanel")[0].className = "popup";
         }
-    ?>";
 
-    if (endPromotion.length > 0) {
 
-        // Set the date we're counting down to
-        var countDownDate = new Date(endPromotion).getTime();
+        // Assign a php variable to js
+        var endPromotion = "<?php
+            if (count($appartment->promotions) > 0) {
+                echo $appartment->promotions[0]->pivot->end_promotion; 
+            } else {
+                echo '';
+            }
+        ?>";
 
-        // Update the count down every 1 second
-        var x = setInterval(function() {
+        if (endPromotion.length > 0) {
 
-        // Get today's date and time
-        var now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="demo"
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
-
-        // If the count down is finished, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            // Set the date we're counting down to
+            var countDownDate = new Date(endPromotion).getTime();
+    
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+    
+            // Get today's date and time
+            var now = new Date().getTime();
+    
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+    
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+            // Display the result in the element with id="demo"
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+    
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+            }, 1000);
         }
         }, 1000);
     }

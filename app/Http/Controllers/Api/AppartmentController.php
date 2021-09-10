@@ -11,14 +11,14 @@ use App\AppartmentPromotion;
 class AppartmentController extends Controller
 {   
     public function index() {
-        $appartments = Appartment::orderBy('id', 'ASC')->with(['services', 'promotions'])->get();
+        $appartments = Appartment::where('visible', 1)->with(['services', 'promotions'])->get();
        
         return response()->json($appartments);
     }
 
     public function paginateappartments(Request $request) {
         $data = $request->all();
-        $appartments = Appartment::orderBy('id', 'ASC')->with(['services', 'promotions'])->paginate($data['number']);
+        $appartments = Appartment::where('visible', 1)->with(['services', 'promotions'])->paginate($data['number']);
        
         return response()->json($appartments);
     }
@@ -36,7 +36,7 @@ class AppartmentController extends Controller
 
         foreach ($appartmentpromotion as $item) {
             if ($item->end_promotion >= $currentDate) {
-                $appartments[] = Appartment::where('id', $item->appartment_id)->first();
+                $appartments[] = Appartment::where('id', $item->appartment_id)->where('visible', 1)->first();
             }
         }
 
