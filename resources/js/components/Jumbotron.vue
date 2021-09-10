@@ -3,9 +3,14 @@
         <div class="my-5 d-flex flex-column justify-content-center align-items-center">
             <Searchbar 
                 @searchedApps="searchedApps"
+                @searchedText="searchedText"
+
             />
             <h3 class="text-center my-5 px-3">Want to explore more? Perfect!</h3>
-            <router-link :to="{name: 'locations', params: { slug: 'search' } }">
+            <router-link v-if="(query.length > 0)" :to="{name: 'locations', params: { slug: query } }">
+                <button type="submit" class="ms-style px-5 py-3">Advanced Search </button>
+            </router-link>
+            <router-link v-else :to="{name: 'locations', params: { slug: 'search' } }">
                 <button type="submit" class="ms-style px-5 py-3">Advanced Search </button>
             </router-link>
         </div>
@@ -22,13 +27,16 @@ export default {
     },
     data () {
         return {
-            
+            query: '',
         }
     },
     methods: {
         searchedApps: function(res) {
             
             this.$emit('searchedApps', res);
+        },
+        searchedText: function(res) {
+            this.query = res;
         }
     }
    
