@@ -4,10 +4,10 @@
     <section id="ms_inbox">
 
         {{-- popup --}}
+        @foreach ($singleAppartmentsMessagges as $singleAppartmentsMessagge)
         <div id="ms_popup">
             <div class="popup container">
                 <div class="popupcontainer">
-                    @foreach ($singleAppartmentsMessagges as $singleAppartmentsMessagge)
                         <p>Are you sure you want to delete this apartment? <strong>"{{ $singleAppartmentsMessagge->name }}{{ $singleAppartmentsMessagge->appartment->title }}"
                         <div class="d-flex align-item-center justify-content-center">
                             <form action="{{ route('admin.inboxdelete.destroy', $singleAppartmentsMessagge->id) }}" method="POST">
@@ -17,11 +17,11 @@
                             </form>
                                 <button class="btn btn_delete" onclick="popdown()">No</button>
                         </div>
-                    @endforeach
-                    
+                        
+                    </div>
                 </div>
             </div>
-        </div>
+            @endforeach
         {{-- /popup --}}
 
         <article  class="container">
