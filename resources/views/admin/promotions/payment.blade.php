@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', config('app.name', 'BoolBnB').' | Payment')
 @section('content')
 
 <section id="ms_payment_checkout">

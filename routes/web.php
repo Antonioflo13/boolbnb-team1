@@ -29,6 +29,7 @@ Route::middleware('auth')
         Route::get('appartments/payment/{promotion}/{appartment}', 'PromotionController@getToken')->name('getToken');
         Route::post('appartments/payment/{promotion}/{appartment}', 'PromotionController@payment')->name('payment');
         Route::resource('appartments', 'AppartmentController');
+        Route::resource('inboxdelete', 'InboxDeleteController');
 
 });
 

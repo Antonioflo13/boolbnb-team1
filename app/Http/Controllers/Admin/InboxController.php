@@ -12,7 +12,8 @@ class InboxController extends Controller
 {
     public function index() {
         $messages = Message::where('user_id',Auth::user()->id)->get();
-        
-        return view('admin.inbox.index', compact('messages'));
+        $singleAppartmentsMessagges = $messages->groupBy('appartment_id', 'email');
+
+        return view('admin.inbox.index', compact('singleAppartmentsMessagges'));
     }
 }
