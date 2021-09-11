@@ -11,7 +11,7 @@ use App\Message;
 class InboxController extends Controller
 {
     public function index() {
-        $messages = Message::where('user_id',Auth::user()->id)->paginate(8);
+        $messages = Message::where('user_id',Auth::user()->id)->paginate(4);
         $singleAppartmentsMessagges = $messages->where('appartment_id');
 
         return view('admin.inbox.index', compact('singleAppartmentsMessagges','messages'));

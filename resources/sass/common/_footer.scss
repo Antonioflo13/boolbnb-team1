@@ -15,8 +15,12 @@ footer{
        color: #4A4B4B;
        transition: all 0.2s;
        &:hover{
+           color: $primary-color;
            text-decoration:underline;
        }
+       i:hover {
+           color: $primary-color;
+        }
     }
 }
 .ms-social {
