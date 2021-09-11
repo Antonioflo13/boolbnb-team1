@@ -30,7 +30,7 @@
               labels:  {!!json_encode($chart->labels)!!} ,
               datasets: [
                   {
-                      label: 'Count of Views',
+                      label: 'Views',
                       backgroundColor: {!! json_encode($chart->colours)!!} ,
                       data:  {!! json_encode($chart->dataset)!!} ,
                   },
