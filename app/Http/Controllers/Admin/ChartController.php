@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
+use DateTime;
+use DateTimeZone;
 use App\Chart;
 use App\View;
 use App\Appartment;
-use Illuminate\Support\Facades\Auth;
 
 class ChartController extends Controller
 {
@@ -30,28 +32,40 @@ class ChartController extends Controller
         // Get appartments
         $appartments = Appartment::where('user_id', Auth::user()->id)->get();
 
+        // Define title
+        $title = '';
+
+        // Get localtime
+        $localtime = new DateTime("now", new DateTimeZone('Europe/Rome'));
+
         // Get users grouped by age
         if ($newData[0] == 1) {
+            $title = 'Today';
+            $date = $localtime->format('d F Y');
 
             $groups = DB::table('views')
                 ->select('appartment_id', DB::raw('count(*) as total'))
-                ->where('created_at', 'like', date_create('Y-m-d') . '%')
+                ->where('created_at', 'like', $localtime->format('Y-m-d') . '%')
                 ->groupBy('appartment_id')
                 ->pluck('total', 'appartment_id')->all();
 
         } else if ($newData[0] == 2) {
+            $title = 'This month';
+            $date = $localtime->format('F Y');
 
             $groups = DB::table('views')
                 ->select('appartment_id', DB::raw('count(*) as total'))
-                ->where('created_at', 'like', date_create('Y-m') . '%')
+                ->where('created_at', 'like', $localtime->format('Y-m-') . '%')
                 ->groupBy('appartment_id')
                 ->pluck('total', 'appartment_id')->all();
 
         } else if ($newData[0] == 3) {
+            $title = 'This year';
+            $date = $localtime->format('Y');
 
             $groups = DB::table('views')
                 ->select('appartment_id', DB::raw('count(*) as total'))
-                ->where('created_at', 'like', date_create('Y') . '%')
+                ->where('created_at', 'like', $localtime->format('Y-') . '%')
                 ->groupBy('appartment_id')
                 ->pluck('total', 'appartment_id')->all();
 
@@ -63,6 +77,8 @@ class ChartController extends Controller
         $newGroups = [];
         $filterGroups = [];
         $finalGroups = [];
+        $finalComplete = [];
+        $finalGroupsComplete = [];
 
         // Filter groups array
         foreach ($appartments as $appartment) {
@@ -77,10 +93,11 @@ class ChartController extends Controller
                 $filterGroups[$key] = $group;
             }
         }
-        foreach ($appartments as $appartment) {
+        foreach ($appartments as $count => $appartment) {
             foreach ($filterGroups as $key => $filterGroup) {
                 if ($appartment->id == $key) {
-                    $finalGroups[substr($appartment->title, 0, 30) . '...'] = $filterGroup;
+                    $finalGroups[($count + 1) . ') ' . substr($appartment->title, 0, 6) . '...'] = $filterGroup;
+                    $finalGroupsComplete[($count + 1) . ') ' . $appartment->title] = $filterGroup;
                 }
             }
         }
@@ -95,9 +112,10 @@ class ChartController extends Controller
 
         $chart->labels = (array_keys($finalGroups));
         $chart->dataset = (array_values($finalGroups));
+        $chart->info = (array_keys($finalGroupsComplete));
         $chart->colours = $colours;
 
-        return view('charts.index', compact('chart'));
+        return view('charts.index', compact('chart', 'title', 'date'));
     }
 
     /**

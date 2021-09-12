@@ -51,7 +51,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="nav-link" href="{{ route('admin.charts', 1) }}">Today</a>
                                 <a class="nav-link" href="{{ route('admin.charts', 2) }}">This month</a>
-                                <a class="nav-link" href="{{ route('admin.charts', 3) }}">This month</a>
+                                <a class="nav-link" href="{{ route('admin.charts', 3) }}">This year</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
