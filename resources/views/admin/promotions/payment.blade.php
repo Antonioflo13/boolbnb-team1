@@ -24,9 +24,9 @@
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
-                <div class="d-flex">
+                <div class="d-flex justify-content-end">
                     <a href="http://127.0.0.1:8000/admin/appartments/{{$appartment->id}}" >
-                        <i class="fas fa-arrow-left fa-2x"></i>
+                        <i class="fas fa-arrow-right fa-2x"></i>
                     </a>
                 </div>
                     
@@ -66,13 +66,13 @@
                             <div class="bt-drop-in-wrapper">
                                 <div id="bt-dropin"></div>
                             </div>
+                            <input id="nonce" name="payment_method_nonce" type="hidden" />
+                            <button class="button" type="submit">
+                                <span>
+                                    <i class="fas fa-shopping-cart"></i>
+                                </span>
+                            </button>
                         </section>
-                        <input id="nonce" name="payment_method_nonce" type="hidden" />
-                        <button class="button" type="submit">
-                            <span>
-                                <i class="fas fa-shopping-cart"></i>
-                            </span>
-                        </button>
                     </form>
                 </div>
             </div>
