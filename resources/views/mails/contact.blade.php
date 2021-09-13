@@ -49,11 +49,22 @@
         color: #FD395C;
     }
 
+    header h2 {
+        color: #FD395C;
+    }
+
     /* nav */
     header nav {
         display: flex;
         justify-content: space-between;
         padding: 20px;
+    }
+
+    header a {
+        margin: 5px 0;
+    }
+    header a:hover{
+        color: #FD395C;
     }
 
     nav ul li {
@@ -101,6 +112,21 @@
         border-radius: 10px;
         background-color: #F8FAFC;
     }
+
+    .reply {
+        align-self: center;
+        padding: 10px;
+        border-radius: 10px;
+        text-transform: uppercase;
+        border: 1px solid #FD395C;
+        color:  #FD395C !important;
+        background-color: transparent;
+    }
+
+    .reply:hover {
+        color: white !important;
+        background-color: #FD395C;
+    }
     h2,
     h4 {
         margin: 10px 0;
@@ -108,12 +134,6 @@
 
     h4 {
         font-size: 16px;
-        color: #FD395C;
-    }
-    a {
-        margin: 5px 0;
-    }
-    a:hover{
         color: #FD395C;
     }
 
@@ -167,8 +187,8 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="http://127.0.0.1:8000/location">Search your Appartment</a>
-                        <a href="http://127.0.0.1:8000/location/register">Become a Host</a>
+                        <a href="http://127.0.0.1:8000/locations">Search your Appartment</a>
+                        <a href="http://127.0.0.1:8000/register">Become a Host</a>
                     </li>
                 </ul>
             </nav>
@@ -186,6 +206,7 @@
                     <div class="msg-box">
                         <p>{{ $email->message }}</p>
                     </div>
+                    <a class="reply" href="mailto:{{ $email->email }}">Reply</a>
                 </article>
             </section>
         </main>
