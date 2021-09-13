@@ -1,0 +1,40 @@
+#ms_charts {
+
+    h1 {
+        text-align: center;
+        color: $primary-color;
+    }
+
+    h4 {
+        padding-bottom: 15px;
+        text-align: center;
+    }
+
+    h6 {
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .ms_legend {
+        display: inline-block;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        background-color: white;
+        box-shadow: 0 0.5rem 1rem #00000026;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    }
+    
+    @media (min-width: 992px) {
+        .col-lg-8 {
+            max-width: unset;
+        }
+    }
+
+}
