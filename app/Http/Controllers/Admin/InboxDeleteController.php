@@ -80,8 +80,9 @@ class InboxDeleteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy($singleMessage)
     {
+        $message = Message::where('id', $singleMessage)->first();
         $message->delete();
         return redirect()->route('admin.inbox');
     }

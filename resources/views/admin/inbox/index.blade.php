@@ -6,7 +6,7 @@
         {{-- popup --}}
         @foreach ($singleAppartmentsMessagges as $singleAppartmentsMessagge)
         <div id="ms_popup">
-            <div class="popup container">
+            <div id="{{ $singleAppartmentsMessagge->id }}" class="popup container">
                 <div class="popupcontainer">
                         <p>Are you sure you want to delete this apartment? <strong>"{{ $singleAppartmentsMessagge->name }}{{ $singleAppartmentsMessagge->appartment->title }}"
                         <div class="d-flex align-item-center justify-content-center">
@@ -15,7 +15,7 @@
                                 @method('DELETE')
                                 <button class="btn btn_delete">Delete</button>
                             </form>
-                                <button class="btn btn_delete" onclick="popdown()">No</button>
+                            <button class="btn btn_delete" onclick="popdown()">No</button>
                         </div>
                         
                     </div>
@@ -44,7 +44,7 @@
                             <div class="collapse mt-3" id="collapseExample{{ $singleAppartmentsMessagge->id }}">
                                 <div>
                                     <p>{{ $singleAppartmentsMessagge->message }}</p>
-                                        <button class="btn btn_delete mb-5" onclick="popup()"><i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn btn_delete mb-5" onclick="popup({{$singleAppartmentsMessagge->id}})"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +62,8 @@
 
     <script>
         //popup
-        function popup() {
-        document.getElementsByClassName("popup")[0].className = "PopupPanel";
+        function popup(res) {
+        document.getElementById(res).className = "PopupPanel";
         };
 
         function popdown() {
