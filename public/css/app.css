@@ -11497,6 +11497,15 @@ a.text-dark:focus {
   display: inline-block;
 }
 
+#ms_popup .PopupPanel #button form .btn.btn_delete {
+  color: white;
+  background-color: #FD395C;
+}
+
+#ms_popup .PopupPanel #button form .btn.btn_delete:hover {
+  background-color: #f82e53;
+}
+
 #ms_popup .PopupPanel .popupcontainer {
   width: 50%;
   padding: 10px;

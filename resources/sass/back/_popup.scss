@@ -17,6 +17,15 @@
             display: inline-block;
         }
 
+        #button form .btn.btn_delete {
+            color: white;
+            background-color: $primary-color;
+        }
+
+        #button form .btn.btn_delete:hover {
+            background-color: $primary-color-hover;
+        }
+
         .popupcontainer {
             width: 50%;
             padding: 10px;
