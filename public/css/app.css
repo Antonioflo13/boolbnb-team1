@@ -11929,3 +11929,40 @@ a.text-dark:focus {
   }
 }
 
+#ms_charts h1 {
+  text-align: center;
+  color: #FD395C;
+}
+
+#ms_charts h4 {
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+#ms_charts h6 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#ms_charts .ms_legend {
+  display: inline-block;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: 0 0.5rem 1rem #00000026;
+}
+
+#ms_charts .ms_legend ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 992px) {
+  #ms_charts .col-lg-8 {
+    max-width: unset;
+  }
+}
+
