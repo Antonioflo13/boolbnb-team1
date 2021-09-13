@@ -4,6 +4,11 @@
     <section id="ms_promotions">
         <div class="container">
             <div class="row">
+                <div  style="width: 100%;" class="d-flex justify-content-end">
+                    <a style="color: grey;" href="http://127.0.0.1:8000/admin/appartments/{{$appartment->id}}" >
+                        <i class="fas fa-arrow-right fa-2x"></i>
+                    </a>
+                </div>
                 <div class="col-12 ">
                     <h1>Promotion for {{ $appartment->title }}</h1>
                 </div>
@@ -20,7 +25,7 @@
                     @endforeach
             </div> 
             <div class="row">
-                <div class="card_secondary col-12" >
+                <div class="card_secondary" >
                     <h3>
                         Sponsorship detail
                     </h3>
