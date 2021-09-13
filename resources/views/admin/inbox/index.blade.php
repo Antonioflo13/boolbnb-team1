@@ -6,10 +6,10 @@
         {{-- popup --}}
         @foreach ($singleAppartmentsMessagges as $singleAppartmentsMessagge)
         <div id="ms_popup">
-            <div id="{{ $singleAppartmentsMessagge->id }}" class="popup container">
+            <div id="{{ $singleAppartmentsMessagge->id }}" class="popup" style="height: calc(100vh - 229.25px)">
                 <div class="popupcontainer">
                         <p>Are you sure you want to delete this apartment? <strong>"{{ $singleAppartmentsMessagge->name }}{{ $singleAppartmentsMessagge->appartment->title }}"
-                        <div class="d-flex align-item-center justify-content-center">
+                        <div class="d-flex">
                             <form action="{{ route('admin.inboxdelete.destroy', $singleAppartmentsMessagge->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

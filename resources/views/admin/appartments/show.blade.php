@@ -4,7 +4,7 @@
 <section id="ms_show">
     {{-- popup --}}
     <div id="ms_popup">
-        <div class="popup container">
+        <div class="popup container" style="height: calc(100vh - 196.25px)">
             <div class="popupcontainer">
                 <p>Are you sure you want to delete this apartment? <strong>"{{ $appartment->title }}"</strong></p>
                 <div class="d-flex align-item-center justify-content-center">
