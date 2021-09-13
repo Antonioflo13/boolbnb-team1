@@ -9,6 +9,7 @@ footer{
 }
 .ms-list-group{
     list-style: none;
+    font-size: 11px;
     color: #4A4B4B;
     a{
        text-decoration: none; 
@@ -32,7 +33,10 @@ footer{
 
 //MediaQuery
 @media screen and (min-width: 576px){
-.ms-social {
-    display: block;
-}
+    .ms-social {
+        display: block;
+    }
+    .ms-list-group {
+        font-size: 16px;
+    }
 }

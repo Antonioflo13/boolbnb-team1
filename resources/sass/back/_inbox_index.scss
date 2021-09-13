@@ -47,11 +47,22 @@
             background-color: $primary-color-hover;
         }
 
+        textarea {
+            font-size: 11px;
+        }
+
+        .msg-box {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #F8FAFC;
+        }
+
     }
     button {
-        text-transform: uppercase;
-        margin-left: 45%;
         border-radius: 10px;
+        align-self: center;
+        text-transform: uppercase;
         border: 1px solid $primary-color;
         color:  $primary-color;
         background-color: transparent;
@@ -79,16 +90,9 @@
     }
 
     @media screen and ( max-width: 945px) and (min-width: 685px) {
-        height: 78vh;
         .card {
-            width: calc((100% - 60px) / 3) !important;
-            margin: 58px 10px;
-            float: left;
+            width: 100%;
             background-color: white;
-
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
             text-align: center;
         }
     }
@@ -97,18 +101,6 @@
     and (max-width: 944px) {
         h1 {
             font-size: 25px;
-        }
-        .card {
-            width: 90%;
-            text-align: start;
-            margin: 30px 10px;
-            float: left;
-            background-color: white;
-
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: center;
         }
     }
 }

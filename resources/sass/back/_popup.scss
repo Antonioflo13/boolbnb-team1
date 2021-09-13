@@ -25,4 +25,11 @@
             box-shadow: 7px 5px 58px 0px rgb(0, 0, 0, 0.3);
         }
     }
+
+    @media screen and ( min-width: 320px)
+    and (max-width: 944px) {
+        #button {
+            flex-direction: row !important;
+        }
+    }
 }

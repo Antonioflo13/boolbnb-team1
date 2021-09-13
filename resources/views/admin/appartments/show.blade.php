@@ -4,10 +4,11 @@
 <section id="ms_show">
     {{-- popup --}}
     <div id="ms_popup">
-        <div class="popup container" style="height: calc(100vh - 196.25px)">
+        <div class="popup container text-center" style="height: calc(100vh - 196.25px)">
             <div class="popupcontainer">
-                <p>Are you sure you want to delete this apartment? <strong>"{{ $appartment->title }}"</strong></p>
-                <div class="d-flex align-item-center justify-content-center">
+                <p>Are you sure you want to delete this apartment?</p>
+                <p><strong>"{{ $appartment->title }}"</strong></p>
+                <div id="button" class="d-flex justify-content-center align-items-center">
                     <form action="{{ route('admin.appartments.destroy', $appartment->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
