@@ -42,6 +42,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        border-bottom: 1px solid #cbcbcb;
     }
 
     header h4 {
@@ -76,30 +77,30 @@
     main {
         background-color: #F8FAFC;
     }
-
     section {
         padding: 20px;
     }
-
     .card {
-        width: 100%;
-        margin: 10px 0px;
-        padding: 20px;
-        background-color: white;
-
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        text-align: center;
-
-        
+        width: 100%;
+        margin: 10px 0px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 7px 5px 58px 0px rgb(0, 0, 0, 0.3);
     }
-    h3 {
-        font-size: 18px;
-        color: $primary-color;
-        margin: 5px 0;
+    .card * {
+        margin-bottom: 10px;
     }
 
+    .card .msg-box {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #F8FAFC;
+    }
     h2,
     h4 {
         margin: 10px 0;
@@ -109,65 +110,60 @@
         font-size: 16px;
         color: #FD395C;
     }
-
     a {
         margin: 5px 0;
-        text-transform: uppercase;
-        color:  $primary-color;
-        border: 1px solid $primary-color;
-        
     }
     a:hover{
-        color: white;
-        background-color: $primary-color-hover;
+        color: #FD395C;
     }
 
-
-
-
-
-        footer{
+    /* footer */
+    footer{
+        padding: 10px;
         background-color: #FFFFFF;
-        border-top: 1px solid rgb(255, 255, 255);
+        border-top: 1px solid #cbcbcb;
     
     }
-    .ms-footer{
-        color: white;
-    }
-    .ms-list-group{
+    .ms-footer-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         list-style: none;
-        color: #4A4B4B;
+    }
+
+    .ms-footer-links li {
+        padding: 10px;
     }
     a{
        text-decoration: none; 
        color: #4A4B4B;
        transition: all 0.2s;
     }
-    hover{
+    footer a:hover{
         text-decoration:underline;
     }
-    .ms-social {
-        display: none;
+
+    @media and screen (min-width: 576px) {
+        header nav {
+            text-align: center;
+        }
+        .ms-footer-links li {
+        padding: 5px;
+        font-size: 14px;
+        }
     }
-    .fab{
-       color: #4A4B4B; 
-    }
-    
-    /* //MediaQuery */
-    @media screen and (min-width: 576px){
-    .ms-social {
-        display: block;
-    }
-    }
+
     </style>
 </head>
 <body>
 
     {{-- container --}}
     <div class="container">
+
+        {{-- header --}}
         <header>
             <a href="{{ route('home') }}"><img class="logo" src="https://loghi-famosi.com/wp-content/uploads/2020/07/Logo-della-Airbnb.png" alt="bnblogo"></a>
-            <h4>BoolBnB</h4>
+            <h2>BoolBnB</h2>
             <nav>
                 <ul>
                     <li>
@@ -185,35 +181,29 @@
                 <article class="card">
                     <h4>{{ $email->appartment->title }}</h4>
                     <h5>{{ $email->name }}</h5>
-                    <h5>{{ $email->email }}</h5>
-                    <p>{{ $email->message }}</p>
+                    <p>{{ $email->email }}</p>
+                    <h5>Message</h5>
+                    <div class="msg-box">
+                        <p>{{ $email->message }}</p>
+                    </div>
                 </article>
             </section>
         </main>
         {{-- /main --}}
-    
-            <footer>
-                <div class="container ms-footer py-3">
-                    <div class="row">
-                        <div class="col">
-                            <ul class="d-flex flex-wrap ms-footer-links align-items-center my-2">
-                                <li class="ms-list-group mr-3"> &copy; 2021 Boolbnb, Inc. </li> 
-                                <li class="ms-list-group mr-3"><a href="#">Privacy</a> </li>
-                                <li class="ms-list-group mr-3"><a href="#">Terms</a></li>
-                                <li class="ms-list-group mr-3"><a href="#">Sitemap</a></li>
-                            </ul>
-                        </div>
-                        <div class="col ms-social">
-                            <ul class="d-flex flex-row-reverse align-items-center my-2">
-                                <li class="ms-list-group mr-3"><a href="#"><i class="fab fa-2x fa-instagram"></i></a></li>
-                                <li class="ms-list-group mr-3"><a href="#"><i class="fab  fa-2x fa-twitter"></i></a> </li>
-                                <li class="ms-list-group mr-3"> <a href="#"><i class="fab fa-2x fa-facebook-f"></i></a></li>   
-                            </ul>
         
-                        </div>
-                    </div> 
-                </div>
-            </footer>
+        {{-- footer --}}
+        <footer>
+            <div>
+                <ul class="ms-footer-links">
+                    <li> &copy; 2021 Boolbnb, Inc. </li> 
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+        </footer>
+        {{-- /footer --}}
+
     </div>
 </body>
 </html>

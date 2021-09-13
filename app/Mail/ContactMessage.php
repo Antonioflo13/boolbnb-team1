@@ -32,6 +32,7 @@ class ContactMessage extends Mailable
     {
         return $this
             ->view('mails.contact')
+            ->subject('new message for the apartment '.$this->message->appartment->title.'')
             ->with(
                 [
                     'email' => $this->message

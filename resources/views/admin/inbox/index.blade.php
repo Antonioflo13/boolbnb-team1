@@ -46,7 +46,9 @@
             @endforeach
 
             {{-- paginate --}}
-            <div class="paginator">{{$messages->links()}}</div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="paginator p-3">{{$messages->links()}}</div>
+            </div>
             {{-- /paginate --}}
 
         </article>

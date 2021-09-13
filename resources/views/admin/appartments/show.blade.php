@@ -42,9 +42,10 @@
                         <span class="mr-3"><i style="color: green" class="fas fa-circle mr-2"></i>Available</span>
                     @endif
                     @if ($appartment->promotions && count($appartment->promotions) > 0 && $appartment->promotions[0]->pivot->end_promotion >= date("Y-m-d H:i:s"))
-                        <strong>
-                            <div id="demo" class="mr-3 text-success"></div>
-                        </strong>
+                        <div class="btn_listing sponsorship text-align-center">
+                            <small>Sponsorship</small>
+                            <div id="demo"></div>
+                        </div>
                     @endif
                     <a class="btn_listing" href="{{ route('admin.promotions', $appartment->id) }}" class="mr-5"><i class="fas fa-sort-amount-up-alt mr-2"></i> Upgrade</a>
                     <a class="btn_listing" href="http://127.0.0.1:8000/singlelocation/{{ $appartment->slug }}" class="btn">Preview listing</a>
@@ -100,10 +101,11 @@
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between my-3">
                                     <h5>Number of guest</h5>
-
-                                    @for ($i = 0; $i < $appartment->beds_number; $i++)
-                                        <i class="fas fa-male"></i>
-                                    @endfor
+                                    <div>
+                                        @for ($i = 0; $i < $appartment->beds_number; $i++)
+                                            <i class="fas fa-male"></i>
+                                        @endfor
+                                    </div>
                                 </div>
                                 <div class="my-3">
                                     <h5>Listing Status</h5>
@@ -174,8 +176,7 @@
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         // Display the result in the element with id="demo"
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h ";
 
         // If the count down is finished, write some text
         if (distance < 0) {

@@ -16,6 +16,7 @@
     }
     i {
         display: inline-block;
+        color: $primary-color;
     }
 
     .row ,
@@ -50,6 +51,12 @@
         white-space: nowrap;
     }
 
+    .sponsorship {
+        background-color: $primary-color;
+        color: white;
+    }
+
+    .btn_listing:hover i,
     .btn_listing:hover,
     .btn_delete:hover,
     .list-group-item.active {
