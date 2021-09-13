@@ -11834,7 +11834,6 @@ a.text-dark:focus {
 
 #ms_payment_checkout button {
   text-transform: uppercase;
-  margin-left: 45%;
   border: 1px solid #FD395C;
   color: #FD395C;
   border-radius: 10px;
@@ -11855,7 +11854,6 @@ a.text-dark:focus {
 }
 
 #ms_payment_checkout a {
-  width: 100%;
   color: grey;
   padding: 5px 15px;
 }
