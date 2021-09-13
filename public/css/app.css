@@ -201,6 +201,7 @@ footer {
 
 .ms-list-group {
   list-style: none;
+  font-size: 11px;
   color: #4A4B4B;
 }
 
@@ -230,6 +231,10 @@ footer {
 @media screen and (min-width: 576px) {
   .ms-social {
     display: block;
+  }
+
+  .ms-list-group {
+    font-size: 16px;
   }
 }
 
@@ -11281,6 +11286,7 @@ a.text-dark:focus {
   width: calc((100% - 80px) / 4);
   margin: 10px;
   padding: 15px;
+  border-radius: 10px;
   float: left;
   background-color: white;
   display: flex;
@@ -11303,6 +11309,7 @@ a.text-dark:focus {
 #ms_index .container .box_card p {
   height: 35%;
   font-size: 15px;
+  font-weight: 300;
   margin: 5px 0;
 }
 
@@ -11331,9 +11338,9 @@ a.text-dark:focus {
   margin: 9px;
 }
 
-@media screen and (max-width: 945px) and (min-width: 685px) {
-  #ms_index {
-    height: 80vh;
+@media screen and (max-width: 995px) and (min-width: 768px) {
+  #ms_index .box_card {
+    width: calc((100% - 80px) / 3) !important;
   }
 
   #ms_index h1 {
@@ -11349,7 +11356,13 @@ a.text-dark:focus {
   }
 }
 
-@media screen and (max-width: 683px) {
+@media screen and (max-width: 768px) and (min-width: 575px) {
+  #ms_index .box_card {
+    width: calc((100% - 80px) / 2) !important;
+  }
+}
+
+@media screen and (max-width: 575px) {
   #ms_index .box_card {
     width: 80% !important;
   }
@@ -11492,18 +11505,28 @@ a.text-dark:focus {
   box-shadow: 7px 5px 58px 0px rgba(0, 0, 0, 0.3);
 }
 
+@media screen and (min-width: 320px) and (max-width: 944px) {
+  #ms_popup #button {
+    flex-direction: row !important;
+  }
+}
+
 #ms_show {
   text-align: center;
 }
 
 #ms_show img {
-  width: 70%;
+  width: 75%;
   border-radius: 10px;
 }
 
 #ms_show h1 {
   font-size: 30px;
   font-weight: 600;
+}
+
+#ms_show .fas.fa-arrow-right {
+  color: gray !important;
 }
 
 #ms_show #list-photos {
@@ -11519,6 +11542,7 @@ a.text-dark:focus {
 #ms_show .d-flex {
   flex-direction: row;
   align-items: start;
+  justify-content: center;
 }
 
 #ms_show .list-group {
@@ -11578,6 +11602,10 @@ a.text-dark:focus {
 }
 
 @media screen and (max-width: 945px) and (min-width: 685px) {
+  #ms_show img {
+    width: 100% !important;
+  }
+
   #ms_show h1 {
     font-size: 19px !important;
   }
@@ -11587,11 +11615,50 @@ a.text-dark:focus {
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 944px) {
+@media screen and (min-width: 769px) and (max-width: 944px) {
+  #ms_show img {
+    width: 100% !important;
+  }
+
   #ms_show h1,
   #ms_show span,
   #ms_show a {
-    font-size: 25px !important;
+    margin: 10px;
+    display: block;
+  }
+
+  #ms_show .d-flex {
+    display: flex !important;
+  }
+
+  #ms_show .row {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+
+  #ms_show .row a {
+    width: 100%;
+  }
+
+  #ms_show p,
+  #ms_show .indicator {
+    font-size: 14px !important;
+  }
+
+  #ms_show .list-group-item {
+    font-size: 16px !important;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  #ms_show img {
+    width: 100% !important;
+  }
+
+  #ms_show h1,
+  #ms_show span,
+  #ms_show a {
     margin: 10px;
     display: block;
   }
@@ -11613,11 +11680,11 @@ a.text-dark:focus {
 
   #ms_show p,
   #ms_show .indicator {
-    font-size: 10px !important;
+    font-size: 14px !important;
   }
 
   #ms_show .list-group-item {
-    font-size: 20px !important;
+    font-size: 16px !important;
   }
 }
 
@@ -11679,7 +11746,6 @@ a.text-dark:focus {
 
 #ms_form .come_back {
   display: inline-block;
-  padding: 10px 45px;
   text-align: right;
   width: 100%;
 }
@@ -11885,10 +11951,21 @@ a.text-dark:focus {
   background-color: #f82e53;
 }
 
-#ms_inbox button {
-  text-transform: uppercase;
-  margin-left: 45%;
+#ms_inbox .card textarea {
+  font-size: 11px;
+}
+
+#ms_inbox .card .msg-box {
+  width: 100%;
+  padding: 10px;
   border-radius: 10px;
+  background-color: #F8FAFC;
+}
+
+#ms_inbox button {
+  border-radius: 10px;
+  align-self: center;
+  text-transform: uppercase;
   border: 1px solid #FD395C;
   color: #FD395C;
   background-color: transparent;
@@ -11911,18 +11988,9 @@ a.text-dark:focus {
 }
 
 @media screen and (max-width: 945px) and (min-width: 685px) {
-  #ms_inbox {
-    height: 78vh;
-  }
-
   #ms_inbox .card {
-    width: calc((100% - 60px) / 3) !important;
-    margin: 58px 10px;
-    float: left;
+    width: 100%;
     background-color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
     text-align: center;
   }
 }
@@ -11930,18 +11998,6 @@ a.text-dark:focus {
 @media screen and (min-width: 320px) and (max-width: 944px) {
   #ms_inbox h1 {
     font-size: 25px;
-  }
-
-  #ms_inbox .card {
-    width: 90%;
-    text-align: start;
-    margin: 30px 10px;
-    float: left;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: center;
   }
 }
 
