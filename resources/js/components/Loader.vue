@@ -26,6 +26,7 @@ export default {
             border: 4px solid $primary-color;
             opacity: 1;
             border-radius: 50%;
+            transform: translate(-50%, -50%);
             animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
             &:nth-child(2) {
                 animation-delay: -0.5s;
@@ -35,8 +36,8 @@ export default {
     
     @keyframes lds-ripple {
     0% {
-        top: 36px;
-        left: 36px;
+        top: 0;
+        left: 0;
         width: 0;
         height: 0;
         opacity: 1;

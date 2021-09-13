@@ -9,6 +9,7 @@
             width: calc((100% - 80px) / 4);
             margin: 10px;
             padding: 15px;
+            border-radius: 10px;
             float: left;
             background-color: white;
     
@@ -31,6 +32,7 @@
             p {
                 height: 35%;
                 font-size: 15px;
+                font-weight: 300;
                 margin: 5px 0;
             }
 
@@ -60,10 +62,12 @@
     }
 
     //MediaQuery
-    @media screen and ( max-width: 945px) and (min-width: 685px){
-        
-        height: 80vh;
+    @media screen and ( max-width: 995px) and (min-width: 768px){
 
+        .box_card {
+            width: calc((100% - 80px) / 3) !important;
+        }
+        
         h1 {
             font-size: 19px !important;
         }
@@ -76,7 +80,12 @@
             margin: 3px !important;
         }
     }
-    @media screen and ( max-width: 683px) {
+    @media screen and ( max-width: 768px) and ( min-width: 575px) {
+        .box_card {
+            width: calc((100% - 80px) / 2) !important;
+        }
+    }
+    @media screen and ( max-width: 575px) {
         .box_card {
             width: 80% !important;
         }

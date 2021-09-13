@@ -27,9 +27,15 @@
             </div>
         @endif
 
+        <div class="come_back d-flex justify-content-end align-items-end">
+            <a class="nav-link mb-2" href="http://127.0.0.1:8000/admin/appartments">
+                <i class="fas fa-arrow-right fa-2x"></i>
+            </a>
+        </div>
+
         <div>
             <div class="d-flex align-items-center justify-content-between">
-                <h1>{{ $appartment->title }}</h1>
+                <h1 class="mr-2">{{ $appartment->title }}</h1>
                 <div class="d-flex align-items-center">
                     @if (!$appartment->visible) 
                         {{-- pallino rosso --}}
@@ -114,7 +120,7 @@
                                         <span class="mr-5 indicator"><i style="color: red" class="fas fa-circle mr-2"></i> Not Available</span>
                                     @else
                                         {{-- pallino verde --}}
-                                        <span class="mr-5 indicator"><i style="color: green" class="fas fa-circle mr-2"></i> Available - Guest can find your listing in search result and request or book available dates.</span>
+                                        <span class="indicator"><i style="color: green" class="fas fa-circle mr-2"></i> Available - Guest can find your listing in search result and request or book available dates.</span>
                                     @endif
                                 </div>
                                 <div class="my-3">
@@ -176,7 +182,7 @@
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         // Display the result in the element with id="demo"
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m";
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 
         // If the count down is finished, write some text
         if (distance < 0) {
