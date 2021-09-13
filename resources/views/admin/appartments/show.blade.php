@@ -27,6 +27,12 @@
             </div>
         @endif
 
+        <div class="come_back d-flex justify-content-end align-items-end">
+            <a class="nav-link mb-2" href="http://127.0.0.1:8000/admin/appartments">
+                <i class="fas fa-arrow-right fa-2x"></i>
+            </a>
+        </div>
+
         <div>
             <div class="d-flex align-items-center justify-content-between">
                 <h1 class="mr-2">{{ $appartment->title }}</h1>

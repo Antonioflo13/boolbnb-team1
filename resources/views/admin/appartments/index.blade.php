@@ -13,7 +13,7 @@
                     @endif
 
                     <h1>{{ $appartment->title }}</h1>
-                    <p>{{ substr($appartment->description, 0,100).'...' }}</p>
+                    <p class="pt-4">{{ substr($appartment->description, 0,100).'...' }}</p>
 
                     <div class="btn_card">
                         <a class="btn" href="{{ route('admin.appartments.show', $appartment->id) }}">Show</a>
