@@ -211,7 +211,12 @@ footer {
 }
 
 .ms-list-group a:hover {
+  color: #FD395C;
   text-decoration: underline;
+}
+
+.ms-list-group a i:hover {
+  color: #FD395C;
 }
 
 .ms-social {
@@ -11503,6 +11508,7 @@ a.text-dark:focus {
 
 #ms_show i {
   display: inline-block;
+  color: #FD395C;
 }
 
 #ms_show .row,
@@ -11538,6 +11544,12 @@ a.text-dark:focus {
   white-space: nowrap;
 }
 
+#ms_show .sponsorship {
+  background-color: #FD395C;
+  color: white;
+}
+
+#ms_show .btn_listing:hover i,
 #ms_show .btn_listing:hover,
 #ms_show .btn_delete:hover,
 #ms_show .list-group-item.active {
