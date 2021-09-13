@@ -9,6 +9,9 @@
 
     <title>@yield('title')</title>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
